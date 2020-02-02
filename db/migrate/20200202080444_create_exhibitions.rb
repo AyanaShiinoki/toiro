@@ -1,10 +1,11 @@
 class CreateExhibitions < ActiveRecord::Migration[5.2]
   def change
     create_table :exhibitions do |t|
-      t.integer :user_id
+      t.references :user, foreign_key: true
+      t.references :gallery, foreign_key: true
       t.string :title
       t.text :caption
-      t.boolean :is_active, :boolean, default: true, null: false
+      t.boolean :is_active, default: true, null: false
 
       t.timestamps
     end

@@ -24,4 +24,36 @@ Gallery.create!([
 	{user_id: 4 , gallery_name: "ギャラリー４" , concept: "絵と写真"}
 	])
 
+# 個展
+Exhibition.create!([
+	{user_id: 1 , gallery_id:1,title: "猫" , caption: "飼い猫たち" , is_active: true},
+	{user_id: 3 , gallery_id:3,title: "犬" , caption: "飼い犬たち" , is_active: true}
+	])
 
+
+# 作品
+Work.create!([
+	{user_id: 1 ,exhibition_id: 1 , title: "いろは" , description: "飼い猫です"},
+	{user_id: 3 ,exhibition_id: 2 , title: "ポチ" , description: "飼い犬です"},
+	{user_id: 3 ,exhibition_id: 2 , title: "太郎" , description: "飼い犬です"}
+	])
+
+# コメント
+Comment.create!([
+	{exhibition_id: 1,user_id: 3,comment: "いいですね"},
+	{exhibition_id: 2,user_id: 1,comment: "素敵ですね"}
+	])
+
+# フォルダ
+Folder.create!([
+	{user_id:1 ,folder_name: "お気に入り"},
+	{user_id:1 ,folder_name: "参考"},
+	{user_id:2 ,folder_name: "アイデア"}
+	])
+
+# クリップ
+Clip.create!([
+	{folder_id: 1 ,exhibition_id: 2 , memo: "参考になる" , is_active: true},
+	{folder_id: 1 ,exhibition_id: 1 , memo: "参考になる" , is_active: true},
+	{folder_id: 3 ,exhibition_id: 2 , memo: "参考になる" , is_active: true}
+	])
