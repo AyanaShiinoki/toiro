@@ -1,4 +1,17 @@
 class User < ApplicationRecord
+
+  # アソシエーション
+  belongs_to :gallery
+  has_many :exhibitions
+  has_many :works
+  has_many :likes, dependent: :destroy
+  has_many :folders
+  has_many :comments, dependent: :destroy
+
+
+
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
