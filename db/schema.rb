@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_02_02_085754) do
     t.integer "work_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_works_on_exhibition_id"
+    t.index ["user_id"], name: "index_works_on_user_id"
   end
 
 end
