@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 # user #
+# ---------------------------------------------------
 
 # devise
   devise_for :users, controllers: {
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
   }
 
 # 機能
+  get "/home/top", to:'users/home#top'
+  get "/home/about", to:'users/home#about'
   resources :users, only: [:show, :index, :edit, :update]
   resources :galleries, except: [:destroy]
   resources :exhibitions, except: [:destroy] do
@@ -29,7 +32,6 @@ Rails.application.routes.draw do
 
 
 
-# user #
 
 # ---------------------------------------------------
 
@@ -51,7 +53,7 @@ Rails.application.routes.draw do
     resources :works
   end
 
-# admin #
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
