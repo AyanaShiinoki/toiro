@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_02_061718) do
+ActiveRecord::Schema.define(version: 2020_02_02_085754) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,65 @@ ActiveRecord::Schema.define(version: 2020_02_02_061718) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "clips", force: :cascade do |t|
+    t.integer "folder_id"
+    t.integer "exhibition_id"
+    t.string "memo"
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_clips_on_exhibition_id"
+    t.index ["folder_id"], name: "index_clips_on_folder_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "exhibition_id"
+    t.integer "user_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_comments_on_exhibition_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "gallery_id"
+    t.string "title"
+    t.text "caption"
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gallery_id"], name: "index_exhibitions_on_gallery_id"
+    t.index ["user_id"], name: "index_exhibitions_on_user_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "folder_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "gallery_name"
+    t.text "concept"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_galleries_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "exhibition_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_likes_on_exhibition_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,6 +104,18 @@ ActiveRecord::Schema.define(version: 2020_02_02_061718) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exhibition_id"
+    t.string "title"
+    t.text "description"
+    t.integer "work_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_works_on_exhibition_id"
+    t.index ["user_id"], name: "index_works_on_user_id"
   end
 
 end
