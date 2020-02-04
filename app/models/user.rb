@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   #バリデーション
   validate :password_complexity #パスワード強度
-  validates :name, presence: true, length: {maximum: 10, minimum: 2}
+  # validates :name, presence: true, length: {maximum: 10, minimum: 2}
 
   # validates :encrypted_password,presence: true
   validates :introduction,length: { maximum: 50 }
