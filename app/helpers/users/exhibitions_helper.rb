@@ -1,0 +1,2 @@
+module Users::ExhibitionsHelper
+end

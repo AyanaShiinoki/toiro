@@ -5,7 +5,7 @@ class CreateWorks < ActiveRecord::Migration[5.2]
       t.references :exhibition, foreign_key: true
       t.string :title
       t.text :description
-      t.integer :work_image
+      t.string :work_image
 
       t.timestamps
     end

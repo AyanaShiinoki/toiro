@@ -32,9 +32,9 @@ Exhibition.create!([
 
 # 作品
 Work.create!([
-	{user_id: 1 ,exhibition_id: 1 , title: "いろは" , description: "飼い猫です"},
-	{user_id: 3 ,exhibition_id: 2 , title: "ポチ" , description: "飼い犬です"},
-	{user_id: 3 ,exhibition_id: 2 , title: "太郎" , description: "飼い犬です"}
+	{user_id: 1 ,exhibition_id: 1 , work_title: "いろは" , description: "飼い猫です"},
+	{user_id: 3 ,exhibition_id: 2 , work_title: "ポチ" , description: "飼い犬です"},
+	{user_id: 3 ,exhibition_id: 2 , work_title: "太郎" , description: "飼い犬です"}
 	])
 
 # コメント
