@@ -1,0 +1,16 @@
+<h1>ギャラリー作成</h1>
+
+<% if user_signed_in? %>
+
+	<%= form_with model: @gallery, url: {controller: 'galleries', action: 'create' } do |f| %>
+
+		<label>ギャラリー名</label>
+		<%= f.text_field :gallery_name %>
+		<label>コンセプト</label>
+		<%= f.text_field :concept %>
+		<%= f.submit %>
+	<% end %>
+
+	<%= link_to "ギャラリー　一覧" , users_galleries_path %>
+
+<% end %>

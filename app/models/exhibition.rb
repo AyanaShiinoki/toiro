@@ -7,6 +7,9 @@ class Exhibition < ApplicationRecord
 	has_many :comments
 	has_many :clips
 	has_many :folders, through: :clips
+	# 個展開催と同時に作品を公開　削除も同時に
+	# accepts_attachments_for :works, attachment: :work_image
+	accepts_nested_attributes_for :works, allow_destroy: true
 
 	#バリデーション
 	validates :title, presence: true, length: {maximum: 20}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_02_085754) do
+ActiveRecord::Schema.define(version: 2020_02_04_072900) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_085754) do
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "locked_at"
     t.string "name"
-    t.string "user_image"
+    t.string "user_image_id"
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,9 +109,9 @@ ActiveRecord::Schema.define(version: 2020_02_02_085754) do
   create_table "works", force: :cascade do |t|
     t.integer "user_id"
     t.integer "exhibition_id"
-    t.string "title"
+    t.string "work_title"
     t.text "description"
-    t.integer "work_image"
+    t.string "work_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exhibition_id"], name: "index_works_on_exhibition_id"

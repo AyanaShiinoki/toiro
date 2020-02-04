@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 # 機能
   root 'users/home#top'
   get "home/about" => "users/home#about"
-
+namespace :users do
   resources :users, only: [:show, :index, :edit, :update]
   resources :galleries, except: [:destroy]
   resources :exhibitions, except: [:destroy] do
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   resources :works
   resources :folders
+  end
 
 
 

@@ -7,12 +7,15 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :folders
   has_many :comments, dependent: :destroy
+  # プロフィール画像機能
+  attachment :user_image
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :lockable,:confirmable
+         :lockable
+         # :confirmable
          # :lockable追記
          # 一定回数ログインをミスするとアカウントをロック
          # 時間経過で解除

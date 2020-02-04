@@ -1,0 +1,44 @@
+<h1>個展開催</h1>
+
+
+<% if user_signed_in? %>
+
+	<%#= form_for(@exhibition,url: {controller: 'exhibitions', action: 'create' }  )do |f| %>
+	<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>
+
+		<label>タイトル</label><br>
+		<%= f.text_field :title %><br>
+		<label>個展概要</label><br>
+		<%= f.text_field :caption %><br>
+<!--  -->
+
+<h2>掲載作品</h2>
+			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
+
+				<label>画像タイトル</label><br>
+				<%= field.text_field :work_title %><br>
+				<label>作品説明</label><br>
+				<%= field.text_field :description %><br>
+				<label>作品画像</label><br>
+				<%= field.attachment_field :work_image %>
+				<!-- フォーム削除 -->
+				<br><%= field.remove_nested_fields_link 'Delete' %>
+
+				<p>----------------------------------------------------</p>
+
+			<% end %>
+			<!-- フォーム追加 -->
+			<%= f.add_nested_fields_link :works, '追加' %>
+
+
+
+		<br><%= f.submit %>
+
+	<% end %>
+
+
+<% end %>
+
+
+
+

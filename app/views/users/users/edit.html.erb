@@ -1,0 +1,14 @@
+<h1>会員情報編集</h1>
+
+
+<%= form_with model: @user, url: {controller: 'users' , action: 'update' } do |f| %>
+
+	<label>プロフィール画像</label>
+	<%= f.attachment_field :user_image%>
+
+	<label>名前</label>
+		<%= f.text_field :name %>
+	<label>自己紹介</label>
+		<%= f.text_field :introduction %>
+		<%= f.submit %>
+<% end %>
