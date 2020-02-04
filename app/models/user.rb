@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :folders
   has_many :comments, dependent: :destroy
+  # プロフィール画像機能
+  attachment :user_image
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

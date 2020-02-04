@@ -1,5 +1,7 @@
 <h1>ユーザー詳細</h1>
 
+<%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
+
 <%= @user.name %>
 <%= @user.introduction %>
 
