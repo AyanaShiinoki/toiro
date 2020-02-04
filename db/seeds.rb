@@ -21,13 +21,12 @@ Gallery.create!([
 	{user_id: 1 , gallery_name: "ギャラリー１", concept: "絵と写真"},
 	{user_id: 2 , gallery_name: "ギャラリー２" , concept: "絵と写真"},
 	{user_id: 3 , gallery_name: "ギャラリー３" , concept: "絵と写真"},
-	{user_id: 4 , gallery_name: "ギャラリー４" , concept: "絵と写真"}
 	])
 
 # 個展
 Exhibition.create!([
 	{user_id: 1 , gallery_id:1,title: "猫" , caption: "飼い猫たち" , is_active: true},
-	{user_id: 3 , gallery_id:3,title: "犬" , caption: "飼い犬たち" , is_active: true}
+	{user_id: 2 , gallery_id:3,title: "犬" , caption: "飼い犬たち" , is_active: true}
 	])
 
 
@@ -55,5 +54,5 @@ Folder.create!([
 Clip.create!([
 	{folder_id: 1 ,exhibition_id: 2 , memo: "参考になる" , is_active: true},
 	{folder_id: 1 ,exhibition_id: 1 , memo: "参考になる" , is_active: true},
-	{folder_id: 3 ,exhibition_id: 2 , memo: "参考になる" , is_active: true}
+	{folder_id: 2 ,exhibition_id: 2 , memo: "参考になる" , is_active: true}
 	])
