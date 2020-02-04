@@ -1,0 +1,11 @@
+<h1>作品投稿フォーム</h1>
+
+
+<% if user_signed_in? %>
+	<%= form_with model: @work, url: {controller: 'works', action: 'create'} do |f| %>
+		<%= f.attachment_field :work_image%>
+		<%= f.text_field :title%>
+		<%= f.text_field :description%>
+	<% end %>
+<% end %>
+
