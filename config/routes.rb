@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   }
 
 # 機能
-  get "/home/top", to:'users/home#top'
-  get "/home/about", to:'users/home#about'
+  root 'users/home#top'
+  get "home/about" => "users/home#about"
+
   resources :users, only: [:show, :index, :edit, :update]
   resources :galleries, except: [:destroy]
   resources :exhibitions, except: [:destroy] do
