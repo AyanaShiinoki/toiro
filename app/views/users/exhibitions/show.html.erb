@@ -36,4 +36,49 @@
 	<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
 		</tbody>
 	</table>
+
+<!-- モーダル -->
+
+	<button data-target="modal1" class="btn modal-trigger">感想</button>
+
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<!-- model: [:users, @exhibition , @commnet]  によって、/users/exhibitions/を生成　-->
+				<%= form_with model: [:users, @exhibition , @comment], local: true do |f| %>
+				<%= f.text_area :comment, size: "90×5" %>
+			</div>
+			<div class="modal-footer">
+				<%= f.submit '送信' %>
+			</div>
+				<% end %>
+		</div>
+
+
 </div>
+
+<!-- モーダルウィンドウ -->
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
+<!-- モーダルウィンドウ -->
+
+
+
+
+
+
+
+
+
+
+
+
