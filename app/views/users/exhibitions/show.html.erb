@@ -36,9 +36,16 @@
 	<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
 		</tbody>
 	</table>
+<!-- フォルダに追加 -->
+	<h6>フォルダに追加</h6>
+	<%= form_with model: [:users, @exhibition , @clip] do |f| %>
+		<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
+		<%= f.text_field :memo %>
+		<%= f.submit %>
+	<% end %>
+<!-- フォルダに追加 -->
 
 <!-- モーダル -->
-
 	<button data-target="modal1" class="btn modal-trigger">感想</button>
 
 		<div id="modal1" class="modal">
@@ -52,8 +59,7 @@
 			</div>
 				<% end %>
 		</div>
-
-
+<!-- モーダル -->
 </div>
 
 <!-- モーダルウィンドウ -->

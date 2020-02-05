@@ -2,4 +2,9 @@
 	<h1>フォルダ詳細</h1>
 		<%= @folder.folder_name %>
 		<%= @folder.user.name %>
+		<% @clips.each do |clip| %>
+			<%= link_to "#{clip.exhibition.title}", users_exhibition_path(clip) %>
+			<%= clip.memo %>
+			<%= link_to "クリップを外す", users_exhibition_clips_path(clip),method: :delete %>
+		<% end %>
 </div>

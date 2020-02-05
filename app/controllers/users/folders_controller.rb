@@ -14,9 +14,12 @@ class Users::FoldersController < ApplicationController
 
 	def show
 		@folder = Folder.find(params[:id])
+		@clips = Clip.where(folder_id: @folder.id)
 	end
 
 	def index
+		@folders = Folder.where(user_id: current_user.id)
+
 	end
 
 	def edit

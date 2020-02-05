@@ -18,6 +18,8 @@ class Users::ExhibitionsController < ApplicationController
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
 		@comment = Comment.new
+		@clip = Clip.new
+		@folders = Folder.where(user_id: current_user.id)
 	end
 
 	def index
