@@ -77,3 +77,6 @@ gem "refile-mini_magick"
 gem 'nested_form_fields'
 
 gem "jquery-rails"
+
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons'
