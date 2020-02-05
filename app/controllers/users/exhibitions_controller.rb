@@ -20,15 +20,21 @@ class Users::ExhibitionsController < ApplicationController
 	end
 
 	def index
-		
+		@exhibitions = Exhibition.where(is_active: true).all
 	end
 
 	def edit
-		
+		@exhibition = Exhibition.find(params[:id])
+		if @exhibition.user != current_user
+			redirect_to users_exhibition_path(@exhibition.id)
+		end
 	end
 
 	def update
-		
+		@exhibition = Exhibition.find(params[:id])
+		if @exhibition.update(exhibition_params)
+			redirect_to users_exhibition_path(@exhibition.id)
+		end
 	end
 
 	private
