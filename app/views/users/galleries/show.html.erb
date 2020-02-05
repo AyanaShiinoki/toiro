@@ -1,6 +1,8 @@
-<h1>ギャラリー情報</h1>
+<div class="container">
+	<h1>ギャラリー情報</h1>
 
-<%= @gallery.gallery_name %>
-<%= @gallery.concept %>
-<%= @user.name %>
-<%= link_to "編集" , edit_users_gallery_path(@gallery.id) %>
+	<%= @gallery.gallery_name %>
+	<%= @gallery.concept %>
+	<%= @user.name %>
+	<%= link_to "編集" , edit_users_gallery_path(@gallery.id) %>
+</div>

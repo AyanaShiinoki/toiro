@@ -1,9 +1,11 @@
-<h1>ギャラリー一覧</h1>
+<div class="container">
+	<h1>ギャラリー一覧</h1>
 
-<% @galleries.each do |g| %>
+	<% @galleries.each do |g| %>
 
-	<%= g.gallery_name %>
-	<%= g.concept %>
-	<%= g.user.name %><br>
+		<%= g.gallery_name %>
+		<%= g.concept %>
+		<%= g.user.name %><br>
 
-<% end %>
+	<% end %>
+</div>
