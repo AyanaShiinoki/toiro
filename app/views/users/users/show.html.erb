@@ -1,10 +1,12 @@
-<h1>ユーザー詳細</h1>
+<div class="container">
+	<h1>ユーザー詳細</h1>
 
-<%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
+	<%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
 
-<%= @user.name %>
-<%= @user.introduction %>
+	<%= @user.name %>
+	<%= @user.introduction %>
 
-<% if @user.id == current_user.id %>
-<%= link_to "編集" , edit_users_user_path(@user.id) %>
-<% end %>
+	<% if @user.id == current_user.id %>
+	<%= link_to "編集" , edit_users_user_path(@user.id) %>
+	<% end %>
+</div>

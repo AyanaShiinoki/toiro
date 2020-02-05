@@ -17,6 +17,7 @@ class Users::ExhibitionsController < ApplicationController
 	def show
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
+		@comment = Comment.new
 	end
 
 	def index

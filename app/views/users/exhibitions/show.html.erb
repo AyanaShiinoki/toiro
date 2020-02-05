@@ -1,37 +1,84 @@
-<h1>個展</h1>
+<div class="container">
+	<h1>個展</h1>
 
-<%= @exhibition.title %>
-<%= @exhibition.caption %>
-<h3>開催者</h3>
-<%= @exhibition.user.name %>
+	<%= @exhibition.title %>
+	<%= @exhibition.caption %>
+	<h3>開催者</h3>
+	<%= @exhibition.user.name %>
 
-<h2>作品</h2>
-
-
-<table>
-	<thead>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-<% @works.each do |work| %>
+	<h2>作品</h2>
 
 
-		<tr>
-			<td>
-				<h3><%= work.work_title %></h3>
-			</td>
-			<td>
-				<%= work.description %>
-			</td>
-			<td>
-			    <%= attachment_image_tag work, :work_image ,size: '100x100' %>
-			</td>
-		</tr>
-<% end %>
-<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
-	</tbody>
-</table>
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+	<% @works.each do |work| %>
+
+
+			<tr>
+				<td>
+					<h3><%= work.work_title %></h3>
+				</td>
+				<td>
+					<%= work.description %>
+				</td>
+				<td>
+				    <%= attachment_image_tag work, :work_image ,size: '100x100' %>
+				</td>
+			</tr>
+	<% end %>
+	<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
+		</tbody>
+	</table>
+
+<!-- モーダル -->
+
+	<button data-target="modal1" class="btn modal-trigger">感想</button>
+
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<!-- model: [:users, @exhibition , @commnet]  によって、/users/exhibitions/を生成　-->
+				<%= form_with model: [:users, @exhibition , @comment], local: true do |f| %>
+				<%= f.text_area :comment, size: "90×5" %>
+			</div>
+			<div class="modal-footer">
+				<%= f.submit '送信' %>
+			</div>
+				<% end %>
+		</div>
+
+
+</div>
+
+<!-- モーダルウィンドウ -->
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
+<!-- モーダルウィンドウ -->
+
+
+
+
+
+
+
+
+
+
+
+

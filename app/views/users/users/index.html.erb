@@ -1,6 +1,8 @@
-<h1>ユーザー一覧</h1>
+<div class="container">
+	<h1>ユーザー一覧</h1>
 
-<% @users.each do |user| %>
-	<%= link_to "#{user.name}" ,users_user_path(user.id) %>
-	<%= user.introduction %><br>
-<% end %>
+	<% @users.each do |user| %>
+		<%= link_to "#{user.name}" ,users_user_path(user.id) %>
+		<%= user.introduction %><br>
+	<% end %>
+</div>
