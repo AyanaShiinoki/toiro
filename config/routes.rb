@@ -19,6 +19,7 @@ namespace :users do
   resources :exhibitions, except: [:destroy] do
     resource :comments, only: [:new, :create, :destroy]
     resource :likes, only: [:create, :destroy]
+    resource :clips, only: [:create, :destroy]
   end
   resources :works
   resources :folders

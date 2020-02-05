@@ -1,0 +1,6 @@
+<div class="container">
+	<h1>フォルダ一覧</h1>
+	<% @folders.each do |folder| %>
+		<%= link_to "#{folder.folder_name}" ,users_folder_path(folder) %><br>
+	<% end %>
+</div>
