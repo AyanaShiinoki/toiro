@@ -1,0 +1,7 @@
+<h1>開催中個展一覧</h1>
+
+<% @exhibitions.each do |ex| %>
+	<%= ex.user.name %>
+	<%= ex.title %>
+	<%= ex.caption %>
+<% end %>
