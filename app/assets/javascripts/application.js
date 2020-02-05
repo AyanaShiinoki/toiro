@@ -12,11 +12,12 @@
 //
 
 //= require jquery
+//= require materialize
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 //= require nested_form_fields
-//= require materialize
+
 
 
