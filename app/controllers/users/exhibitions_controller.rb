@@ -14,12 +14,22 @@ class Users::ExhibitionsController < ApplicationController
 		end
 	end
 
+
 	def show
+		# ランダム機能
+		if params[:limit] == "random"
+		@exhibition = Exhibition.offset( rand(Exhibition.count) ).limit(1)
+		@works = Work.where(exhibition_id: @exhibition)
+		@comment = Comment.new
+		@clip = Clip.new
+		@folders = Folder.where(user_id: current_user.id)
+		else
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
+		end
 	end
 
 	def index

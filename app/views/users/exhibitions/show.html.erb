@@ -1,75 +1,70 @@
 <div class="container">
-	<h1>個展</h1>
+	<div class = "row" >
+		<div class = "col l12 m12">
+			<h1 class ="flow-text center-align"><%= @exhibition.title %></h1>
+				<div class ="center-align">
+					<% if @exhibition.user == current_user %>
+					<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
+					<% end %>
+				</div>
+			<p class ="center-align"><%= @exhibition.caption %></p>
+			<h5 class ="center-align">開催者</h5>
+			<h5 class ="center-align"><%= @exhibition.user.name %></h5>
 
-	<%= @exhibition.title %>
-	<%= @exhibition.caption %>
-	<h3>開催者</h3>
-	<%= @exhibition.user.name %>
-
-	<h2>作品</h2>
-
-
-	<table>
-		<thead>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-	<% @works.each do |work| %>
-
-
-			<tr>
-				<td>
-					<h3><%= work.work_title %></h3>
-				</td>
-				<td>
-					<%= work.description %>
-				</td>
-				<td>
-				    <%= attachment_image_tag work, :work_image ,size: '100x100' %>
-				</td>
-			</tr>
-	<% end %>
-	<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
-		</tbody>
-	</table>
-<!-- フォルダに追加 -->
-	<h6>フォルダに追加</h6>
-	<%= form_with model: [:users, @exhibition , @clip] do |f| %>
-		<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
-		<%= f.text_field :memo %>
-		<%= f.submit %>
-	<% end %>
-<!-- フォルダに追加 -->
-
-<!-- モーダル -->
-	<button data-target="modal1" class="btn modal-trigger">感想</button>
-
-		<div id="modal1" class="modal">
-			<div class="modal-content">
-				<!-- model: [:users, @exhibition , @commnet]  によって、/users/exhibitions/を生成　-->
-				<%= form_with model: [:users, @exhibition , @comment], local: true do |f| %>
-				<%= f.text_area :comment, size: "90×5" %>
-			</div>
-			<div class="modal-footer">
-				<%= f.submit '送信' %>
-			</div>
-				<% end %>
 		</div>
-<!-- モーダル -->
+	</div>
+
+	<div class = "row" >
+		<div class = "col l12 m12">
+			<% @works.each do |work| %>
+				<div class = "col l4 s12 m12">
+					<div class ="center-align"><%= attachment_image_tag work, :work_image, :fill, 300, 300 ,class: "z-depth-4"%></div>
+					<h5 class ="center-align"><%= work.work_title %></h3>
+					<p class ="center-align"><%= work.description %></p>
+				</div>
+			<% end %>
+	</div>
+
+		<div class = "row" >
+			<div class = "col l12 m12">
+							<!-- フォルダに追加 -->
+							<h6>フォルダに追加</h6>
+							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
+								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
+								<%= f.text_field :memo %>
+								<%= f.submit %>
+							<% end %>
+							<!-- フォルダに追加 -->
+
+							<!-- モーダル -->
+							<button data-target="modal1" class="btn modal-trigger">感想</button>
+
+								<div id="modal1" class="modal">
+									<div class="modal-content">
+										<!-- model: [:users, @exhibition , @commnet]  によって、/users/exhibitions/を生成　-->
+										<%= form_with model: [:users, @exhibition , @comment], local: true do |f| %>
+										<%= f.text_area :comment, size: "90×5" %>
+									</div>
+									<div class="modal-footer">
+										<%= f.submit '送信' %>
+									</div>
+										<% end %>
+								</div>
+							<!-- モーダル -->
+			</div>
+		</div>
+
+	</div>
 </div>
 
 <!-- モーダルウィンドウ -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
+    var options={};
     var instances = M.Modal.init(elems, options);
   });
 
-  // Or with jQuery
 
   $(function(){
     $('.modal').modal();
