@@ -9,6 +9,11 @@
 		<%= link_to "見にいく", users_exhibition_path(ex) %><br>
 	<% end %>
 
+	<p>-----------------------</p>
 
-		 <%= link_to "ランダム" %>
+	<% @random.each do |r| %>
+		<%= link_to "巡る", random_path(r) %>
+	<% end %>
+
+
 </div>

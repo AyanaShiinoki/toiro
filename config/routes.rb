@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 # 機能
   root 'users/home#top'
   get "home/about" => "users/home#about"
+  get "random/:id" => "users/exhibitions#random" , as: "random"
 namespace :users do
   resources :users, only: [:show, :index, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
