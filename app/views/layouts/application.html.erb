@@ -4,8 +4,16 @@
     <title>Toiro</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+
+
+
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+
+<!--     <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script> -->
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,21 +26,18 @@
       <%= link_to "Login" , new_user_session_path %>
       <%= link_to "個展一覧" , users_exhibitions_path %>
       <%= link_to "開催する" , new_users_exhibition_path %>
+      <%= link_to "マイページ" , users_user_path(current_user) %>
+      <%= link_to "ユーザー一覧" , users_users_path %>
     </div>
     <!-- ヘッダー -->
     <%= yield %>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
+$(function(){
+$('select').formSelect();
+});
 </script>
   </body>
 </html>
+
+

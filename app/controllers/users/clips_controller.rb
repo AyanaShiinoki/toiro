@@ -9,13 +9,10 @@ class Users::ClipsController < ApplicationController
 	end
 
 	def destroy
-		exhibition = Exhibition.find(params[:exhibition_id])
-		clip = Clip.find_by(exhibition_id: exhibition.id)
-		# @exhibition = Exhibition.find(params[:exhibition_id])
-		# clip = current_user.clip.find_by(exhibition_id: @exhibition.id)
-		if clip.destroy
-		redirect_to root_path
-		end
+	    @clip = Clip.find(params[:id])
+	    if @clip.destroy
+	      redirect_to users_folder_path(current_user)
+	    end
 	end
 
 	private
