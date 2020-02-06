@@ -9,7 +9,10 @@ class Users::ClipsController < ApplicationController
 	end
 
 	def destroy
-		end
+	    @clip = Clip.find(params[:id])
+	    if @clip.destroy
+	      redirect_to users_folder_path(current_user)
+	    end
 	end
 
 	private

@@ -2,6 +2,7 @@ class Users::UsersController < ApplicationController
 
 	def show
 		@user = User.find (params[:id])
+		# @folders = Folder.where(user_id: @user.id)
 	end
 
 	def index

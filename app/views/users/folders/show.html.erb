@@ -5,6 +5,6 @@
 		<% @clips.each do |clip| %>
 			<%= link_to "#{clip.exhibition.title}", users_exhibition_path(clip) %>
 			<%= clip.memo %>
-			<%= link_to "クリップを外す", users_exhibition_clips_path(clip),method: :delete %>
+			<%= link_to "クリップを外す", users_exhibition_clips_path(clip),method: :delete %><br>
 		<% end %>
 </div>

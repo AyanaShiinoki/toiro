@@ -18,7 +18,9 @@ class Users::FoldersController < ApplicationController
 	end
 
 	def index
-		@folders = Folder.where(user_id: current_user.id)
+		if params[:user_id]
+		@folders = Folder.where(user_id: params[:user_id])
+		end
 
 	end
 

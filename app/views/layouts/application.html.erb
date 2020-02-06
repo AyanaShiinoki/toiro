@@ -26,6 +26,7 @@
       <%= link_to "Login" , new_user_session_path %>
       <%= link_to "個展一覧" , users_exhibitions_path %>
       <%= link_to "開催する" , new_users_exhibition_path %>
+      <%= link_to "マイページ" , users_user_path(current_user) %>
     </div>
     <!-- ヘッダー -->
     <%= yield %>
