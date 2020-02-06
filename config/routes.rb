@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   root 'users/home#top'
   get "home/about" => "users/home#about"
 namespace :users do
-  resources :users, only: [:show, :index, :edit, :update]
+  resources :users, only: [:show, :index, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'follows' => 'relationships#follower', as: 'follows'
+    get 'followers' => 'relationships#followed', as: 'followers'
+  end
   resources :galleries, except: [:destroy]
   resources :exhibitions, except: [:destroy] do
     resource :comments, only: [:new, :create, :destroy]
