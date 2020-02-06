@@ -1,10 +1,19 @@
 <div class="container">
 	<h1>開催中個展一覧</h1>
 
+
+
 	<% @exhibitions.each do |ex| %>
 		<%= ex.user.name %>
 		<%= ex.title %>
-		<%= ex.caption %>
 		<%= link_to "見にいく", users_exhibition_path(ex) %><br>
 	<% end %>
+
+	<p>-----------------------</p>
+
+	<% @random.each do |r| %>
+		<%= link_to "巡る", random_path(r) %>
+	<% end %>
+
+
 </div>

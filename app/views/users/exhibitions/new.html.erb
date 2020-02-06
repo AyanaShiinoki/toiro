@@ -7,7 +7,7 @@
 			<label>タイトル</label><br>
 			<%= f.text_field :title %><br>
 			<label>個展概要</label><br>
-			<%= f.text_field :caption %><br>
+			<%= f.text_area :caption %><br>
 
 	<h2>掲載作品</h2>
 				<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>

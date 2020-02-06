@@ -14,6 +14,7 @@ class Users::ExhibitionsController < ApplicationController
 		end
 	end
 
+
 	def show
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
@@ -24,6 +25,7 @@ class Users::ExhibitionsController < ApplicationController
 
 	def index
 		@exhibitions = Exhibition.where(is_active: true).all
+		@random = @exhibitions.offset(rand( @exhibitions.count)).limit(1)
 	end
 
 	def edit
@@ -38,6 +40,17 @@ class Users::ExhibitionsController < ApplicationController
 		if @exhibition.update(exhibition_params)
 			redirect_to users_exhibition_path(@exhibition.id)
 		end
+	end
+
+	def random
+		exhibitions = Exhibition.where(is_active: true).all
+		@random = exhibitions.offset(rand(exhibitions.count)).limit(1)
+
+		@exhibition = Exhibition.find(params[:id])
+		@works = Work.where(exhibition_id: @exhibition.id)
+		@comment = Comment.new
+		@clip = Clip.new
+		@folders = Folder.where(user_id: current_user.id)
 	end
 
 	private

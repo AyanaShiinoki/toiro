@@ -6,17 +6,8 @@
     <%= csp_meta_tag %>
 
 
-
-
-
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-
-<!--     <script src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script> -->
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -28,6 +19,8 @@
       <%= link_to "開催する" , new_users_exhibition_path %>
       <%= link_to "マイページ" , users_user_path(current_user) %>
       <%= link_to "ユーザー一覧" , users_users_path %>
+      <%= link_to "ギャラリー一覧" , users_galleries_path %>
+
     </div>
     <!-- ヘッダー -->
     <%= yield %>

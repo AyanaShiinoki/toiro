@@ -10,6 +10,10 @@
 			<p class ="center-align"><%= @exhibition.caption %></p>
 			<h5 class ="center-align">開催者</h5>
 			<h5 class ="center-align"><%= @exhibition.user.name %></h5>
+									<% @random.each do |r| %>
+										<%= link_to "進む", random_path(r) %>
+									<% end %>
+
 
 		</div>
 	</div>
@@ -71,15 +75,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 <!-- モーダルウィンドウ -->
-
-
-
-
-
-
-
-
-
-
-
-
