@@ -12,8 +12,8 @@
 	<%= link_to "フォルダ一覧" ,controller: "folders", action: "index", user_id: @user.id %>
 
 	<!-- フォロー機能 -->
-	<%= link_to @user.follower.count, users_user_follows_path(@user) %>
-	<%= link_to @user.followed.count, users_user_followers_path(@user) %>
+	<%= link_to @user.follower.count, users_user_follows_path(@user) %>人をフォローしています。
+	<%= link_to @user.followed.count, users_user_followers_path(@user) %>人にフォローされています。
 	<% if current_user!= @user %>
 		<% if current_user.following?(@user) %>
 			<%= link_to "フォロー解除" , users_user_relationships_path(@user.id),method: :delete %>
