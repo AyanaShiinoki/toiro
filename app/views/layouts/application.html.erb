@@ -13,13 +13,17 @@
   <body>
     <!-- ヘッダー -->
     <div class ="header">
-      <%= link_to "Logout" , destroy_user_session_path , method: :delete %>
-      <%= link_to "Login" , new_user_session_path %>
-      <%= link_to "個展一覧" , users_exhibitions_path %>
-      <%= link_to "開催する" , new_users_exhibition_path %>
-      <%= link_to "マイページ" , users_user_path(current_user) %>
-      <%= link_to "ユーザー一覧" , users_users_path %>
-      <%= link_to "ギャラリー一覧" , users_galleries_path %>
+
+      <% if user_signed_in? %>
+        <%= link_to "開催する" , new_users_exhibition_path %>
+        <%= link_to "マイページ" , users_user_path(current_user) %>
+        <%= link_to "ユーザー一覧" , users_users_path %>
+        <%= link_to "ギャラリー一覧" , users_galleries_path %>
+        <%= link_to "Logout" , destroy_user_session_path , method: :delete %>
+      <% else %>
+        <%= link_to "Login" , new_user_session_path %>
+        <%= link_to "個展一覧" , users_exhibitions_path %>
+      <% end %>
 
     </div>
     <!-- ヘッダー -->
