@@ -1,10 +1,7 @@
 
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
-<% @notifications = current_user.passive_notifications.all %>
-<% 	@notifications.where(checked: false).each do |notification| %>
-			notification.update_attributes(checked: true)
-<% end %>
+
 
 <div class ="row">
 	<div class="notification-content">
@@ -16,9 +13,9 @@
 
 			<% case notification.action %>
 				<% when 'follow' then %>
-					<%= "あなたをフォローしました" %>
+					<%= "あなたをフォローしました。" %>
 				<% when 'like' then %>
-					<%= "あなたの投稿をいいねしました" %>
+					<%= "あなたの投稿をいいねしました。" %>
 				<% when 'comment' then %>
 					<% if notification.exhibition.user_id == visited.id %>
 						<%= link_to "あなたの投稿", users_exhibition_path(visited) %>

@@ -18,10 +18,15 @@ class Exhibition < ApplicationRecord
 	validates :caption, presence: true, length: {maximum: 100}
 	validates :is_active, inclusion: { in: [true, false] }
 
+	# いいね判別メソッド
+	def liked_by?(user)
+		likes.where(user_id: user.id).exists?
+	end
+
 
 	# いいね通知メソッド
 	def create_notification_like!(current_user)
-		temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+		temp = Notification.where(["visitor_id = ? and visited_id = ? and exhibition_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
 		if temp.blank?
 			notification = current_user.active_notifications.new(
 				exhibition_id: id,
@@ -29,8 +34,8 @@ class Exhibition < ApplicationRecord
 				action: 'like'
 			)
 			# 自分自身のいいねの場合は通知済みにする
-			if notifications.visitor_id == current_user.visited_id
-				notification.checked = true
+		      if notification.visitor_id == notification.visited_id
+		        notification.checked = true
 			end
 			notification.save if notification.valid?
 		end

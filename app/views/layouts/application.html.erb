@@ -17,6 +17,7 @@
       <% if user_signed_in? %>
         <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
           <i class="material-icons Medium">notifications</i>
+          <%= render 'users/notifications/index' %>
         <% end %>
         <%= link_to "開催する" , new_users_exhibition_path %>
         <%= link_to "マイページ" , users_user_path(current_user) %>
@@ -29,6 +30,7 @@
         <%= link_to "個展一覧" , users_exhibitions_path %>
 
       <% end %>
+
 
 
 
@@ -61,7 +63,7 @@ $('select').formSelect();
 
 
 <!-- 通知サイドバー -->
-<%= render 'users/notifications/index' %>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');

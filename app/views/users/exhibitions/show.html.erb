@@ -14,6 +14,20 @@
 		</div>
 	</div>
 
+							<!-- いいね -->
+							<% if @exhibition.liked_by?(current_user) %>
+								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
+									<i class="material-icons", style="color: red;" >favorite</i>
+								<% end %>
+							<% else %>
+								<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
+									<i class="material-icons" >favorite</i>
+								<% end %>
+							<% end %>
+							 <!-- いいね -->
+
+
+
 	<div class = "row" >
 		<div class = "col l12 m12">
 			<% @works.each do |work| %>
@@ -53,7 +67,6 @@
 							<!-- モーダル -->
 			</div>
 		</div>
-
 	</div>
 </div>
 

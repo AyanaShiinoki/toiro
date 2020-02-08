@@ -2,13 +2,13 @@
 
 <% @notifications = current_user.passive_notifications.all %>
 <% 	@notifications.where(checked: false).each do |notification| %>
-			notification.update_attributes(checked: true)
+			<% notification.update_attributes(checked: true) %>
 <% end %>
 
-	<ul id="slide-out" class="sidenav">
+	<ul id="slide-out" class="sidenav z-depth-4">
 		<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 		<% if notifications.exists? %>
-			<h5 class ="center-aling">通知一覧</h5>
+			<h5 class ="index">通知一覧</h5>
 			<%= render notifications %>
 		<% else %>
 			<p>通知はありません</p>
