@@ -6,4 +6,8 @@ class Comment < ApplicationRecord
 	# バリデーション
 	validates :comment, presence: true
 
+
+	# 通知機能
+	has_many :notifications, dependent: :destroy
+
 end
