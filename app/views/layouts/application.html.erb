@@ -20,6 +20,7 @@
         <%= link_to "ユーザー一覧" , users_users_path %>
         <%= link_to "ギャラリー一覧" , users_galleries_path %>
         <%= link_to "Logout" , destroy_user_session_path , method: :delete %>
+        <%= link_to "個展一覧" , users_exhibitions_path %>
       <% else %>
         <%= link_to "Login" , new_user_session_path %>
         <%= link_to "個展一覧" , users_exhibitions_path %>

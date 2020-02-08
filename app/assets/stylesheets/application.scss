@@ -18,3 +18,36 @@
 @import 'materialize';
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+$snow: #fffafa;
+
+.user-show{
+	.user-info{
+		border-radius: 5px;
+		background-color:$snow;
+		font-family: sans-serif;
+		// border: 1px solid;
+		// border-color:gray;
+		margin: 0 auto;
+		height: 250px;
+		.user-image{
+
+			height: 200px;
+			line-height: 250px;
+			margin: 25px auto;
+			text-align: center;
+			.image{
+				border-radius: 50%;
+			}
+		}
+		.info-text{
+			margin-top:20px;
+			.name{
+				padding-bottom: 8px;
+				border-bottom: 1px dotted;
+			}
+
+		}
+
+	}
+}

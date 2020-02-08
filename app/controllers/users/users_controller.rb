@@ -2,7 +2,10 @@ class Users::UsersController < ApplicationController
 
 	def show
 		@user = User.find (params[:id])
+		@gallery = Gallery.where(user_id: @user.id)
+		@exhibitions = Exhibition.where(user_id: @user.id)
 		# @folders = Folder.where(user_id: @user.id)
+		@works = Work.where(user_id: @user.id)
 	end
 
 	def index
