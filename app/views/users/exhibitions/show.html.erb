@@ -32,7 +32,7 @@
 							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
 								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
 								<%= f.text_field :memo %>
-								<%= f.submit %>
+								<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
 							<% end %>
 							<!-- フォルダに追加 -->
 

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   # アソシエーション
-  belongs_to :gallery, optional: true
+  has_one :gallery
   has_many :exhibitions
   has_many :works
   has_many :likes, dependent: :destroy
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   # validates :name, presence: true, length: {maximum: 10, minimum: 2}
 
   # validates :encrypted_password,presence: true
-  validates :introduction,length: { maximum: 50 }
+  validates :introduction,length: { maximum: 300 }
 
 
 # フォロー機能

@@ -17,6 +17,7 @@
 				<label>作品画像</label><br>
 					<%= field.attachment_field :work_image %>
 				<!-- フォーム削除 -->
+				<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
 				<br><%= field.remove_nested_fields_link 'Delete' %>
 
 				<p>----------------------------------------------------</p>
@@ -26,7 +27,7 @@
 			<!-- フォーム追加 -->
 			<%= f.add_nested_fields_link :works, '追加' %>
 
-			<br><%= f.submit %>
+			<br>
 
 			<% end %>
 	<% end %>

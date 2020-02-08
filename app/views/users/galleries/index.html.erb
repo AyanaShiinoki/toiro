@@ -5,7 +5,7 @@
 
 		<%= g.gallery_name %>
 		<%= g.concept %>
-		<%= g.user.name %><br>
+		<%= link_to "#{g.user.name}", users_user_path(g.user) %><br>
 
 	<% end %>
 </div>
