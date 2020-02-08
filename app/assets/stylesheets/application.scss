@@ -19,13 +19,20 @@
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
-$snow: #fffafa;
+
+$snow: #fffafa; //赤味がかった白
+$ghost: #f8f8ff; //淡い青紫
+$honey: #f0fff0; //淡い緑
+$linen: #faf0e6; //淡い橙色
+$black:#17171a; //青紫系の黒
+
+$sans: sans-serif; // 細め明朝体
 
 .user-show{
 	.user-info{
 		border-radius: 5px;
 		background-color:$snow;
-		font-family: sans-serif;
+		font-family:$sans;
 		// border: 1px solid;
 		// border-color:gray;
 		margin: 0 auto;
@@ -50,4 +57,30 @@ $snow: #fffafa;
 		}
 
 	}
+}
+.notification{
+	// text-align: center;
+	.sidenav{
+		background-color: $ghost;
+		padding:50px 20px 0 20px;
+		border-radius: 10px;
+		width: 450px;
+		.index{
+			text-align: center;
+			font-family: $sans;
+			color: #17171a;
+			margin-bottom: 40px;
+		}
+
+		.notification-content{
+			border-bottom: 1px dotted;
+			padding-bottom: 20px;
+			.notification_user{
+				vertical-align: middle;
+				border-radius: 50%;
+			}
+		}
+
+	}
+
 }

@@ -11,6 +11,9 @@ class Users::CommentsController < ApplicationController
 		@comment.user_id = current_user.id
 		# @comment.exhibition_id = @exhibition.id
 		if @comment.save
+			# 通知
+			@exhibition.create_notification_comment!(current_user, @comment.id)
+			# 通知
 			redirect_to users_exhibition_path(@exhibition)
 		end
 	end
