@@ -15,6 +15,9 @@
     <div class ="header">
 
       <% if user_signed_in? %>
+        <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
+          <i class="material-icons Medium">notifications</i>
+        <% end %>
         <%= link_to "開催する" , new_users_exhibition_path %>
         <%= link_to "マイページ" , users_user_path(current_user) %>
         <%= link_to "ユーザー一覧" , users_users_path %>
@@ -24,11 +27,28 @@
       <% else %>
         <%= link_to "Login" , new_user_session_path %>
         <%= link_to "個展一覧" , users_exhibitions_path %>
+
       <% end %>
+
+
+
+
+
+
 
     </div>
     <!-- ヘッダー -->
     <%= yield %>
+
+
+
+
+
+
+
+
+
+
 
 <script>
 $(function(){
@@ -37,5 +57,22 @@ $('select').formSelect();
 </script>
   </body>
 </html>
+
+
+
+<!-- 通知サイドバー -->
+<%= render 'users/notifications/index' %>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var options = {};
+    var instances = M.Sidenav.init(elems, options);
+  });
+
+ $(function(){
+    $('.sidenav').sidenav();
+  });
+</script>
+<!-- 通知サイドバー -->
 
 

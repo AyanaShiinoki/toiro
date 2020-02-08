@@ -20,6 +20,7 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 $snow: #fffafa;
+$ghost: #f8f8ff;
 
 .user-show{
 	.user-info{
@@ -50,4 +51,23 @@ $snow: #fffafa;
 		}
 
 	}
+}
+.notification{
+	// text-align: center;
+	.sidenav{
+		background-color: $ghost;
+		padding:50px 20px 0 20px;
+
+		width: 450px;
+		.notification-content{
+			border-bottom: 1px dotted;
+			padding-bottom: 20px;
+			.notification_user{
+				vertical-align: middle;
+				border-radius: 50%;
+			}
+		}
+
+	}
+
 }
