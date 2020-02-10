@@ -44,30 +44,30 @@
 
 		<div class = "row" >
 			<div class = "col l12 m12">
-							<!-- フォルダに追加 -->
-							<h6>フォルダに追加</h6>
+				<!-- フォルダに追加 --><!-- モーダル -->
+				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
+					<div id="modal1" class="modal">
+						<div class="modal-content">
 							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
 								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
 								<%= f.text_field :memo %>
 								<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
 							<% end %>
-							<!-- フォルダに追加 -->
-
-							<!-- モーダル -->
-							<button data-target="modal1" class="btn modal-trigger">感想</button>
-								<div id="modal1" class="modal">
-									<div class="modal-content">
-										<!-- コメント一覧 -->
-										<div class = "comment_<%= @exhibition.id%>">
-										<%= render 'users/comments/comment_index',exhibition: @exhibition %>
-										</div>
-										<!-- コメント一覧 -->
-										<div id = "comment_form">
-										<%= render 'users/comments/comment_form',exhibition: @exhibition ,comment: @comment %>
-										</div>
-									</div>
-								</div>
-							<!-- モーダル -->
+						</div>
+					</div>
+		</div>
+		<div class ="row">
+				<!-- フォルダに追加 --><!-- モーダル -->
+					<!-- コメント一覧 -->
+					<div class = "comment_<%= @exhibition.id%>">
+						<%= render 'users/comments/comment_index',exhibition: @exhibition %>
+					</div>
+					<!-- コメント一覧 -->
+					<!-- コメントフォーム -->
+					<div id = "comment_form">
+						<%= render 'users/comments/comment_form',exhibition: @exhibition ,comment: @comment %>
+					</div>
+					<!-- コメントフォーム -->
 			</div>
 		</div>
 	</div>
