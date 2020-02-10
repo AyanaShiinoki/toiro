@@ -1,4 +1,6 @@
 <div class="container">
+
+
 	<div class = "row" >
 		<div class = "col l12 m12">
 			<h1 class ="flow-text center-align"><%= @exhibition.title %></h1>
@@ -33,38 +35,41 @@
 			<% @works.each do |work| %>
 				<div class = "col l4 s12 m12">
 					<div class ="center-align"><%= attachment_image_tag work, :work_image, :fill, 300, 300 ,class: "z-depth-4"%></div>
-					<h5 class ="center-align"><%= work.work_title %></h3>
+					<h5 class ="center-align"><%= work.work_title %></h5>
 					<p class ="center-align"><%= work.description %></p>
 				</div>
 			<% end %>
 	</div>
 
+
 		<div class = "row" >
 			<div class = "col l12 m12">
-							<!-- フォルダに追加 -->
-							<h6>フォルダに追加</h6>
+				<!-- フォルダに追加 --><!-- モーダル -->
+				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
+					<div id="modal1" class="modal">
+						<div class="modal-content">
 							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
 								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
 								<%= f.text_field :memo %>
 								<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
 							<% end %>
-							<!-- フォルダに追加 -->
-
-							<!-- モーダル -->
-							<button data-target="modal1" class="btn modal-trigger">感想</button>
-
-								<div id="modal1" class="modal">
-									<div class="modal-content">
-										<!-- model: [:users, @exhibition , @commnet]  によって、/users/exhibitions/を生成　-->
-										<%= form_with model: [:users, @exhibition , @comment], local: true do |f| %>
-										<%= f.text_area :comment, size: "90×5" %>
-									</div>
-									<div class="modal-footer">
-										<%= f.submit '送信' %>
-									</div>
-										<% end %>
-								</div>
-							<!-- モーダル -->
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class ="row">
+			<div class="col l6">
+				<!-- フォルダに追加 --><!-- モーダル -->
+					<!-- コメント一覧 -->
+					<div class = "comment_<%= @exhibition.id%>">
+						<%= render 'users/comments/comment_index',exhibition: @exhibition %>
+					</div>
+					<!-- コメント一覧 -->
+					<!-- コメントフォーム -->
+					<div id = "comment_form">
+						<%= render 'users/comments/comment_form',exhibition: @exhibition ,comment: @comment %>
+					</div>
+					<!-- コメントフォーム -->
 			</div>
 		</div>
 	</div>

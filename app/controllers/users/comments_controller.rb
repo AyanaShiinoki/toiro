@@ -6,6 +6,7 @@ class Users::CommentsController < ApplicationController
 	end
 
 	def create
+		# 非同期の場合は＠をつける
 		@exhibition = Exhibition.find(params[:exhibition_id])
 		@comment = @exhibition.comments.new(comment_params)
 		@comment.user_id = current_user.id
@@ -14,14 +15,16 @@ class Users::CommentsController < ApplicationController
 			# 通知
 			@exhibition.create_notification_comment!(current_user, @comment.id)
 			# 通知
-			redirect_to users_exhibition_path(@exhibition)
+			# redirect_to users_exhibition_path(@exhibition)
 		end
 	end
 
 	def destroy
-		@commnet = Comment.find(params[:exhibition_id])
-		if @commnet.user != current_user
-			redirect_to request.referer
+		# 非同期の場合は＠をつける
+		@exhibition = Exhibition.find(params[:exhibition_id])
+		@comment = @exhibition.comments.find(params[:id])
+		if @comment.user != current_user
+		redirect_to request.referer
 		end
 		@comment.destroy
 	end

@@ -21,6 +21,7 @@ class Users::ExhibitionsController < ApplicationController
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
+		@comments = @exhibition.comments
 	end
 
 	def index
