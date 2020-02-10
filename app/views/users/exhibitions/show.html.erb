@@ -16,19 +16,6 @@
 		</div>
 	</div>
 
-							<!-- いいね -->
-							<% if @exhibition.liked_by?(current_user) %>
-								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
-									<i class="material-icons", style="color: red;" >favorite</i>
-								<% end %>
-							<% else %>
-								<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
-									<i class="material-icons" >favorite</i>
-								<% end %>
-							<% end %>
-							 <!-- いいね -->
-
-
 
 	<div class = "row" >
 		<div class = "col l12 m12">
@@ -39,7 +26,7 @@
 					<p class ="center-align"><%= work.description %></p>
 				</div>
 			<% end %>
-	</div>
+		</div>
 
 
 		<div class = "row" >
@@ -62,7 +49,15 @@
 				<!-- フォルダに追加 --><!-- モーダル -->
 					<!-- コメント一覧 -->
 					<div class = "comment_<%= @exhibition.id%>">
-						<%= render 'users/comments/comment_index',exhibition: @exhibition %>
+						<% if @exhibition.liked_by?(current_user) %>
+							<div class ="comment">
+								<%= render 'users/comments/comment_index',exhibition: @exhibition %>
+							</div>
+						<% else %>
+							<div class ="comment2">
+								<%= render 'users/comments/comment_index',exhibition: @exhibition %>
+							</div>
+						<% end %>
 					</div>
 					<!-- コメント一覧 -->
 					<!-- コメントフォーム -->
@@ -72,8 +67,39 @@
 					<!-- コメントフォーム -->
 			</div>
 		</div>
+
+							<!-- いいね -->
+							<% if @exhibition.liked_by?(current_user) %>
+								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
+									<p>花を送る</p>
+								<% end %>
+							<% else %>
+								<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
+									<i class="material-icons" >filter_drama</i>
+								<% end %>
+							<% end %>
+							 <!-- いいね -->
+
+
+
+							<!-- いいね表示用 -->
+							<% if @exhibition.liked_by?(current_user) %>
+									<i class="material-icons", style="color: red;" >favorite</i>
+							<% else %>
+									<i class="material-icons" >favorite</i>
+							<% end %>
+
+							 <!-- いいね -->
+
+
+
+
+
 	</div>
 </div>
+
+
+
 
 <!-- モーダルウィンドウ -->
 <script>

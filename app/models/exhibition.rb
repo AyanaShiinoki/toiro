@@ -19,6 +19,10 @@ class Exhibition < ApplicationRecord
 	validates :is_active, inclusion: { in: [true, false] }
 
 	# いいね判別メソッド
+	# def liked_by?(user)
+	# 	likes.where(user_id: user.id).exists?
+	# end
+
 	def liked_by?(user)
 		likes.where(user_id: user.id).exists?
 	end
