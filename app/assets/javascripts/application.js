@@ -11,8 +11,10 @@
 // about supported directives.
 //
 
+
 //= require jquery
 //= require jquery_ujs
+//= require html2canvas.min.js
 //= require materialize
 //= require activestorage
 //= require_tree .
