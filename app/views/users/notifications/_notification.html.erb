@@ -15,7 +15,7 @@
 				<% when 'follow' then %>
 					<%= "あなたをフォローしました。" %>
 				<% when 'like' then %>
-					<%= "あなたの投稿をいいねしました。" %>
+					<%= link_to "あなたの投稿", users_exhibition_path(visited) %>にいいねしました。
 				<% when 'comment' then %>
 					<% if notification.exhibition.user_id == visited.id %>
 						<%= link_to "あなたの投稿", users_exhibition_path(visited) %>

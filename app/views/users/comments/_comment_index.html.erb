@@ -1,0 +1,4 @@
+<% exhibition.comments.each do |comment| %>
+<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' %>
+<%= comment.comment %>
+<% end %>
