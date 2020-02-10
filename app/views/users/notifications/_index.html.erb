@@ -1,19 +1,24 @@
 <div class="container notification">
 
-<% @notifications = current_user.passive_notifications.all %>
+<% @notifications = current_user.passive_notifications.page(params[:page]).per(10) %>
 <% 	@notifications.where(checked: false).each do |notification| %>
 			<% notification.update_attributes(checked: true) %>
 <% end %>
 
-	<ul id="slide-out" class="sidenav z-depth-4">
+
+
+	<ul id="slide-out" class="sidenav z-depth-4 skill-list jscroll">
 		<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 		<% if notifications.exists? %>
 			<h5 class ="index">通知一覧</h5>
 			<%= render notifications %>
+			<%= paginate notifications %>
 		<% else %>
 			<p>通知はありません</p>
 		<% end %>
 	</ul>
+
+
 
 </div>
 

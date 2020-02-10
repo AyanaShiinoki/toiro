@@ -1,55 +1,72 @@
 <div class="container user-show">
-	<div class ="row">
-			<h4 class ="center-align"><%= @user.gallery.gallery_name%></h4>
-			<p class="center-align"><%= @user.gallery.concept %></p>
-
-				<div class ="row">
-					<div class ="user-info card col xl5 l7 m7 s7">
-							<div class="col xl6 l7 m6 s6 user-image">
-								<%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg',class:"image responsive-img" %>
-							</div>
-							<div class="col xl6 l5 m6 s6 center-align info-text">
-								<h4 class="center-align name"><%= @user.name %></h4>
-								<p><%= @user.introduction %></p>
-							</div>
-					</div>
-					<div class ="user-folder  col xl5 l7 m7 s7">
-						<%= link_to "フォルダ一覧" ,controller: "folders", action: "index", user_id: @user.id %>
-					</div>
-				</div>
-
-			<div class ="row">
-				<% if @user.id == current_user.id %>
-				<%= link_to "編集" , edit_users_user_path(@user.id) %>
-				<% end %>
+  <div class ="row">
+      <h4 class ="center-align"><%= @user.gallery.gallery_name%></h4>
+      <p class="center-align"><%= @user.gallery.concept %></p>
 
 
-				<!-- フォロー機能 -->
-				<% if @user == current_user %>
-				<%= link_to @user.follower.count, users_user_follows_path(@user) %>人のファンがいます。
-				<%= link_to @user.followed.count, users_user_followers_path(@user) %>人を応援しています。
-				<% end %>
+        <div class ="row">
+          <div class ="user-info card col xl5 l7 m7 s7">
+              <div class="col xl6 l7 m6 s6 user-image">
+                <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg',class:"image responsive-img" %>
+              </div>
+              <div class="col xl6 l5 m6 s6 center-align info-text">
+                <h4 class="center-align name"><%= @user.name %></h4>
+                <p><%= @user.introduction %></p>
+              </div>
+          </div>
+          <div class ="user-folder  col xl5 l7 m7 s7">
+            <%= link_to "フォルダ一覧" ,controller: "folders", action: "index", user_id: @user.id %>
+          </div>
+        </div>
 
-				<% if current_user!= @user %>
-					<% if current_user.following?(@user) %>
-						<%= link_to "フォロー解除" , users_user_relationships_path(@user.id),method: :delete %>
-					<% else %>
-						<%= link_to "フォロー" , users_user_relationships_path(@user.id), method: :POST %>
-					<% end %>
-				<% end %>
-				<!-- フォロー機能 -->
-			</div>
+      <div class ="row">
+        <a class="waves-effect waves-light btn-small" id="download">名刺をダウンロード</a>
+        <% if @user.id == current_user.id %>
+        <%= link_to "編集" , edit_users_user_path(@user.id) %>
+        <% end %>
 
-			<!-- 個展一覧 -->
-			<row class ="user-exhibitions">
-				<h4 class ="center-align">開催中</h4>
 
-			<% @works.each do |work| %>
-					<h3><%= work.exhibition.title %></h3>
-					<%= work.exhibition.caption %><br>
-					<%= work.work_title %>
-			<% end %>
-			</row>
-			<!-- 個展一覧 -->
-	</div>
+        <!-- フォロー機能 -->
+        <% if @user == current_user %>
+        <%= link_to @user.follower.count, users_user_follows_path(@user) %>人のファンがいます。
+        <%= link_to @user.followed.count, users_user_followers_path(@user) %>人を応援しています。
+        <% end %>
+
+        <% if current_user!= @user %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー解除" , users_user_relationships_path(@user.id),method: :delete %>
+          <% else %>
+            <%= link_to "フォロー" , users_user_relationships_path(@user.id), method: :POST %>
+          <% end %>
+        <% end %>
+        <!-- フォロー機能 -->
+      </div>
+
+      <!-- 個展一覧 -->
+      <row class ="user-exhibitions">
+        <h4 class ="center-align">開催中</h4>
+
+      <% @works.each do |work| %>
+          <h3><%= work.exhibition.title %></h3>
+          <%= work.exhibition.caption %><br>
+          <%= work.work_title %>
+      <% end %>
+      </row>
+      <!-- 個展一覧 -->
+  </div>
 </div>
+
+
+
+  <script>
+
+
+    html2canvas($('.user-info').get(0)).then((canvas) => {
+      var data = canvas.toDataURL();
+      document.getElementById("download").href = data;
+      document.getElementById("download").download = 'test.png';
+    });
+
+  </script>
+
+
