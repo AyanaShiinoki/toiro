@@ -1,39 +1,44 @@
 <div class="container">
-	<h1>個展開催</h1>
-	<% if user_signed_in? %>
-
-		<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>
-
-			<label>タイトル</label><br>
-			<%= f.text_field :title %><br>
-			<label>個展概要</label><br>
-			<%= f.text_area :caption %><br>
-
-	<h2>掲載作品</h2>
+	<div class="row">
+		<div class="col l6">
+			<h1>個展開催</h1>
+			<% if user_signed_in? %>
+				<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>
+					<label>タイトル</label><br>
+					<%= f.text_field :title %><br>
+					<label>個展概要</label><br>
+					<%= f.text_area :caption %><br>
+		</div>
+	</div>
+	<div class="row">
+			<div class = "col l12 m12 s12">
+			<h2>掲載作品</h2>
 				<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-
-					<label>画像タイトル</label><br>
-					<%= field.text_field :work_title %><br>
-					<label>作品説明</label><br>
-					<%= field.text_field :description %><br>
-					<label>作品画像</label><br>
-					<%= field.attachment_field :work_image %>
-					<!-- フォーム削除 -->
-					<br><%= button_tag '開催', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
-					<br><%= field.remove_nested_fields_link 'Delete' %>
-
-					<p>----------------------------------------------------</p>
-
+					<div class = "col l4 m12 s12">
+						<label>画像タイトル</label><br>
+						<%= field.text_field :work_title %><br>
+						<label>作品説明</label><br>
+						<%= field.text_field :description %><br>
+						<label>作品画像</label><br>
+						<%= field.attachment_field :work_image %>
+						<!-- フォーム削除 -->
+						<br><%= field.remove_nested_fields_link 'Delete' %>
+					</div>
 				<% end %>
-				<!-- フォーム追加 -->
-				<%= f.add_nested_fields_link :works, '追加' %>
-
-
-
-		<% end %>
-
-
-	<% end %>
+			</div>
+	</div>
+						<!-- フォーム追加 -->
+					<div class="row add-form">
+						<div class = "col l12 m12 s12">
+							<div class="col l5 m8 s6 offset-l10 offset-m8 offset-s8">
+							<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
+							<%= button_tag '開催', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+	</div>
 </div>
 
 
