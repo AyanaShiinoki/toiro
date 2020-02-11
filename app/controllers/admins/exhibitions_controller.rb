@@ -11,11 +11,14 @@ class Admins::ExhibitionsController < ApplicationController
 	end
 
 	def edit
-		
+		@exhibition = Exhibition.find(params[:id])
 	end
 
 	def update
-		
+		@exhibition = Exhibition.find(params[:id])
+		if @exhibition.update(exhibition_params)
+			redirect_to admins_exhibition_path(@exhibition.id)
+		end
 	end
 
 	private

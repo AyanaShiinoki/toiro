@@ -23,8 +23,20 @@
 				     	<th>個展</th>
 				     	<td><%= @user.exhibitions.count %></td>
 			     	</tr>
+			     	<tr>
+				     	<th>登録日</th>
+				     	<td><%= @user.created_at.strftime('%Y/%m/%d') %></td>
+			     	</tr>
 					</table>
-
+					<% if admin_signed_in? %>
+					<%= link_to "編集する",edit_admins_user_path(@user),class: 'btn waves-effect waves-light', type: 'button' %>
+					<% end %>
+				</div>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col l10 m10 s12 ">
+			<div class="col l4 m6 s6 offset-l1">
 					  <ul class="collapsible">
 					    <li>
 					      <div class="collapsible-header">個展一覧
@@ -44,27 +56,9 @@
 					      	<% end %>
 					      </div>
 					    </li>
-					    <li>
-					      <div class="collapsible-header">フォルダ一覧</div>
-					      <div class="collapsible-body">
-					      	<% @folders.each do |folder| %>
-					      	<%= folder.folder_name %>
-					      	<% end %>
-					      </div>
-					    </li>
 					  </ul>
-
-
-
-
-
-				</div>
 			</div>
-	</div>
-	<div class="row">
-		<% if admin_signed_in? %>
-		<%= link_to "編集",edit_admins_user_path(@user) %>
-		<% end %>
+		</div>
 	</div>
 </div>
 

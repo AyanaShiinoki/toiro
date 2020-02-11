@@ -26,10 +26,13 @@
         <%= link_to "ギャラリー一覧" , users_galleries_path %>
         <%= link_to "Logout" , destroy_user_session_path , method: :delete %>
         <%= link_to "個展一覧" , users_exhibitions_path %>
+      <% elsif admin_signed_in? %>
+        <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete%>
+        <%= link_to "会員一覧" , admins_users_path%>
       <% else %>
-        <%= link_to "Login" , new_user_session_path %>
-        <%= link_to "個展一覧" , users_exhibitions_path %>
-
+        <%= link_to "Login" , new_user_session_path%>
+        <%= link_to "個展一覧" , users_exhibitions_path%>
+        <%= link_to "管理者ログイン" , new_admin_session_path%>
       <% end %>
 
 

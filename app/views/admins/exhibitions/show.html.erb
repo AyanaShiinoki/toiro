@@ -24,11 +24,11 @@
 				     <th>投稿日</th>
 				     <td><%= @exhibition.created_at.strftime('%Y/%m/%d') %></td>
 			     </tr>
-			     <tr>
-				     <th>最終更新日</th>
-				     <td><%= @exhibition.updated_at.strftime('%Y/%m/%d') %></td>
-			     </tr>
 				</table>
+				<div class="exhibition-menu">
+					<td><%= link_to "詳細ページに戻る",admins_user_path(@exhibition.user.id),class: 'btn waves-effect waves-light', type: 'button' %></td>
+				    <td><%= link_to "編集する",edit_admins_exhibition_path(@exhibition),class: 'btn waves-effect waves-light', type: 'button' %></td>
+				</div>
 			</div>
 			<div class="col l6 ">
 				<table>
@@ -55,7 +55,7 @@
 		</div>
 	</div>
 
-	<div class="row worls">
+	<div class="row works">
 		<h2 class="center-align">作品一覧</h2>
 		<div class = "col l10 m10 offset-l1">
 				<% @works.each do |work| %>

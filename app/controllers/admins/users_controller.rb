@@ -6,7 +6,6 @@ class Admins::UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@folders = Folder.where(user_id: @user.id)
 		@exhibitions = Exhibition.where(user_id: @user.id)
 	end
 
