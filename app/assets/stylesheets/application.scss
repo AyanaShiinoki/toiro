@@ -25,7 +25,8 @@ $ghost: #f8f8ff; //淡い青紫
 $honey: #f0fff0; //淡い緑
 $linen: #faf0e6; //淡い橙色
 $black:#17171a; //青紫系の黒
-
+$green:#7cb342; // アクティブ
+$gray :#757575; // アクティブフォルス
 $sans: sans-serif; // 細め明朝体
 
 .user-show{
@@ -115,6 +116,27 @@ $sans: sans-serif; // 細め明朝体
 
 }
 
+
+.admin-user-show{
+
+	.exhibition-index{
+		font-size: 15px;
+	}
+	.active-true{
+		color: $green;
+		margin-right: 0;
+	}
+	.active-false{
+		color: $gray;
+		margin-right: 0;
+	}
+
+
+
+	// .user-content{
+	// 	margin:0 auto;
+	// }
+}
 
 
 

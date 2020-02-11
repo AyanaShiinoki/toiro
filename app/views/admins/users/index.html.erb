@@ -1,0 +1,27 @@
+<div class="container admin-user-index">
+
+	<div class ="row">
+		<div class="col l6">
+			<table class="highlight">
+				<thead>
+					<tr>
+					<th>Name</th>
+					<th>Gallery</th>
+					<th>Status</th>
+					</tr>
+			        </thead>
+			        <tbody>
+					<% @users.each do |user| %>
+					<tr>
+					<td>
+						<%= link_to "#{user.name}" ,admins_user_path(user) %>
+					</td>
+					<td><%= user.gallery.gallery_name %></td>
+					<td><%= user.gallery.gallery_name %></td>
+					</tr>
+					<% end %>
+			        </tbody>
+			</table>
+		</div>
+	</div>
+</div>

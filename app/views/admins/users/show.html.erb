@@ -1,0 +1,87 @@
+<div class ="container admin-user-show">
+	<div class="row">
+		<h1 class="center-align">User</h1>
+			<div class="col l10 m10 s12 ">
+				<div class="col l6 center">
+				<%= attachment_image_tag @user, :user_image, :fill, 300, 300, format: 'jpeg'%>
+				</div>
+				<div class="col l6">
+					<table>
+			     	<tr>
+				     	<th>名前</th>
+				     	<td><%= @user.name %></td>
+			     	</tr>
+			     	<tr>
+				     	<th>メールアドレス</th>
+				     	<td><%= @user.email %></td>
+			     	</tr>
+			     	<tr>
+				     	<th>ギャラリー</th>
+				     	<td><%= @user.gallery.gallery_name %></td>
+			     	</tr>
+			     	<tr>
+				     	<th>個展</th>
+				     	<td><%= @user.exhibitions.count %></td>
+			     	</tr>
+					</table>
+
+					  <ul class="collapsible">
+					    <li>
+					      <div class="collapsible-header">個展一覧
+					      	<i class="material-icons active-true">lightbulb_outline</i>開催中
+					      	<i class="material-icons active-false">lightbulb_outline</i>休止中
+					      </div>
+					      <div class="collapsible-body">
+					      	<% @exhibitions.each do |exhibition| %>
+					      	<span >
+						      	<% if exhibition.is_active == true %>
+						      	<i class="material-icons active-true">lightbulb_outline</i><%= exhibition.title %>
+						      	<% else %>
+						      	<i class="material-icons active-false">lightbulb_outline</i><%= exhibition.title %>
+						      	<% end %>
+							</span>
+					      	<% end %>
+					      </div>
+					    </li>
+					    <li>
+					      <div class="collapsible-header">フォルダ一覧</div>
+					      <div class="collapsible-body">
+					      	<% @folders.each do |folder| %>
+					      	<%= folder.folder_name %>
+					      	<% end %>
+					      </div>
+					    </li>
+					  </ul>
+
+
+
+
+
+				</div>
+			</div>
+	</div>
+	<div class="row">
+		<% if admin_signed_in? %>
+		<%= link_to "編集",edit_admins_user_path(@user) %>
+		<% end %>
+	</div>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var options = {};
+    var instances = M.Collapsible.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+
+
+

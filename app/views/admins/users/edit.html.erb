@@ -1,0 +1,34 @@
+<div class ="container admin-user-edit">
+
+<div class="error-box">
+	<% if @user.errors.any? %>
+         <h2><%= @user.errors.count %>件のエラーがあります</h2>
+            <ul>
+               <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+            </ul>
+    <% end %>
+</div>
+
+
+
+
+	<div class="row">
+		<h1 class="center-align">編集</h1>
+		<div class="col l10 m10 s12">
+				<div class="col l6">
+				<%= attachment_image_tag @user, :user_image, :fill, 300, 300, format: 'jpeg'%>
+				</div>
+				<div class="col l6">
+					<%= form_with model: [:admins, @user] do |f| %>
+						<label>名前</label>
+						<%= f.text_field :name %>
+						<label>自己紹介</label>
+						<%= f.text_area :introduction %>
+						<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+					<% end %>
+				</div>
+		</div>
+	</div>
+</div>
