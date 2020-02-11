@@ -55,7 +55,8 @@ namespace :users do
 
 
 # 機能
-  namespace :admin do
+  namespace :admins do
+    root 'home#top'
     resources :users, only: [:show, :index, :edit, :update]
     resources :galleries, except: [:destroy]
     resources :exhibitions, except: [:destroy]

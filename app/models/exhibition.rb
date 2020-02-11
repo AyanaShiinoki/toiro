@@ -18,10 +18,13 @@ class Exhibition < ApplicationRecord
 	validates :caption, presence: true, length: {maximum: 100}
 	validates :is_active, inclusion: { in: [true, false] }
 
+
+
 	# いいね判別メソッド
 	def liked_by?(user)
 		likes.where(user_id: user.id).exists?
 	end
+
 
 
 	# いいね通知メソッド

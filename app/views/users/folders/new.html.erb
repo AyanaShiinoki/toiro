@@ -3,6 +3,6 @@
 
 	<%= form_with model: [:users, @folder] do |f| %>
 		<%= f.text_field :folder_name %>
-		<%= f.submit %>
+		<%= button_tag '追加する', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
 	<% end %>
 </div>

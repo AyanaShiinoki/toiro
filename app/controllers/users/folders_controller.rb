@@ -8,7 +8,7 @@ class Users::FoldersController < ApplicationController
 		@folder = Folder.new(folder_params)
 		@folder.user_id = current_user.id
 		if @folder.save
-			redirect_to users_folder_path(@folder)
+			redirect_to users_folders_path(current_user)
 		end
 	end
 
@@ -20,6 +20,8 @@ class Users::FoldersController < ApplicationController
 	def index
 		if params[:user_id]
 		@folders = Folder.where(user_id: params[:user_id])
+		else
+		@folders = Folder.where(user_id: current_user.id)
 		end
 
 	end

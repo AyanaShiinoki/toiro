@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container exhibition-show">
 
 
 	<div class = "row" >
@@ -16,30 +16,17 @@
 		</div>
 	</div>
 
-							<!-- いいね -->
-							<% if @exhibition.liked_by?(current_user) %>
-								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
-									<i class="material-icons", style="color: red;" >favorite</i>
-								<% end %>
-							<% else %>
-								<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
-									<i class="material-icons" >favorite</i>
-								<% end %>
-							<% end %>
-							 <!-- いいね -->
-
-
 
 	<div class = "row" >
-		<div class = "col l12 m12">
+		<div class = "col xl12 l12 m12 s12">
 			<% @works.each do |work| %>
-				<div class = "col l4 s12 m12">
-					<div class ="center-align"><%= attachment_image_tag work, :work_image, :fill, 300, 300 ,class: "z-depth-4"%></div>
+				<div class = "col xl4 l6 m12 s12">
+					<div class ="center-align work-image"><%= attachment_image_tag work, :work_image, :fill, 300, 300 ,class: "z-depth-4"%></div>
 					<h5 class ="center-align"><%= work.work_title %></h5>
 					<p class ="center-align"><%= work.description %></p>
 				</div>
 			<% end %>
-	</div>
+		</div>
 
 
 		<div class = "row" >
@@ -61,9 +48,22 @@
 			<div class="col l6">
 				<!-- フォルダに追加 --><!-- モーダル -->
 					<!-- コメント一覧 -->
-					<div class = "comment_<%= @exhibition.id%>">
-						<%= render 'users/comments/comment_index',exhibition: @exhibition %>
+					<div class ="comment">
+						コメント一覧
+						<div class = "comment_<%= @exhibition.id%>">
+							<% if @exhibition.liked_by?(current_user) %>
+								<% @exhibition.comments.each do |comment| %>
+								<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' %>
+								<%= comment.comment %>
+								<% if comment.user_id == current_user.id %>
+								<%= link_to "Destroy", users_exhibition_comments_path(exhibition_id: @exhibition, id: comment.id), method: :delete ,remote: true %>
+								<% end %><br>
+								<% end %>
+							<% end %>
+						</div>
 					</div>
+<!-- 					<div class="comment2">
+					</div> -->
 					<!-- コメント一覧 -->
 					<!-- コメントフォーム -->
 					<div id = "comment_form">
@@ -72,8 +72,39 @@
 					<!-- コメントフォーム -->
 			</div>
 		</div>
+
+							<!-- いいね -->
+							<% if @exhibition.liked_by?(current_user) %>
+								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
+									<p>花を送る</p>
+								<% end %>
+							<% else %>
+								<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
+									<i class="material-icons" >filter_drama</i>
+								<% end %>
+							<% end %>
+							 <!-- いいね -->
+
+
+
+							<!-- いいね表示用 -->
+							<% if @exhibition.liked_by?(current_user) %>
+									<i class="material-icons", style="color: red;" >favorite</i>
+							<% else %>
+									<i class="material-icons" >favorite</i>
+							<% end %>
+
+							 <!-- いいね -->
+
+
+
+
+
 	</div>
 </div>
+
+
+
 
 <!-- モーダルウィンドウ -->
 <script>
