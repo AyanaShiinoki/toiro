@@ -48,17 +48,22 @@
 			<div class="col l6">
 				<!-- フォルダに追加 --><!-- モーダル -->
 					<!-- コメント一覧 -->
-					<div class = "comment_<%= @exhibition.id%>">
-						<% if @exhibition.liked_by?(current_user) %>
-							<div class ="comment">
-								<%= render 'users/comments/comment_index',exhibition: @exhibition %>
-							</div>
-						<% else %>
-							<div class ="comment2">
-								<%= render 'users/comments/comment_index',exhibition: @exhibition %>
-							</div>
-						<% end %>
+					<div class ="comment">
+						コメント一覧
+						<div class = "comment_<%= @exhibition.id%>">
+							<% if @exhibition.liked_by?(current_user) %>
+								<% @exhibition.comments.each do |comment| %>
+								<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' %>
+								<%= comment.comment %>
+								<% if comment.user_id == current_user.id %>
+								<%= link_to "Destroy", users_exhibition_comments_path(exhibition_id: @exhibition, id: comment.id), method: :delete ,remote: true %>
+								<% end %><br>
+								<% end %>
+							<% end %>
+						</div>
 					</div>
+<!-- 					<div class="comment2">
+					</div> -->
 					<!-- コメント一覧 -->
 					<!-- コメントフォーム -->
 					<div id = "comment_form">
