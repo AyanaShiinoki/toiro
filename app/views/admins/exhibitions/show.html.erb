@@ -1,0 +1,70 @@
+<div class="container admin-exhibition">
+	<div class="row">
+		<h1 class="center-align">個展詳細</h1>
+		<div class="col l10 offset-l1">
+			<div class="col l6">
+				<table>
+			     <tr>
+				     <th>開催者</th>
+				     <td><%= @exhibition.user.name %></td>
+			     </tr>
+			     <tr>
+				     <th>タイトル</th>
+				     <td><%= @exhibition.title %></td>
+			     </tr>
+			     <tr>
+				     <th>概要</th>
+				     <td><%= @exhibition.caption %></td>
+			     </tr>
+			     <tr>
+				     <th>作品数</th>
+				     <td><%= @exhibition.works.count %></td>
+			     </tr>
+			     <tr>
+				     <th>投稿日</th>
+				     <td><%= @exhibition.created_at.strftime('%Y/%m/%d') %></td>
+			     </tr>
+			     <tr>
+				     <th>最終更新日</th>
+				     <td><%= @exhibition.updated_at.strftime('%Y/%m/%d') %></td>
+			     </tr>
+				</table>
+			</div>
+			<div class="col l6 ">
+				<table>
+					<tr>
+						<th>コメント数</th>
+						<td><%= @exhibition.comments.count %></td>
+					</tr>
+					<tr>
+						<th>もらった花</th>
+						<td><%= @exhibition.likes.count %></td>
+					</tr>
+				</table>
+				<div class="comments">
+						<h6>コメント一覧</h6>
+							<% @exhibition.comments.each do |comment| %>
+							<%= comment.comment %>
+							by
+							<%= link_to "#{comment.user.name}",admins_user_path(comment.user.id)%>
+							<br>
+							<% end %>
+						<%= paginate @comments %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row worls">
+		<h2 class="center-align">作品一覧</h2>
+		<div class = "col l10 m10 offset-l1">
+				<% @works.each do |work| %>
+					<div class = "col l4 s12 m12">
+						<div class ="center-align"><%= attachment_image_tag work, :work_image, :fill, 300, 300 %></div>
+						<h5 class ="center-align"><%= work.work_title %></h5>
+						<p class ="center-align"><%= work.description %></p>
+					</div>
+				<% end %>
+		</div>
+	</div>
+</div>
