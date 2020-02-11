@@ -2,6 +2,16 @@
 	<div class="row">
 		<div class="col l6">
 			<h1>個展開催</h1>
+<div class="error-box">
+	<% if @exhibition.errors.any? %>
+         <h2><%= @exhibition.errors.count %>件のエラーがあります</h2>
+            <ul>
+               <% @exhibition.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+            </ul>
+    <% end %>
+</div>
 			<% if user_signed_in? %>
 				<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>
 					<label>タイトル</label><br>
@@ -11,21 +21,21 @@
 		</div>
 	</div>
 	<div class="row">
-			<div class = "col l12 m12 s12">
+		<div class = "col l12 m12 s12">
 			<h2>掲載作品</h2>
-				<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-					<div class = "col l4 m12 s12">
-						<label>画像タイトル</label><br>
-						<%= field.text_field :work_title %><br>
-						<label>作品説明</label><br>
-						<%= field.text_field :description %><br>
-						<label>作品画像</label><br>
-						<%= field.attachment_field :work_image %>
-						<!-- フォーム削除 -->
-						<br><%= field.remove_nested_fields_link 'Delete' %>
-					</div>
-				<% end %>
-			</div>
+			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
+				<div class = "col l4 m12 s12">
+					<label>画像タイトル</label><br>
+					<%= field.text_field :work_title %><br>
+					<label>作品説明</label><br>
+					<%= field.text_field :description %><br>
+					<label>作品画像</label><br>
+					<%= field.attachment_field :work_image %>
+					<!-- フォーム削除 -->
+					<br><%= field.remove_nested_fields_link 'Delete' %>
+				</div>
+			<% end %>
+		</div>
 	</div>
 						<!-- フォーム追加 -->
 					<div class="row add-form">
@@ -41,6 +51,28 @@
 	</div>
 </div>
 
+<script>
+$(function() {
+  var fieldsCount,
+      maxFieldsCount = 4,
+      $addLink = $('a.add_nested_fields_link');
 
+  function toggleAddLink() {
+    $addLink.toggle(fieldsCount <= maxFieldsCount)
+  }
 
+  $(document).on('fields_adding.nested_form_fields', function() {
+    fieldsCount += 1;
+    toggleAddLink();
+  });
 
+  $(document).on('fields_removing.nested_form_fields', function() {
+    fieldsCount -= 1;
+    toggleAddLink();
+  });
+
+  // count existing nested fields after page was loaded
+  fieldsCount = $('form .fields').length;
+  toggleAddLink();
+})
+</script>

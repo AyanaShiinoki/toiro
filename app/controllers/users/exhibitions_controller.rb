@@ -11,6 +11,8 @@ class Users::ExhibitionsController < ApplicationController
 		@exhibition.user_id = current_user.id
 		if @exhibition.save
 			redirect_to users_exhibition_path(@exhibition)
+		else
+			render 'new'
 		end
 	end
 

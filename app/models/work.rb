@@ -9,7 +9,7 @@ class Work < ApplicationRecord
 
 
 	#バリデーション
-	# validates :title, presence: true, length: {maximum: 20}
-	# validates :description, length: {maximum: 100}
+	validates :work_title, presence: true, length: {maximum: 20}
+	validates :description, length: {maximum: 100}
 
 end

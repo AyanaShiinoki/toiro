@@ -59,6 +59,25 @@ $sans: sans-serif; // 細め明朝体
 
 	}
 }
+
+
+// 個展詳細
+.exhibition-show{
+	.work-image{
+		width: 340px;
+		height: 340px;
+		padding-top: 20px;
+		background-image: url(Flame2.png);
+		background-repeat : no-repeat;
+		background-position: center;
+		margin: 0 auto;
+
+	}
+}
+
+
+
+
 .notification{
 	// text-align: center;
 	.sidenav{

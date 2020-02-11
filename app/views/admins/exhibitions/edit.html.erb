@@ -1,6 +1,5 @@
 <div class="container admin-exhibition-edit">
 	<div class="row">
-		<div class="col l6">
 		<h1>投稿編集画面</h1>
 			<% if admin_signed_in? %>
 				<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'update' } do |f| %>
@@ -9,9 +8,7 @@
 					<label>個展概要</label><br>
 						<%= f.text_area :caption %><br>
 				<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
-		</div>
-	</div>
-					<div class="row works">
+
 						<div class = "col l12 m12 s12">
 						<h2>掲載作品</h2>
 							<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
