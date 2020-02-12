@@ -29,6 +29,26 @@ $green:#7cb342; // アクティブ
 $gray :#757575; // アクティブフォルス
 $sans: sans-serif; // 細め明朝体
 
+
+
+.header{
+	.style_image {
+	  margin: 0 15px;
+	}
+
+	#modal2{
+	width: 700px;
+	border-radius: 100px;
+	background: rgba(255,255,255,1);
+		img{
+			margin: 0 15px;
+		}
+	}
+}
+
+
+
+
 .user-show{
 	.user-info{
 		border-radius: 5px;
