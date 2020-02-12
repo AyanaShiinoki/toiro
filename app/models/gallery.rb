@@ -7,7 +7,7 @@ class Gallery < ApplicationRecord
 
 	#バリデーション
 	validates :gallery_name, presence: true, length: {maximum: 20}
-	validates :concept, length: {maximum: 200}
+	validates :concept, presence: true, length: {maximum: 200}
 
 
 
