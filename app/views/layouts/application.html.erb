@@ -13,19 +13,37 @@
 
   <body>
     <!-- ヘッダー -->
-    <div class ="header">
-
+      <div class="container header center">
       <% if user_signed_in? %>
         <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
           <i class="material-icons Medium">notifications</i>
           <%= render 'users/notifications/index' %>
         <% end %>
-        <%= link_to "開催する" , new_users_exhibition_path %>
-        <%= link_to "マイページ" , users_user_path(current_user) %>
-        <%= link_to "ユーザー一覧" , users_users_path %>
-        <%= link_to "ギャラリー一覧" , users_galleries_path %>
-        <%= link_to "Logout" , destroy_user_session_path , method: :delete %>
-        <%= link_to "個展一覧" , users_exhibitions_path %>
+        <%= link_to new_users_exhibition_path do%>
+          <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%>
+        <% end %>
+
+        <a class="modal-trigger" href="#modal2"><%= image_tag 'watch.svg' , :size=>"100x50"%></a>
+        <div id="modal2" class="modal">
+          <div class="modal-content container center">
+              <%= link_to users_exhibitions_path do %>
+                <%= image_tag 'exhibition.svg' , :size=>"80x50"%>
+              <% end %>
+              <%= link_to users_galleries_path do %>
+                <%= image_tag 'gallery.svg' , :size=>"100x50"%>
+              <% end %>
+              <%= link_to users_users_path do %>
+                <%= image_tag 'creator.svg' , :size=>"100x50"%>
+              <% end %>
+          </div>
+        </div>
+
+        <%= link_to users_user_path(current_user) do %>
+          <%= image_tag 'mypage.svg' , :size=>"100x50", :class => "style_image"%>
+        <% end %>
+        <%= link_to destroy_user_session_path , method: :delete do %>
+          <%= image_tag 'logout.svg' , :size=>"100x50", :class => "style_image"%>
+        <% end %>
       <% elsif admin_signed_in? %>
         <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete%>
         <%= link_to "会員一覧" , admins_users_path%>
@@ -34,15 +52,8 @@
         <%= link_to "個展一覧" , users_exhibitions_path%>
         <%= link_to "管理者ログイン" , new_admin_session_path%>
       <% end %>
-
-
-
-
-
-
-
-
     </div>
+
     <!-- ヘッダー -->
     <%= yield %>
 
@@ -69,9 +80,6 @@ $('select').formSelect();
 <!-- 通知サイドバー -->
 
 <script>
-
-
-
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var options = {};
@@ -83,5 +91,19 @@ $('select').formSelect();
   });
 </script>
 <!-- 通知サイドバー -->
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options = {};
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
 
 
