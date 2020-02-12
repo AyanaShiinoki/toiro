@@ -67,7 +67,8 @@ $sans: sans-serif; // 細め明朝体
 		width: 340px;
 		height: 340px;
 		padding-top: 20px;
-		background-image: url(Flame2.png);
+		background: image-url(Flame2.png);
+		// background-image: url(Flame2.png);
 		background-repeat : no-repeat;
 		background-position: center;
 		margin: 0 auto;
@@ -115,7 +116,8 @@ $sans: sans-serif; // 細め明朝体
 
 
 .comment{
-	background-image: url(comment.png);
+	background: image-url(comment.png);
+	// background-image: url(comment.png);
 	background-repeat : no-repeat;
 	background-position: center;
 	height: 320px;
@@ -126,7 +128,8 @@ $sans: sans-serif; // 細め明朝体
 
 
 .comment2{
-	background-image: url(comment2.png);
+	background: image-url(comment2.png);
+	// background-image: url(comment2.png);
 	background-repeat : no-repeat;
 	background-position: center;
 	height: 320px;
