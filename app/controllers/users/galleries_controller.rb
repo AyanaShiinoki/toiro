@@ -31,7 +31,9 @@ class Users::GalleriesController < ApplicationController
 	def update
 		@gallery = Gallery.find(params[:id])
 		if @gallery.update(gallery_params)
-			redirect_to users_gallery_path(@gallery.id)
+			redirect_to users_gallery_path(@gallery.id),notice_update: "successfully updated!"
+		else
+			render 'edit'
 		end
 	end
 
