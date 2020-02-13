@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container exhibition-edit">
 	<div class="row works">
 		<h1>投稿編集画面</h1>
 		<% if user_signed_in? %>
@@ -9,11 +9,28 @@
 				<label>個展概要</label><br>
 				<%= f.text_area :caption %><br>
 			<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
+
+
+
+		  <a class="waves-effect waves-light btn modal-trigger" href="#modal_delete">完全に削除する</a>
+
+		  <!-- Modal Structure -->
+		  <div id="modal_delete" class="modal">
+		    <div class="modal-content center">
+		    	<h5>本当に削除しますか？</h5>
+		    	<p>削除した個展及び作品は元に戻せません</p>
+		    	<p>個展は休止中に設定することができます</p>
+		    	<p>休止中の個展は自分以外には公開されません</p>
+		    	<%= link_to "完全に削除する", users_exhibition_path(@exhibition), method: :delete ,class: "waves-effect waves-light btn red darken-1" %>
+		    </div>
+		  </div>
+
+
 <!-- 作品フォーム -->
-		<div class = "col l12 m12 s12">
+		<div class = "col xl12 l12 m12 s12">
 			<h2>掲載作品</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-			<div class = "col l4 m12 s12">
+			<div class = "col xl4 l4 m12 s12">
 				<label>画像タイトル</label><br>
 				<%= field.text_field :work_title %><br>
 				<label>作品説明</label><br>
@@ -70,3 +87,16 @@ $(function() {
 })
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options = {};
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>

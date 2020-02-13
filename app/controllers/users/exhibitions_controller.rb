@@ -56,6 +56,15 @@ class Users::ExhibitionsController < ApplicationController
 		@folders = Folder.where(user_id: current_user.id)
 	end
 
+	def destroy
+		@exhibition = Exhibition.find(params[:id])
+		if @exhibition.user != current_user
+			redirect_to users_exhibition_path(@exhibition.id)
+		end
+		@exhibition.destroy
+		redirect_to users_user_path(@exhibition.user)
+	end
+
 	private
 
 	def exhibition_params
