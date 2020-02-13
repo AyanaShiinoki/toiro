@@ -8,9 +8,9 @@
           <div class="folder">
             <% if current_user!= @user %>
             <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
-              <%= image_tag 'folder.svg' , :size=>"70x70"%>
-              <span>フォルダを見る</span>
-            <% end %>
+                <%= image_tag 'folder.svg' , :size=>"70x70"%>
+                <span>フォルダを見る</span>
+              <% end %>
           </div>
           <!-- フォロー機能 -->
           <div class="follow">
@@ -19,25 +19,50 @@
                 <%= image_tag 'fan.svg' , :size=>"80x80" %>
                 <span>フォロー中</span>
               <% end %>
-            <% else %>
+          <% else %>
               <%= link_to users_user_relationships_path(@user.id), method: :POST do %>
               <%= image_tag 'fan.svg' , :size=>"80x80" %>
               <span>フォローする</span>
               <% end %>
             <% end %>
-            <% end %>
+          <% end %>
           </div>
           <!-- フォロー機能 -->
-          <div class="center">
-            <div class="friend">
-              <% if @user == current_user %>
-              <%= image_tag 'friend.svg' , :size=>"80x80" %>
-              <span>
-              Follower: <%= link_to @user.follower.count, users_user_follows_path(@user) %>
-              Following: <%= link_to @user.followed.count, users_user_followers_path(@user) %>
-              </span>
+
+          <div class="center mypage">
+            <div class="folder">
+              <% if current_user == @user %>
+              <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
+                <%= image_tag 'folder.svg' , :size=>"70x70"%>
+                <span>Folder</span>
+              <% end %>
               <% end %>
             </div>
+            <div class="friend">
+            <% if @user == current_user %>
+                <a class="modal-trigger" href="#modal-follow"><%= image_tag 'friend.svg' , :size=>"80x80" %><span>Follow</span></a>
+                <div id="modal-follow" class="modal">
+                  <div class="modal-content follow-contents">
+                    <div class ="following-user">
+                      <%= link_to users_user_follows_path(@user) do %>
+                        <%= image_tag 'following-user.svg' , :size=>"90x90" %>
+                        <span>Following</span>
+             <!--            <%= @user.follower.count %> -->
+                      <% end %>
+                    </div>
+                    <div class ="followed-user">
+                      <%= link_to users_user_followers_path(@user) do %>
+                        <%= image_tag 'followed-user.svg' , :size=>"90x90" %>
+                        <span>Follower</span>
+             <!--            <%= @user.followed.count %> -->
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+            </div>
+
+
             <div class="edit">
               <% if @user.id == current_user.id %>
                 <a class="modal-trigger" href="#modal-edit"><%= image_tag 'edit.svg' , :size=>"80x80" %><span>Edit</span></a>
