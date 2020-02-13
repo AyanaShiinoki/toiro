@@ -95,6 +95,9 @@
       </div>
       <% end %>
     </div>
+        <div class ="pagenate center">
+          <%= paginate @exhibitions , :param_name => 'active'%>
+        </div>
   </div>
   <!-- 個展一覧 -->
   <!-- 休止中個展 -->
@@ -114,6 +117,9 @@
       </div>
       <% end %>
     </div>
+        <div class ="pagenate center">
+          <%= paginate @exhibitions_f , :param_name => 'not_active'%>
+        </div>
   </div>
   <% end %>
   <!-- 休止中個展 -->
