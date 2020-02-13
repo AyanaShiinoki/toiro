@@ -1,6 +1,5 @@
 <div class="container">
 <div class="error-box">
-	OK
 	<% if @gallery.errors.any? %>
          <h2><%= @gallery.errors.count %>件のエラーがあります</h2>
             <ul>
@@ -18,6 +17,6 @@
 			<%= f.text_field :gallery_name %>
 			<label>コンセプト</label>
 			<%= f.text_field :concept %>
-			<%= f.submit %>
+			<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
 		<% end %>
 </div>

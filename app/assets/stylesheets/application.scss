@@ -32,6 +32,8 @@ $sans: sans-serif; // 細め明朝体
 
 
 .header{
+	padding-top: 50px;
+	height: 200px;
 	.style_image {
 	  margin: 0 15px;
 	}
@@ -48,8 +50,13 @@ $sans: sans-serif; // 細め明朝体
 
 
 
-
 .user-show{
+	.gellery_name{
+		margin-top: 0;
+	}
+	.concept{
+		padding: 0 30px;
+	}
 	.user-info{
 		border-radius: 5px;
 		background-color:$snow;
@@ -59,7 +66,6 @@ $sans: sans-serif; // 細め明朝体
 		margin: 0 auto;
 		height: 250px;
 		.user-image{
-
 			height: 200px;
 			line-height: 250px;
 			margin: 25px auto;
@@ -74,9 +80,64 @@ $sans: sans-serif; // 細め明朝体
 				padding-bottom: 8px;
 				border-bottom: 1px dotted;
 			}
-
 		}
-
+	}
+	.user-content{
+		.folder{
+			width: 100px;
+			display: inline-block;
+			span{
+				display: block;
+			}
+		}
+		.follow{
+			margin-left: 60px;
+			display: inline-block;
+			span{
+				display: block;
+				padding-right:15px;
+			}
+		}
+		.friend{
+			display: inline-block;
+			margin-right: 30px;
+			span{
+				display: block;
+			}
+		}
+		.edit{
+			display: inline-block;
+			span{
+				display: block;
+			}
+			#modal-edit{
+				width: 500px;
+				border-radius: 100px;
+				.edit-contents{
+					padding-top:30px;
+					padding-bottom: 40px;
+					.edit-gallery{
+						margin-right: 40px;
+						display: inline-block;
+					}
+					.edit-user{
+						margin-left: 40px;
+						display: inline-block;
+					}
+				}
+			}
+		}
+	}
+	.user-exhibitions{
+		margin-top: 100px;
+		margin-bottom: 50px;
+		a{
+			transition:.2s;
+			&:hover{
+				opacity: 0.8;
+				transition:.2s;
+			}
+		}
 	}
 }
 
@@ -112,6 +173,7 @@ $sans: sans-serif; // 細め明朝体
 
 		.notification-content{
 			border-bottom: 1px dotted;
+			border-width: 90%;
 			padding-bottom: 20px;
 			.notification_user{
 				vertical-align: middle;

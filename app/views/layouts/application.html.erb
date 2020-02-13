@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
- 
+
   </head>
 
   <body>
@@ -25,7 +25,7 @@
 
         <a class="modal-trigger" href="#modal2"><%= image_tag 'watch.svg' , :size=>"100x50"%></a>
         <div id="modal2" class="modal">
-          <div class="modal-content container center">
+          <div class="modal-content container">
               <%= link_to users_exhibitions_path do %>
                 <%= image_tag 'exhibition.svg' , :size=>"80x50"%>
               <% end %>
