@@ -1,64 +1,138 @@
 <div class="container user-show">
   <div class ="row">
-      <h4 class ="center-align"><%= @user.gallery.gallery_name%></h4>
-      <p class="center-align"><%= @user.gallery.concept %></p>
-
-
-        <div class ="row">
-          <div class ="user-info card col xl5 l7 m7 s7">
-              <div class="col xl6 l7 m6 s6 user-image">
-                <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg',class:"image responsive-img" %>
-              </div>
-              <div class="col xl6 l5 m6 s6 center-align info-text">
-                <h4 class="center-align name"><%= @user.name %></h4>
-                <p><%= @user.introduction %></p>
-              </div>
+     <div class = "col xl12 l12 m12 s12">
+      <div class ="user-folder  col xl5 l5 m5 s5">
+        <h4 class ="center-align gellery_name"><%= @user.gallery.gallery_name%></h4>
+        <p class="center-align concept"><%= @user.gallery.concept %></p>
+        <div class = "user-content center">
+          <div class="folder">
+            <% if current_user!= @user %>
+            <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
+              <%= image_tag 'folder.svg' , :size=>"70x70"%>
+              <span>フォルダを見る</span>
+            <% end %>
           </div>
-          <div class ="user-folder  col xl5 l7 m7 s7">
-            <%= link_to "フォルダ一覧" ,controller: "folders", action: "index", user_id: @user.id %>
+          <!-- フォロー機能 -->
+          <div class="follow">
+            <% if current_user.following?(@user) %>
+              <%= link_to users_user_relationships_path(@user.id),method: :delete do%>
+                <%= image_tag 'fan.svg' , :size=>"80x80" %>
+                <span>フォロー中</span>
+              <% end %>
+            <% else %>
+              <%= link_to users_user_relationships_path(@user.id), method: :POST do %>
+              <%= image_tag 'fan.svg' , :size=>"80x80" %>
+              <span>フォローする</span>
+              <% end %>
+            <% end %>
+            <% end %>
+          </div>
+          <!-- フォロー機能 -->
+          <div class="center">
+            <div class="friend">
+              <% if @user == current_user %>
+              <%= image_tag 'friend.svg' , :size=>"80x80" %>
+              <span>
+              Follower: <%= link_to @user.follower.count, users_user_follows_path(@user) %>
+              Following: <%= link_to @user.followed.count, users_user_followers_path(@user) %>
+              </span>
+              <% end %>
+            </div>
+            <div class="edit">
+              <% if @user.id == current_user.id %>
+                <a class="modal-trigger" href="#modal-edit"><%= image_tag 'edit.svg' , :size=>"80x80" %><span>Edit</span></a>
+                <div id="modal-edit" class="modal">
+                  <div class="modal-content edit-contents">
+                    <h5 class="center">編集項目</h5>
+                      <div class ="edit-gallery">
+                        <%= link_to edit_users_gallery_path(@user.gallery.id) do %>
+                        <%= image_tag 'house.svg' , :size=>"80x80" %>
+                        <span>ギャラリー</span>
+                        <% end %>
+                      </div>
+                      <div class ="edit-user">
+                        <%= link_to edit_users_user_path(@user.id) do %>
+                        <%= image_tag 'user.svg' , :size=>"80x80" %>
+                        <span>会員情報</span>
+                        <% end %>
+                      </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-
-      <div class ="row">
-        <a class="waves-effect waves-light btn-small" id="download">名刺をダウンロード</a>
-        <% if @user.id == current_user.id %>
-        <%= link_to "編集" , edit_users_user_path(@user.id) %>
-        <% end %>
-
-
-        <!-- フォロー機能 -->
-        <% if @user == current_user %>
-        <%= link_to @user.follower.count, users_user_follows_path(@user) %>人のファンがいます。
-        <%= link_to @user.followed.count, users_user_followers_path(@user) %>人を応援しています。
-        <% end %>
-
-        <% if current_user!= @user %>
-          <% if current_user.following?(@user) %>
-            <%= link_to "フォロー解除" , users_user_relationships_path(@user.id),method: :delete %>
-          <% else %>
-            <%= link_to "フォロー" , users_user_relationships_path(@user.id), method: :POST %>
-          <% end %>
-        <% end %>
-        <!-- フォロー機能 -->
       </div>
-
-      <!-- 個展一覧 -->
-      <row class ="user-exhibitions">
-        <h4 class ="center-align">開催中</h4>
-
-      <% @works.each do |work| %>
-          <h3><%= work.exhibition.title %></h3>
-          <%= work.exhibition.caption %><br>
-          <%= work.work_title %>
-      <% end %>
-      </row>
-      <!-- 個展一覧 -->
+      <div class ="user-info card col xl6 l7 m7 s7">
+        <div class="col xl6 l7 m6 s6 user-image">
+          <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg',class:"image responsive-img" %>
+        </div>
+        <div class="col xl6 l5 m6 s6 center-align info-text">
+          <h4 class="center-align name"><%= @user.name %></h4>
+          <p><%= @user.introduction %></p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class =" row download">
+    <div class="col xl12 l12 m12 s12 center">
+        <a class="waves-effect waves-light btn-small" id="download">名刺をダウンロード</a>
+    </div>
+  </div>
+  <!-- 個展一覧 -->
+  <div class ="row user-exhibitions">
+    <div class="col xl12 l12 m12 s12 ">
+      <% @exhibitions.each do |exhibition| %>
+      <div class ="col xl4 l4 m4 s4 center">
+          <h5><%= exhibition.title %></h5>
+          <% exhibition.works.shuffle.first(1).each do |work| %>
+          <%= link_to users_exhibition_path(exhibition) do %>
+          <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
+          <%= exhibition.caption %>
+          <% end %>
+          <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- 個展一覧 -->
+  <!-- 休止中個展 -->
+  <% if @user == current_user %>
+  <div class ="row user-exhibitions">
+     <h3 class="center">休止中個展</h3>
+    <div class="col xl12 l12 m12 s12 ">
+      <% @exhibitions_f.each do |exhibition_f| %>
+      <div class ="col xl4 l4 m4 s4 center">
+          <h5><%= exhibition_f.title %></h5>
+          <% exhibition_f.works.shuffle.first(1).each do |work| %>
+          <%= link_to users_exhibition_path(exhibition_f) do %>
+          <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
+          <%= exhibition_f.caption %>
+          <% end %>
+          <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <!-- 休止中個展 -->
 </div>
 
 
 
   <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options ={};
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
 
 
     html2canvas($('.user-info').get(0)).then((canvas) => {

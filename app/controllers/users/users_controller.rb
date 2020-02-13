@@ -3,7 +3,8 @@ class Users::UsersController < ApplicationController
 	def show
 		@user = User.find (params[:id])
 		@gallery = Gallery.where(user_id: @user.id)
-		@exhibitions = Exhibition.where(user_id: @user.id)
+		@exhibitions = Exhibition.where(user_id: @user.id,is_active: true)
+		@exhibitions_f = Exhibition.where(user_id: @user.id,is_active: false)
 		# @folders = Folder.where(user_id: @user.id)
 		@works = Work.where(user_id: @user.id)
 	end
