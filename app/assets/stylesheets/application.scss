@@ -30,7 +30,7 @@ $gray :#757575; // アクティブフォルス
 $sans: sans-serif; // 細め明朝体
 
 
-
+// ヘッダー
 .header{
 	padding-top: 50px;
 	height: 200px;
@@ -49,7 +49,7 @@ $sans: sans-serif; // 細め明朝体
 }
 
 
-
+// ユーザーページ
 .user-show{
 	.gellery_name{
 		margin-top: 0;
@@ -178,7 +178,7 @@ $sans: sans-serif; // 細め明朝体
 
 
 
-
+// 通知
 .notification{
 	// text-align: center;
 	.sidenav{
@@ -253,6 +253,19 @@ $sans: sans-serif; // 細め明朝体
 	// .user-content{
 	// 	margin:0 auto;
 	// }
+}
+
+// 個展編集画面
+.exhibition-edit{
+
+	.ex-form{
+		width: 500px;
+	}
+
+	#modal_delete{
+		width: 600px;
+		border-radius: 10px;
+	}
 }
 
 
