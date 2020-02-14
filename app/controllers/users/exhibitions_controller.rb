@@ -27,7 +27,7 @@ class Users::ExhibitionsController < ApplicationController
 	end
 
 	def index
-		@exhibitions = Exhibition.where(is_active: true).all
+		@exhibitions = Exhibition.where(is_active: true).order(updated_at: :desc).page(params[:active]).per(9)
 		@random = @exhibitions.offset(rand( @exhibitions.count)).limit(1)
 	end
 
