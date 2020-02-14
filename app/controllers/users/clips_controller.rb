@@ -1,5 +1,9 @@
 class Users::ClipsController < ApplicationController
 
+
+
+before_action :authenticate_user!
+
 	def create
 		exhibition = Exhibition.find(params[:exhibition_id])
 		folders = Folder.where(user_id: current_user.id)

@@ -1,5 +1,10 @@
 class Users::GalleriesController < ApplicationController
 
+
+
+before_action :authenticate_user!
+
+
 	def new
 		@gallery = Gallery.new
 	end

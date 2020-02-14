@@ -1,5 +1,8 @@
 class Users::ExhibitionsController < ApplicationController
 
+# 未登録でも個展一覧機能と詳細機能は使用可
+before_action :authenticate_user!, except: [:index,:show]
+
 
 	def new
 		@exhibition = Exhibition.new
@@ -20,10 +23,12 @@ class Users::ExhibitionsController < ApplicationController
 	def show
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
+		if user_signed_in?
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
 		@comments = @exhibition.comments
+		end
 	end
 
 	def index

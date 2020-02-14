@@ -1,5 +1,10 @@
 class Users::UsersController < ApplicationController
 
+
+# 未登録でも個展一覧機能と詳細機能は使用可
+before_action :authenticate_user!, except: [:index,:show]
+
+
 	def show
 		@user = User.find (params[:id])
 		@gallery = Gallery.where(user_id: @user.id)

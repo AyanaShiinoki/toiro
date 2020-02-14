@@ -1,5 +1,10 @@
 class Users::LikesController < ApplicationController
 
+
+
+before_action :authenticate_user!
+
+
 	def create
 		exhibition = Exhibition.find(params[:exhibition_id])
 		like = Like.new
