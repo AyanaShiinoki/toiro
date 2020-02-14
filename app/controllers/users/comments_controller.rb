@@ -1,5 +1,9 @@
 class Users::CommentsController < ApplicationController
 
+
+
+before_action :authenticate_user!
+
 	def new
 		# @exhibition = Exhibition.find(params[:id])
 		# @commnet = Comment.new

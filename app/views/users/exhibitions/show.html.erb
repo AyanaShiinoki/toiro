@@ -16,7 +16,7 @@
 				</div>
 			<p class ="center-align"><%= @exhibition.caption %></p>
 			<h5 class ="center-align">開催者</h5>
-			<h5 class ="center-align"><%= @exhibition.user.name %></h5>
+			<h6 class ="center-align"><%= link_to "#{@exhibition.user.name}",users_user_path(@exhibition.user) %></h6>
 
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 			<% end %>
 		</div>
 
-
+	<% if user_signed_in? %>
 		<div class = "row" >
 			<div class = "col l12 m12">
 				<!-- フォルダに追加 --><!-- モーダル -->
@@ -77,7 +77,6 @@
 					<!-- コメントフォーム -->
 			</div>
 		</div>
-
 							<!-- いいね -->
 							<% if @exhibition.liked_by?(current_user) %>
 								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
@@ -98,12 +97,12 @@
 							<% else %>
 									<i class="material-icons" >favorite</i>
 							<% end %>
-
 							 <!-- いいね -->
-
-
-
-
+	<% else %>
+		<p>会員登録するとコメント機能、フォルダ追加機能が使えます。</p>
+		<%= link_to "会員登録はこちらから",new_user_registration_path %>
+		<%= link_to "登録済みの方はこちら",new_user_session_path %>
+	<% end %>
 
 	</div>
 </div>

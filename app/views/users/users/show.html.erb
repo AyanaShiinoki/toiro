@@ -6,7 +6,8 @@
         <p class="center-align concept"><%= @user.gallery.concept %></p>
         <div class = "user-content center">
 <!-- 他のユーザー -->
-          <div class="folder">
+<% if user_signed_in? %>
+            <div class="folder">
             <% if current_user!= @user %>
             <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
                 <%= image_tag 'folder.svg' , :size=>"70x70"%>
@@ -88,6 +89,13 @@
             </div>
 <!-- 編集機能 -->
           </div>
+<% else %>
+<!-- 未ログインの場合 -->
+  <p>会員登録するとフォロー機能、フォルダ機能が使えます</p>
+  <%= link_to "会員登録はこちらから",new_user_registration_path %>
+  <%= link_to "登録済みの方はこちら",new_user_session_path %>
+<% end %>
+<!-- 未ログインの場合 -->
 <!-- 自分のページ -->
         </div>
       </div>
