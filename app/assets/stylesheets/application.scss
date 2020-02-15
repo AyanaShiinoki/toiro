@@ -172,7 +172,6 @@ $sans: sans-serif; // 細め明朝体
 	}
 	.works{
 		border-bottom: 1px dotted;
-		border-top: 1px dotted;
 		border-color: $black;
 		margin-bottom: 30px;
 		padding: 20px 0;
@@ -193,19 +192,21 @@ $sans: sans-serif; // 細め明朝体
 
 	}
 	.card{
+		margin: 0 auto;
+		width: 300px;
 		padding: 10px;
 		background-color: $snow;
 		text-align: center;
+		transition:.2s;
+		color: $black;
+		&:hover{
+			transition:.2s;
+			opacity:0.9;
+			background-color:$ghost;
+			transform: scale(1.1);
+		}
 		h5{
 			margin:0;
-		}
-		.user-info{
-			a{
-				&:hover{
-					opacity:0.7;
-				}
-			}
-
 		}
 	}
 }
