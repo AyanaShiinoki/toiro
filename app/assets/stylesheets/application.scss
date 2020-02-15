@@ -54,6 +54,7 @@ $error:'arial unicode ms';
 
 .signup{
 	font-family: $dotum;
+	color: $black;
 	.error{
 		font-family:$error;
 		color: #e53935;
@@ -73,6 +74,11 @@ $error:'arial unicode ms';
 	.pass{
 		font-size: 14px;
 	}
+}
+
+.signin{
+	font-family: $dotum;
+	color: $black;
 }
 
 // ユーザーページ
