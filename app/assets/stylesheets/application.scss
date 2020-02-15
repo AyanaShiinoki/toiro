@@ -166,13 +166,48 @@ $sans: sans-serif; // 細め明朝体
 
 // 個展詳細
 .exhibition-show{
-	.work-image{
-		width: 340px;
-		height: 340px;
-		padding-top: 20px;
-		background: image-url('Flame2.png') no-repeat center;
-		margin: 0 auto;
+	font-family: $sans;
+	.caption{
+		font-size: 20px;
+	}
+	.works{
+		border-bottom: 1px dotted;
+		border-color: $black;
+		margin-bottom: 30px;
+		padding: 20px 0;
+		.work-image{
+			width: 340px;
+			height: 340px;
+			padding-top: 20px;
+			background: image-url('Flame2.png') no-repeat center;
+			margin: 0 auto;
 
+		}
+	}
+	.comment{
+		// background: image-url('comment.png') no-repeat center;
+		height: 320px;
+		width: 270px;
+		padding: 30px;
+
+	}
+	.card{
+		margin: 0 auto;
+		width: 300px;
+		padding: 10px;
+		background-color: $snow;
+		text-align: center;
+		transition:.2s;
+		color: $black;
+		&:hover{
+			transition:.2s;
+			opacity:0.9;
+			background-color:$ghost;
+			transform: scale(1.1);
+		}
+		h5{
+			margin:0;
+		}
 	}
 }
 
@@ -216,13 +251,7 @@ $sans: sans-serif; // 細め明朝体
 
 
 
-.comment{
-	background: image-url('comment.png') no-repeat center;
-	height: 320px;
-	width: 270px;
-	padding: 30px;
 
-}
 
 
 .comment2{

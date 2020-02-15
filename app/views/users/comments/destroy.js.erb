@@ -1,1 +1,1 @@
-$('.comment_<%= @exhibition.id%>').html("<%= j(render 'users/comments/comment_index', exhibition: @exhibition) %>");
+$('.comment_<%= @exhibition.id%>').html("<%= j(render 'users/exhibitions/comment', exhibition: @exhibition) %>");

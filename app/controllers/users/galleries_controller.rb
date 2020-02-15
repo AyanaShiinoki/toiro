@@ -5,8 +5,13 @@ class Users::GalleriesController < ApplicationController
 before_action :authenticate_user!
 
 
+
 	def new
-		@gallery = Gallery.new
+		if current_user.gallery == nil
+			@gallery = Gallery.new
+		else
+			redirect_to edit_users_gallery_path(current_user.gallery.id)
+		end
 	end
 
 	def create
@@ -29,7 +34,7 @@ before_action :authenticate_user!
 	def edit
 		@gallery = Gallery.find(params[:id])
 		if @gallery.user != current_user
-			redirect_to root_path
+			redirect_to edit_users_gallery_path(current_user.gallery.id)
 		end
 	end
 

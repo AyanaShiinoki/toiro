@@ -3,21 +3,5 @@
 <%= comment.comment %>
 <% if comment.user_id == current_user.id %>
 <%= link_to "Destroy", users_exhibition_comments_path(exhibition_id: exhibition, id: comment.id), method: :delete ,remote: true %>
-
 <% end %><br>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

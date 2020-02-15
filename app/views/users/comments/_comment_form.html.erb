@@ -1,9 +1,0 @@
-<!-- model: [:users, @exhibition , @commnet]  によって、/users/exhibitions/を生成　-->
-<%= form_with model: [:users, exhibition , comment] do |f| %>
-<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想をここに"%>
-<div class="modal-footer">
-<%= f.submit '送信' %>
-</div>
-<% end %>
-
-

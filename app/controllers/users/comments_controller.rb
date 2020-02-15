@@ -18,7 +18,6 @@ before_action :authenticate_user!
 		if @comment.save
 			# 通知
 			@exhibition.create_notification_comment!(current_user, @comment.id)
-			# 通知
 			# redirect_to users_exhibition_path(@exhibition)
 		end
 	end

@@ -64,10 +64,10 @@ before_action :authenticate_user!, except: [:index,:show]
 	def destroy
 		@exhibition = Exhibition.find(params[:id])
 		if @exhibition.user != current_user
-			redirect_to users_exhibition_path(@exhibition.id)
+			redirect_to users_user_path(current_user)
 		end
 		@exhibition.destroy
-		redirect_to users_user_path(@exhibition.user)
+		redirect_to users_user_path(current_user)
 	end
 
 	private

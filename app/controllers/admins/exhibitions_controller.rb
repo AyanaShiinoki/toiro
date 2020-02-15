@@ -7,7 +7,7 @@ class Admins::ExhibitionsController < ApplicationController
 	def show
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
-		@comments = Comment.where(exhibition_id: @exhibition.id).page(params[:page]).reverse_order.per(5)
+		@comments = Comment.where(exhibition_id: @exhibition.id).page(params[:page]).per(5)
 	end
 
 	def edit

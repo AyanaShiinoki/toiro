@@ -1,0 +1,27 @@
+	<div class = "row" >
+		<div class = "col xl7 l7 m7 s7">
+			<h1 class ="flow-text center-align"><%= exhibition.title %></h1>
+			<p class ="center-align caption"><%= exhibition.caption %></p>
+				<div class ="right">
+					<% if exhibition.user == current_user %>
+					<%= link_to "編集" ,  edit_users_exhibition_path(exhibition.id) %>
+					<% end %>
+				</div>
+		</div>
+			<div class ="col xl4 l4 m4 s4 offset-xl1 offset-l1 offset-m1 offset-s1">
+				<%= link_to users_user_path(exhibition.user) do %>
+					<div class="user-info center card">
+		          		<%= attachment_image_tag exhibition.user, :user_image, :fill, 100, 100, format: 'jpeg',class:"image responsive-img" %>
+		          		<h5 class="center-align name"><%= exhibition.user.name %></h5>
+		          		<p><%= exhibition.user.introduction %></p>
+		         	</div>
+		        <% end %>
+			</div>
+	</div>
+
+
+	<div class = "row" >
+		<div class = "col xl12 l12 m12 s12  works">
+			<%= render 'users/exhibitions/works', exhibition: exhibition %>
+		</div>
+	</div>
