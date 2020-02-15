@@ -196,6 +196,47 @@ $error:'arial unicode ms';
 }
 
 
+// 個展一覧
+.exhibition-index{
+	h1{
+		font-family: 'Yu Gothic';
+	}
+	h5{
+		padding-top: 20px;
+		padding-bottom: 10px;
+		font-family: $sans;
+		width: 380px;
+		margin: 0 auto;
+		border-bottom: 1px solid;
+		border-color: $black;
+	}
+	.caption{
+		text-align: center;
+		// margin: 0 auto;
+		// width: 400px;
+	}
+	.work-one{
+		margin-bottom: 20px;
+		padding: 10px;
+		.work-image{
+			margin: 0 auto;
+			width: 400px;
+			height: 300px;
+			padding: 10px;
+			padding-top: 70px;
+			background: image-url('gaku.svg') no-repeat center;
+			.z-depth-5{
+				border: 1px solid;
+				border-color: $snow;
+				border-radius: 5px;
+			}
+		}
+	}
+
+}
+
+
+
 // 個展詳細
 .exhibition-show{
 	font-family: $sans;
