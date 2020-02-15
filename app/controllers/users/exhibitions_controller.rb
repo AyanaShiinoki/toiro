@@ -39,7 +39,7 @@ before_action :authenticate_user!, except: [:index,:show]
 	def edit
 		@exhibition = Exhibition.find(params[:id])
 		if @exhibition.user != current_user
-			redirect_to users_exhibition_path(@exhibition.id)
+			redirect_to root_path
 		end
 	end
 
@@ -47,6 +47,8 @@ before_action :authenticate_user!, except: [:index,:show]
 		@exhibition = Exhibition.find(params[:id])
 		if @exhibition.update(exhibition_params)
 			redirect_to users_exhibition_path(@exhibition.id)
+		else
+			redirect_to edit_users_exhibition_path(@exhibition)
 		end
 	end
 
