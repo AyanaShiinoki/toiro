@@ -9,12 +9,8 @@
 				<label>個展概要</label><br>
 				<%= f.text_area :caption %><br>
 			<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
-
-
-
+<!-- 削除機能（モーダル） -->
 		  <a class="waves-effect waves-light btn modal-trigger" href="#modal_delete">完全に削除する</a>
-
-		  <!-- Modal Structure -->
 		  <div id="modal_delete" class="modal">
 		    <div class="modal-content center">
 		    	<h5>本当に削除しますか？</h5>
@@ -24,8 +20,6 @@
 		    	<%= link_to "完全に削除する", users_exhibition_path(@exhibition), method: :delete ,class: "waves-effect waves-light btn red darken-1" %>
 		    </div>
 		  </div>
-
-
 <!-- 作品フォーム -->
 		<div class = "col xl12 l12 m12 s12">
 			<h2>掲載作品</h2>

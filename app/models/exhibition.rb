@@ -2,7 +2,7 @@ class Exhibition < ApplicationRecord
 
 	# アソシエーション
 	belongs_to :user, optional: true
-	has_many :works
+	has_many :works, dependent: :destroy
 	has_many :likes
 	has_many :comments
 	has_many :clips
