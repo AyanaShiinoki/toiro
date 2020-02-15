@@ -5,9 +5,6 @@ RSpec.describe User, type: :system do
 
 	describe '投稿テスト' do
 		let(:user) { create(:user) }
-		let(:gallery) { create(:gallery, user: user) }
-		let(:user2) { create(:user) }
-		let(:gallery2) { create(:gallery, user: user2)}
 		before do
 			visit new_user_session_path
 		  	fill_in 'user[email]', with: user.email
@@ -53,6 +50,10 @@ RSpec.describe User, type: :system do
 		end
 
 		describe '編集のテスト' do
+			let(:user) { create(:user) }
+			let!(:gallery) { create(:gallery, user: user) }
+			let!(:user2) { create(:user) }
+			let!(:gallery2) { create(:gallery, user: user2)}
 			context '編集画面へ遷移' do
 				it '遷移できる' do
 					visit edit_users_gallery_path(gallery)
@@ -81,7 +82,7 @@ RSpec.describe User, type: :system do
 					expect(page).to have_field 'gallery[concept]', with: gallery.concept
 				end
 				it 'Updateボタンが表示される' do
-					expect(page).to have_button 'Update Gallery'
+					expect(page).to have_button '更新'
 				end
 			end
 
@@ -90,7 +91,7 @@ RSpec.describe User, type: :system do
 			context '更新のテスト' do
 				it '編集に成功する' do
 					visit edit_users_gallery_path(gallery)
-					click_button 'Update Gallery'
+					click_button '更新'
 					expect(page).to have_content 'ギャラリー'
 					# expect(current_path).to eq('/users/galleries/' + gallery.id.to_s)
 					# expect(current_path).to eq('/users/galleries/' + gallery.id.to_s)
@@ -98,8 +99,8 @@ RSpec.describe User, type: :system do
 				it '編集に失敗する' do
 					visit edit_users_gallery_path(gallery)
 					fill_in 'gallery[gallery_name]', with: ''
-					click_button 'Update Gallery'
-					expect(page).to have_content 'OK'
+					click_button '更新'
+					expect(current_path).to eq ('/users/galleries/' + gallery.id.to_s + '/edit')
 					# expect(current_path).to eq('/users/galleries/' + gallery.id.to_s + '/edit')
 				end
 			end

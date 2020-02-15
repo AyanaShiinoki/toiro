@@ -34,7 +34,7 @@ before_action :authenticate_user!
 	def edit
 		@gallery = Gallery.find(params[:id])
 		if @gallery.user != current_user
-			redirect_to edit_users_gallery_path(current_user.gallery.id)
+			redirect_to root_path
 		end
 	end
 
@@ -43,7 +43,7 @@ before_action :authenticate_user!
 		if @gallery.update(gallery_params)
 			redirect_to users_gallery_path(@gallery.id),notice_update: "successfully updated!"
 		else
-			render 'edit'
+			redirect_to edit_users_gallery_path(@gallery)
 		end
 	end
 
