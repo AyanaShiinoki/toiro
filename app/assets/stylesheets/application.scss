@@ -28,6 +28,7 @@ $black:#17171a; //青紫系の黒
 $green:#7cb342; // アクティブ
 $gray :#757575; // アクティブフォルス
 $sans: sans-serif; // 細め明朝体
+$dotum: Dotum;
 
 
 // ヘッダー
@@ -48,6 +49,19 @@ $sans: sans-serif; // 細め明朝体
 	}
 }
 
+
+.signup{
+	font-family: $dotum;
+	h2{
+	color:#424242;
+	}
+	p{
+		font-family: 'arial narrow';
+	}
+	.pass{
+		font-size: 14px;
+	}
+}
 
 // ユーザーページ
 .user-show{
