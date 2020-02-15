@@ -20,8 +20,6 @@ class User < ApplicationRecord
          # 一定回数ログインをミスするとアカウントをロック
          # 時間経過で解除
 
-
-
   #バリデーション
   validate :password_complexity #パスワード強度
   validates :name, presence: true, length: {maximum: 20, minimum: 2}
@@ -29,8 +27,6 @@ class User < ApplicationRecord
 
   # validates :encrypted_password,presence: true
   validates :introduction,length: { maximum: 150 }
-
-
 
   # フォロー機能
   # 自分がフォローしているユーザとの関係
@@ -41,13 +37,13 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :follower_user, through: :followed, source: :follower
 
-
   # 通知機能
   # 自分からの通知
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   # 相手からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
+  
 
   # フォロー機能
   def follow(user_id)
@@ -75,8 +71,6 @@ class User < ApplicationRecord
         notification.save if notification.valid?
       end
   end
-
-
 
 # パスワードバリデーション
 	def password_complexity

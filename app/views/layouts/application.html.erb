@@ -12,8 +12,9 @@
   </head>
 
   <body>
-    <!-- ヘッダー -->
+<!-- ヘッダー -->
       <div class="container header center">
+<!-- ユーザーログイン時 -->
       <% if user_signed_in? %>
         <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
           <i class="material-icons Medium">notifications</i>
@@ -44,10 +45,12 @@
         <%= link_to destroy_user_session_path , method: :delete do %>
           <%= image_tag 'logout.svg' , :size=>"100x50", :class => "style_image"%>
         <% end %>
+<!-- 管理者ログイン時 -->
       <% elsif admin_signed_in? %>
         <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete%>
         <%= link_to "会員一覧" , admins_users_path%>
       <% else %>
+<!-- 未ログイン -->
         <%= link_to "Login" , new_user_session_path%>
         <%= link_to "個展一覧" , users_exhibitions_path%>
         <%= link_to "クリエイター一覧" , users_users_path%>

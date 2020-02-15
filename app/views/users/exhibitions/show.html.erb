@@ -1,42 +1,35 @@
 <div class="container exhibition-show">
-
-
-	<div class = "row" >
-		<div class = "col l12 m12">
-			<h1 class ="flow-text center-align"><%= @exhibition.title %></h1>
-			<% if @exhibition.is_active != true %>
-				<p>現在休止中です</p>
-				<% else %>
-				<p>開催中です</p>
-			<% end %>
-				<div class ="center-align">
-					<% if @exhibition.user == current_user %>
-					<%= link_to "編集" ,  edit_users_exhibition_path(@exhibition.id) %>
+	<% if @exhibition.is_active != true %>
+		<p>現在休止中です</p>
+	<% else %>
+		<p>開催中です</p>
+	<% end %>
+	<div class="exhibition_<%= @exhibition.id %>">
+		<%= render 'users/exhibitions/detail', exhibition: @exhibition %>
+	</div>
+	<% if user_signed_in? %>
+		<div class ="row">
+			<div class="col xl4 l4 m4 s4">
+<!-- コメント一覧 -->
+				<div class ="comment">
+					<div class = "comment_<%= @exhibition.id%>">
+						<%= render 'users/exhibitions/comment', exhibition: @exhibition %>
+					</div>
+				</div>
+				<!-- コメントフォーム -->
+				<div id = "comment_form">
+					<%= form_with model: [:users, @exhibition , @comment], data: {remote: true} do |f| %>
+						<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想をここに"%>
+						<div class="modal-footer">
+							<%= f.submit '送信' %>
+						</div>
 					<% end %>
 				</div>
-			<p class ="center-align"><%= @exhibition.caption %></p>
-			<h5 class ="center-align">開催者</h5>
-			<h6 class ="center-align"><%= link_to "#{@exhibition.user.name}",users_user_path(@exhibition.user) %></h6>
-
+			</div>
 		</div>
-	</div>
-
-
-	<div class = "row" >
-		<div class = "col xl12 l12 m12 s12">
-			<% @works.each do |work| %>
-				<div class = "col xl4 l6 m12 s12">
-					<div class ="center-align work-image"><%= attachment_image_tag work, :work_image, :fill, 300, 300 ,class: "z-depth-4"%></div>
-					<h5 class ="center-align"><%= work.work_title %></h5>
-					<p class ="center-align"><%= work.description %></p>
-				</div>
-			<% end %>
-		</div>
-
-	<% if user_signed_in? %>
+<!-- フォルダに追加 --><!-- モーダル -->
 		<div class = "row" >
 			<div class = "col l12 m12">
-				<!-- フォルダに追加 --><!-- モーダル -->
 				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
 					<div id="modal1" class="modal">
 						<div class="modal-content">
@@ -49,62 +42,28 @@
 					</div>
 			</div>
 		</div>
-		<div class ="row">
-			<div class="col l6">
-				<!-- フォルダに追加 --><!-- モーダル -->
-					<!-- コメント一覧 -->
-					<div class ="comment">
-						コメント一覧
-						<div class = "comment_<%= @exhibition.id%>">
-							<% if @exhibition.liked_by?(current_user) %>
-								<% @exhibition.comments.each do |comment| %>
-								<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' %>
-								<%= comment.comment %>
-								<% if comment.user_id == current_user.id %>
-								<%= link_to "Destroy", users_exhibition_comments_path(exhibition_id: @exhibition, id: comment.id), method: :delete ,remote: true %>
-								<% end %><br>
-								<% end %>
-							<% end %>
-						</div>
-					</div>
-<!-- 					<div class="comment2">
-					</div> -->
-					<!-- コメント一覧 -->
-					<!-- コメントフォーム -->
-					<div id = "comment_form">
-						<%= render 'users/comments/comment_form',exhibition: @exhibition ,comment: @comment %>
-					</div>
-					<!-- コメントフォーム -->
-			</div>
-		</div>
-							<!-- いいね -->
-							<% if @exhibition.liked_by?(current_user) %>
-								<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
-									<p>花を送る</p>
-								<% end %>
-							<% else %>
-								<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
-									<i class="material-icons" >filter_drama</i>
-								<% end %>
-							<% end %>
-							 <!-- いいね -->
-
-
-
-							<!-- いいね表示用 -->
-							<% if @exhibition.liked_by?(current_user) %>
-									<i class="material-icons", style="color: red;" >favorite</i>
-							<% else %>
-									<i class="material-icons" >favorite</i>
-							<% end %>
-							 <!-- いいね -->
+<!-- いいね -->
+		<% if @exhibition.liked_by?(current_user) %>
+			<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
+				<p>花を送る</p>
+			<% end %>
+		<% else %>
+			<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
+				<i class="material-icons" >filter_drama</i>
+			<% end %>
+		<% end %>
+<!-- いいね -->
+<!-- いいね表示用 -->
+		<% if @exhibition.liked_by?(current_user) %>
+			<i class="material-icons", style="color: red;" >favorite</i>
+		<% else %>
+			<i class="material-icons" >favorite</i>
+		<% end %>
 	<% else %>
 		<p>会員登録するとコメント機能、フォルダ追加機能が使えます。</p>
 		<%= link_to "会員登録はこちらから",new_user_registration_path %>
 		<%= link_to "登録済みの方はこちら",new_user_session_path %>
 	<% end %>
-
-	</div>
 </div>
 
 

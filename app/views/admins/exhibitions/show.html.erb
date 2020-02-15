@@ -43,13 +43,15 @@
 				</table>
 				<div class="comments">
 						<h6>コメント一覧</h6>
-							<% @exhibition.comments.each do |comment| %>
+							<% @comments.each do |comment| %>
 							<%= comment.comment %>
 							by
 							<%= link_to "#{comment.user.name}",admins_user_path(comment.user.id)%>
 							<br>
 							<% end %>
-						<%= paginate @comments %>
+							<div class="paginate center">
+							<%= paginate @comments %>
+							</div>
 				</div>
 			</div>
 		</div>
