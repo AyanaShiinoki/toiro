@@ -2,6 +2,7 @@ class Exhibition < ApplicationRecord
 
 	# アソシエーション
 	belongs_to :user, optional: true
+	# dependent: :destroyを書かないと個展（親）の物理削除ができない
 	has_many :works, dependent: :destroy
 	has_many :likes
 	has_many :comments
