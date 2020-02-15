@@ -1,10 +1,12 @@
 <div class ="container signup">
   <div class="row">
     <div class="col xl8 l8 m8 s8 offset-xl2 offset-l2 offset-m2 offset-s2">
-        <h2 class="center">Sign Up</h2>
+        <h2 class="center title">Sign Up</h2>
         <p class="center">必要事項を誤入力の上、SIGN UPボタンをクリックしてください。</p>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class ="error center">
           <%= render "devise/shared/error_messages", resource: resource %>
+        </div>
 
           <div class="field">
             <%= f.label :name %><br />
@@ -34,7 +36,7 @@
             <%= button_tag 'Sign Up', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
           </div>
         <% end %>
-        <%= render "devise/users/shared/links" %>
+        <%= link_to "登録済みの方はこちら", new_session_path(resource_name) %>
     </div>
   </div>
 </div>

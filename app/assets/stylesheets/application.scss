@@ -29,6 +29,8 @@ $green:#7cb342; // アクティブ
 $gray :#757575; // アクティブフォルス
 $sans: sans-serif; // 細め明朝体
 $dotum: Dotum;
+$gothic: 'arial narrow';
+$error:'arial unicode ms';
 
 
 // ヘッダー
@@ -52,11 +54,21 @@ $dotum: Dotum;
 
 .signup{
 	font-family: $dotum;
-	h2{
+	.error{
+		font-family:$error;
+		color: #e53935;
+		font-size: 15px;
+		h2{
+			font-size: 20px;
+
+		}
+	}
+	.title{
 	color:#424242;
+	font-size: 40px;
 	}
 	p{
-		font-family: 'arial narrow';
+		font-family: $gothic;
 	}
 	.pass{
 		font-size: 14px;
