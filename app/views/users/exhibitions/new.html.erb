@@ -87,7 +87,10 @@ $(function() {
 　　 console.log(obj)
     // console.log(obj.find(".work_prev"))
     console.log(document.querySelector(".work_prev"))
-    console.log(document.querySelector('input[type=file]').files)
+    console.log(document.querySelector('input[type=file]').files[0])
+
+
+
 	var preview = $(".work_prev")[obj.name[29]];
 	var file    = obj.files[0];
 	var reader  = new FileReader();
