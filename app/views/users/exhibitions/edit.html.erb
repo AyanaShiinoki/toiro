@@ -10,7 +10,7 @@
 				<%= f.text_area :caption %><br>
 			<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
 <!-- 削除機能（モーダル） -->
-		  <a class="waves-effect waves-light btn modal-trigger" href="#modal_delete">完全に削除する</a>
+		  <a class="waves-effect red lighten-1 btn modal-trigger" href="#modal_delete">完全に削除する</a>
 		  <div id="modal_delete" class="modal">
 		    <div class="modal-content center">
 		    	<h5>本当に削除しますか？</h5>
@@ -24,13 +24,24 @@
 		<div class = "col xl12 l12 m12 s12">
 			<h2>掲載作品</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-			<div class = "col xl4 l4 m12 s12">
+			<div class = "col xl4 l4 m12 s12 form">
+				<div class ="work-image-pre center">
+					<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %><br>
+				</div>
 				<label>画像タイトル</label><br>
 				<%= field.text_field :work_title %><br>
 				<label>作品説明</label><br>
 				<%= field.text_field :description %><br>
 				<label>作品画像</label><br>
-				<%= field.attachment_field :work_image %>
+				    <div class="file-field input-field">
+				      <div class="btn">
+				        <span>File</span>
+				        <%= field.attachment_field :work_image, onchange: "previewFile(this)", class: 'preview_file'%><br>
+				      </div>
+				      <div class="file-path-wrapper">
+				        <input class="file-path validate" type="text">
+				      </div>
+				    </div>
 <!-- フォーム削除 -->
 				<br><%= field.remove_nested_fields_link 'Delete' %>
 			</div>
@@ -41,10 +52,12 @@
 				<div class="row add-form">
 					<div class = "col l12 m12 s12">
 						<div class="col l5 m8 s6 offset-l10 offset-m8 offset-s8">
-						<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
-						<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+							<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
 						</div>
 					</div>
+				</div>
+				<div class="center">
+					<%= button_tag '更新する', class: 'waves-effect waves-light btn-large', type: 'button', onclick: 'submit();' %>
 				</div>
 			<% end %>
 		<% end %>
@@ -93,4 +106,29 @@ $(function() {
   $(document).ready(function(){
     $('.modal').modal();
   });
+</script>
+<!-- プレビュー -->
+<script>
+	// document.getElementsByClassName("preview_file").onchange = previewFile;
+	function previewFile(obj) {
+　　 console.log(obj)
+    // console.log(obj.find(".work_prev"))
+    console.log(document.querySelector(".work_prev"))
+    console.log(document.querySelector('input[type=file]').files[0])
+
+
+
+	var preview = $(".work_prev")[obj.name[29]];
+	var file    = obj.files[0];
+	var reader  = new FileReader();
+
+	reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  }, false);
+
+
+	if (file) {
+		reader.readAsDataURL(file);
+	}
+}
 </script>

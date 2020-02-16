@@ -16,9 +16,9 @@
 					</div>
 			</div>
 			<% end %>
-	        <div class ="pagenate center">
-	          <%= paginate @exhibitions , :param_name => 'active'%>
-	        </div>
+	</div>
+	<div class ="pagenate center">
+	    <%= paginate @exhibitions , :param_name => 'active'%>
 	</div>
 	<div class="row right">
 		<% @random.each do |r| %>

@@ -32,7 +32,7 @@ before_action :authenticate_user!, except: [:index,:show]
 	end
 
 	def index
-		@exhibitions = Exhibition.where(is_active: true).order(updated_at: :desc).page(params[:active]).per(9)
+		@exhibitions = Exhibition.where(is_active: true).order(updated_at: :desc).page(params[:active]).per(10)
 		@random = @exhibitions.offset(rand( @exhibitions.count)).limit(1)
 	end
 
