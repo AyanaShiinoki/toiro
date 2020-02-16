@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container exhibition-new">
 	<div class="row">
 			<h1>個展開催</h1>
 			<div class="error-box">
@@ -20,17 +20,19 @@
 
 
 <!-- 作品フォーム -->
-
 		<div class = "col l12 m12 s12">
 			<h2>掲載作品</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-				<div class = "col l4 m12 s12">
+				<div class = "col l4 m12 s12 form">
 					<label>画像タイトル</label><br>
 					<%= field.text_field :work_title %><br>
 					<label>作品説明</label><br>
 					<%= field.text_field :description %><br>
 					<label>作品画像</label><br>
-					<%= field.attachment_field :work_image %>
+					<%= field.attachment_field :work_image, onchange: "previewFile(this)", class: 'preview_file'%><br>
+						<img src="" class="work_prev" height="200" width="200" alt="Image preview" >
+					  <!-- <div id="preview"></div> -->
+					 <!-- ここでプレビュー -->
 <!-- フォーム削除 -->
 					<br><%= field.remove_nested_fields_link 'Delete' %>
 				</div>
@@ -75,4 +77,84 @@ $(function() {
   fieldsCount = $('form .fields').length;
   toggleAddLink();
 })
+
 </script>
+
+<!-- プレビュー -->
+<script>
+	// document.getElementsByClassName("preview_file").onchange = previewFile;
+	function previewFile(obj) {
+　　 console.log(obj)
+    // console.log(obj.find(".work_prev"))
+    console.log(document.querySelector(".work_prev"))
+    console.log(document.querySelector('input[type=file]').files)
+	var preview = $(".work_prev")[obj.name[29]];
+	var file    = obj.files[0];
+	var reader  = new FileReader();
+
+	reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  }, false);
+
+
+	if (file) {
+		reader.readAsDataURL(file);
+	}
+}
+</script>
+<!-- <script>
+function previewFiles() {
+  console.log(document.querySelector("#preview"))
+  console.log(document.querySelector('input[type=file]').files)
+
+  var preview = document.querySelector('#preview');
+  var files   = document.querySelector('input[type=file]').files;
+
+  function readAndPreview(file) {
+
+    // Make sure `file.name` matches our extensions criteria
+    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      var reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        var image = new Image();
+        image.height = 100;
+        image.title = file.name;
+        image.src = this.result;
+        preview.appendChild( image );
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+
+  }
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+  }
+
+}
+</script> -->
+
+<!-- 複数プレビュー -->
+<!-- <script>
+	function previewFile() {
+	var preview = document.querySelector("#work_prev");
+	// var file    = document.querySelector('input[type=file]').files[i];
+	var file_length = document.querySelector('input[type=file]').files.length;
+
+	for( var i=0,l = file_length.length; l > i; i++ ) {
+
+	var reader  = new FileReader();
+
+	reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  	}, false)
+	}
+
+
+	if (file) {
+		reader.readAsDataURL(file_length[i]);
+	}
+}
+</script> -->
