@@ -1,9 +1,4 @@
 <div class="container exhibition-show">
-	<% if @exhibition.is_active != true %>
-		<p>現在休止中です</p>
-	<% else %>
-		<p>開催中です</p>
-	<% end %>
 	<div class="exhibition_<%= @exhibition.id %>">
 		<%= render 'users/exhibitions/detail', exhibition: @exhibition %>
 	</div>
