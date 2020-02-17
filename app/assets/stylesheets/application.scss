@@ -27,6 +27,9 @@ $linen: #faf0e6; //淡い橙色
 $black:#17171a; //青紫系の黒
 $green:#7cb342; // アクティブ
 $gray :#757575; // アクティブフォルス
+$bluegray:#90a4ae;
+$bluegray-d:#607d8b;
+$pink:#f06292;
 $sans: sans-serif; // 細め明朝体
 $dotum: Dotum;
 $gothic: 'arial narrow';
@@ -45,6 +48,7 @@ $error:'arial unicode ms';
 	width: 700px;
 	border-radius: 100px;
 	background: rgba(255,255,255,1);
+	padding: 5px;
 		img{
 			margin: 0 15px;
 		}
@@ -195,6 +199,64 @@ $error:'arial unicode ms';
 	}
 }
 
+
+// フォルダ詳細
+.folder-show{
+	font-family: $sans;
+}
+
+.folder-index{
+	font-family: $sans;
+	h3{
+		margin-bottom: 60px;
+	}
+	.folders-content{
+		padding-top: 50px;
+	}
+
+		.folder{
+			background: image-url('folder-icon.svg') no-repeat center;
+			width: 500px;
+			height: 200px;
+			margin: 20px auto;
+			padding-left: 20px;
+			position: relative;
+			p{
+				margin-left: 60px;
+			}
+
+			a{
+				margin-top: 50px;
+				margin-right: 50px;
+				margin-left: 60px;
+				color: #37474f;
+				font-size: 30px;
+				font-family:arial;
+				position: absolute;
+					  position: relative;
+					  display: inline-block;
+					  text-decoration: none;
+			}
+					a::after {
+					  position: absolute;
+					  bottom: -4px;
+					  left: 0;
+					  content: '';
+					  width: 100%;
+					  height: 2px;
+					  background: $pink;
+					  transform: scale(0, 1);
+					  transform-origin: right top;
+					  transition: transform .3s;
+					}
+					a:hover::after {
+					  transform-origin: left top;
+					  transform: scale(1, 1);
+					}
+		}
+}
+
+
 // 個展開催
 .exhibition-new{
 	font-family: $sans;
@@ -268,10 +330,35 @@ $error:'arial unicode ms';
 	.comment{
 		// background: image-url('comment.png') no-repeat center;
 		height: 320px;
-		width: 270px;
-		padding: 30px;
+		width: 400px;
+		padding: 10px;
+		margin-bottom: 50px;
+		border: 1px solid;
+		height: 500px;
+
+		.comment-content{
+			border-bottom: 1px solid;
+			.user-image{
+			border-radius: 10px;
+			margin-right: 10px;
+			}
+			a{
+				color: $bluegray;
+				margin-top: 30px;
+				&:hover{
+					color: $bluegray-d;
+					transform: scale(1.1);
+				}
+			}
+		}
 
 	}
+	#comment_form{
+		width: 400px;
+	}
+
+
+
 	.card{
 		margin: 0 auto;
 		width: 300px;

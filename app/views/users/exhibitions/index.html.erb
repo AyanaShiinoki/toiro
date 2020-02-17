@@ -1,5 +1,13 @@
 <div class="container exhibition-index">
 	<div class="row center">
+		<% @random.each do |r| %>
+			<%= link_to random_path(r) do %>
+			<%= image_tag 'door.svg', :size=>"150x150" %>
+			<span>個展巡り</span>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="row center">
 		<% @exhibitions.each do |exhibition| %>
 			<div class ="col xl6 l6 m6 s6 work-one">
 				<% exhibition.works.shuffle.first(1).each do |work| %>
@@ -19,13 +27,5 @@
 	</div>
 	<div class ="pagenate center">
 	    <%= paginate @exhibitions , :param_name => 'active'%>
-	</div>
-	<div class="row right">
-		<% @random.each do |r| %>
-			<%= link_to random_path(r) do %>
-			<%= image_tag 'door.svg', :size=>"150x150" %>
-			<span>個展巡り</span>
-			<% end %>
-		<% end %>
 	</div>
 </div>

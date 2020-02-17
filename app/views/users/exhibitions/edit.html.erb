@@ -7,7 +7,7 @@
 				<label>タイトル</label><br>
 				<%= f.text_field :title %><br>
 				<label>個展概要</label><br>
-				<%= f.text_area :caption %><br>
+				<%= f.text_area :caption, class: "materialize-textarea" %><br>
 			<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
 <!-- 削除機能（モーダル） -->
 		  <a class="waves-effect red lighten-1 btn modal-trigger" href="#modal_delete">完全に削除する</a>

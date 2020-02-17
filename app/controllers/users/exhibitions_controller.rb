@@ -27,7 +27,7 @@ before_action :authenticate_user!, except: [:index,:show]
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
-		@comments = @exhibition.comments
+		@comments = @exhibition.comments.order(updated_at: :desc).limit(5)
 		end
 	end
 
