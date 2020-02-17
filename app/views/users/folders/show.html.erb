@@ -1,30 +1,54 @@
 <div class="container folder-show">
-
-	<h2 class = "center"><%= @folder.folder_name %></h2>by<%= @folder.user.name %>
-	<h4 class ="center">クリップした個展</h4>
-
 	<div class = "row">
-		<div class = "col xl12 l12 m12 s12" >
+		<%= link_to controller: "folders", action: "index", user_id: @folder.user.id do %>
+			<i class="material-icons medium">chevron_left</i>
+		<% end %>
+		<div class = "col xl12 l12 m12 s12 center" >
+					<h4><%= @folder.folder_name %></h6>
+
 			<% @clips.each do |clip| %>
-				<div class = "col xl4 l4 m6 s6">
+			<div class = "col xl6 l12 m12 s12 folder-item" >
+				<div class = "col xl6 l6 m6 s6">
 					<% if clip.exhibition.is_active == true %>
 					<div class = "clip-exhibition" >
-						<h5 class><%= link_to "#{clip.exhibition.title}", users_exhibition_path(clip.exhibition) %></h5>
 						<% clip.exhibition.works.shuffle.first(1).each do |work| %>
-							<%= attachment_image_tag work, :work_image, :fill, 220, 220%>
+							<%= attachment_image_tag work, :work_image, :fill, 250, 250%>
 						<% end %>
 					</div>
-						メモ: <%= clip.memo %><br>
-						登録日: <%= clip.created_at.strftime('%Y/%m/%d') %>
-
-
+				</div>
+				<div class = "col xl6 l6 m6 s6">
+					<table>
+			     	<tr>
+				     	<th>タイトル</th>
+				     	<td><%= clip.exhibition.title %></td>
+			     	</tr>
+			     	<tr>
+				     	<th>主催者</th>
+				     	<td><%= clip.exhibition.user.name %></td>
+			     	</tr>
+			     	<tr>
+				     	<th>メモ</th>
+				     	<td><%= clip.memo %></td>
+			     	</tr>
+			     	<tr>
+				     	<th>登録日</th>
+				     	<td><%= clip.created_at.strftime('%Y/%m/%d') %></td>
+			     	</tr>
+					</table>
+					<div class = "action" >
+						<%= link_to "見にいく", users_exhibition_path(clip.exhibition),class: "waves-effect teal btn-small " %>
 						<% if @folder.user == current_user %>
-						<br><%= link_to "クリップを外す", users_exhibition_clips_path(clip.exhibition),method: :delete %><br>
+						<%= link_to "クリップを外す", users_exhibition_clips_path(clip.exhibition),method: :delete, data: {confirm: "本当に外しますか？"}, class: "waves-effect red lighten-3 btn-small" %><br>
 						<% end %>
+					</div>
 
 					<% end %>
 				</div>
+			</div>
 			<% end %>
 		</div>
 	</div>
+		<div class ="pagenate center">
+		    <%= paginate @clips %>
+		</div>
 </div>

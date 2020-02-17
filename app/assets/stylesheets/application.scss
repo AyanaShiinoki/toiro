@@ -203,6 +203,25 @@ $error:'arial unicode ms';
 // フォルダ詳細
 .folder-show{
 	font-family: $sans;
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
+	.folder-item{
+		padding: 10px;
+		table{
+
+			margin: 0 auto;
+		}
+		.action{
+			margin: 5px 5px 0 0;
+			.btn-small{
+				margin-right: 10px;
+			}
+		}
+	}
 }
 
 .folder-index{
@@ -254,6 +273,10 @@ $error:'arial unicode ms';
 					  transform: scale(1, 1);
 					}
 		}
+	.modal{
+		width: 500px;
+		padding: 20px;
+	}
 }
 
 

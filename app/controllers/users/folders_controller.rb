@@ -5,9 +5,6 @@ class Users::FoldersController < ApplicationController
 before_action :authenticate_user!
 
 
-	def new
-		@folder = Folder.new
-	end
 
 	def create
 		@folder = Folder.new(folder_params)
@@ -19,10 +16,11 @@ before_action :authenticate_user!
 
 	def show
 		@folder = Folder.find(params[:id])
-		@clips = Clip.where(folder_id: @folder.id)
+		@clips = Clip.where(folder_id: @folder.id).page(params[:page]).per(6)
 	end
 
 	def index
+		@folder = Folder.new
 		@user = User.find(params[:user_id])
 		if params[:user_id]
 		@folders = Folder.where(user_id: params[:user_id]).page(params[:page]).per(6)

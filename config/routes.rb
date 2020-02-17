@@ -28,7 +28,7 @@ namespace :users do
     resource :clips, only: [:create, :destroy]
   end
   resources :works
-  resources :folders
+  resources :folders, except: [:new]
   end
 
 

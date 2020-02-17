@@ -3,7 +3,21 @@
 		<h3 class ="center">Folders</h3>
 		<div class ="center">
 			<% if @user == current_user %>
-				<%= link_to "新規作成" ,new_users_folder_path,class: "waves-effect teal btn-large" %>
+<!-- フォルダ作成 -->
+			  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">新規作成</a>
+			  <div id="modal1" class="modal">
+			    <div class="modal-content">
+					<div class="container">
+						<h4>フォルダ作成</h4>
+						<%= form_with model: [:users, @folder] do |f| %>
+							<%= f.text_field :folder_name %>
+						<% end %>
+					</div>
+			    </div>
+			    <div class="modal-footer">
+			      <%= button_tag '追加する', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
+			    </div>
+			  </div>
 			<% end %>
 		</div>
 	</div>
@@ -22,3 +36,19 @@
 		</div>
 
 </div>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options = {};
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
