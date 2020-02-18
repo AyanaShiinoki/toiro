@@ -18,7 +18,7 @@ before_action :authenticate_user!
 		@gallery = Gallery.new( gallery_params )
 		@gallery.user_id = current_user.id
 		if @gallery.save
-			redirect_to users_gallery_path(@gallery.id)
+			redirect_to users_user_path(current_user)
 		end
 	end
 
