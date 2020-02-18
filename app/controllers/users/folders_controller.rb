@@ -47,7 +47,7 @@ before_action :authenticate_user!
 			redirect_to root_path
 		end
 		@folder.destroy
-		redirect_to users_folders_path
+		redirect_to users_folders_path(user_id: current_user.id)
 	end
 
 	private
