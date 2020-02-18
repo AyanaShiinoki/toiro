@@ -1,25 +1,30 @@
 class Admins::UsersController < ApplicationController
 
 	def index
-		@users = User.all
+		@users = User.all.with_deleted
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.with_deleted.find(params[:id])
 		@exhibitions = Exhibition.where(user_id: @user.id)
 	end
 
 	def edit
-		@user = User.find(params[:id])
+		@user = User.with_deleted.find(params[:id])
 	end
 
 	def update
-		@user = User.find(params[:id])
-			if@user.update(user_params)
-			redirect_to admins_user_path(@user.id)
-			else
-			render 'edit'
-			end
+		@user = User.with_deleted.find(params[:id])
+
+		if params[:user][:deleted_at] == "true"
+			@user.restore
+			@user.update(user_params)
+		else
+			@user.destroy
+			@user.update(user_params)
+		end
+		redirect_to admins_user_path(@user.id)
+
 	end
 
 

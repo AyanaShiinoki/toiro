@@ -26,7 +26,10 @@
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
 			<div class = "col xl4 l4 m12 s12 form">
 				<div class ="work-image-pre center">
-					<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %><br>
+<!-- 新規 -->
+			<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %><br>
+
+
 				</div>
 				<label>画像タイトル</label><br>
 				<%= field.text_field :work_title %><br>
