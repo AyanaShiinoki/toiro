@@ -35,7 +35,7 @@
           <div class="center mypage">
             <div class="folder">
               <% if current_user == @user %>
-              <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
+              <%= link_to controller: "folders", action: "index", user_id: current_user.id do %>
                 <%= image_tag 'folder.svg' , :size=>"70x70"%>
                 <span>Folder</span>
               <% end %>
@@ -134,10 +134,10 @@
       </div>
       <% end %>
     </div>
-        <div class ="pagenate center">
-          <%= paginate @exhibitions , :param_name => 'active'%>
-        </div>
   </div>
+    <div class ="pagenate center">
+      <%= paginate @exhibitions , :param_name => 'active'%>
+    </div>
 <!-- 個展一覧 -->
 <!-- 休止中個展 -->
   <% if @user == current_user %>
@@ -155,10 +155,10 @@
       </div>
       <% end %>
     </div>
-        <div class ="pagenate center">
-          <%= paginate @exhibitions_f , :param_name => 'not_active'%>
-        </div>
   </div>
+    <div class ="pagenate center">
+      <%= paginate @exhibitions_f , :param_name => 'not_active'%>
+    </div>
   <% end %>
 <!-- 休止中個展 -->
 </div>
@@ -172,7 +172,7 @@
     var instances = M.Modal.init(elems, options);
   });
 
-  // Or with jQuery
+
 
   $(document).ready(function(){
     $('.modal').modal();
@@ -182,7 +182,7 @@
     html2canvas($('.user-info').get(0)).then((canvas) => {
       var data = canvas.toDataURL();
       document.getElementById("download").href = data;
-      document.getElementById("download").download = 'test.png';
+      document.getElementById("download").download = 'user.png';
     });
 
   </script>

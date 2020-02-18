@@ -11,11 +11,9 @@
 						<h4>フォルダ作成</h4>
 						<%= form_with model: [:users, @folder] do |f| %>
 							<%= f.text_field :folder_name %>
+							 <%= button_tag '追加する', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
 						<% end %>
 					</div>
-			    </div>
-			    <div class="modal-footer">
-			      <%= button_tag '追加する', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
 			    </div>
 			  </div>
 			<% end %>
@@ -27,13 +25,14 @@
 					<div class = "folder col xl4 l4 m6 s12 ">
 						<h6><%= link_to "#{folder.folder_name}" ,users_folder_path(folder) %></h6>
 						<p>登録数: <%= folder.clips.count %></p>
+						<% if folder.user == current_user %>
+						<p class = "edit right"><%= link_to "Edit", edit_users_folder_path(folder) %></p>
+						<% end %>
 					</div>
 				<% end %>
 			</div>
 		</div>
-		<div class ="pagenate center">
-		    <%= paginate @folders , :user_id=> @user.id %>
-		</div>
+
 
 </div>
 

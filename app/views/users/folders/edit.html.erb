@@ -1,0 +1,12 @@
+<div class = "container folder-edit">
+	<div class = "row">
+		<h1>Folder Edit</h1>
+		<div class = "col xl6 l6 m6 s6">
+			<%= form_with model: [:users, @folder] do |f| %>
+					<%= f.text_field :folder_name %>
+					 <%= button_tag '更新', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
+			<% end %>
+			<%= link_to "削除する", users_folder_path(@folder.id), method: :delete ,class: "waves-effect waves-light btn red darken-1"%>
+		</div>
+	</div>
+</div>

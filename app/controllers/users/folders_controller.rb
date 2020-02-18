@@ -22,11 +22,13 @@ before_action :authenticate_user!
 	def index
 		@folder = Folder.new
 		@user = User.find(params[:user_id])
-		if params[:user_id]
-		@folders = Folder.where(user_id: params[:user_id]).page(params[:page]).per(6)
-		elsif @user == current_user
-		@folders = Folder.where(user_id: current_user.id).page(params[:page]).per(6)
-		end
+		@folders = Folder.where(user_id: @user.id).page(params[:page]).per(6)
+		# if params[:user_id]
+		# @folders = Folder.where(user_id: params[:user_id]).page(params[:page]).per(6)
+		# else
+		# @folders = Folder.where(user_id: current_user.id).page(params[:page]).per(6)
+		# end
+
 
 	end
 
@@ -47,6 +49,12 @@ before_action :authenticate_user!
 	end
 
 	def destroy
+		@folder = Folder.find(params[:id])
+		if @folder.user != current_user
+			redirect_to root_path
+		end
+		@folder.destroy
+		redirect_to users_folders_path
 	end
 
 	private
