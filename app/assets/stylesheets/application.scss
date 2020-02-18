@@ -84,6 +84,25 @@ $error:'arial unicode ms';
 	font-family: $dotum;
 	color: $black;
 }
+// ユーザー一覧
+
+.user-index{
+	.user-info{
+		a{
+			color: $black;
+			.user-image{
+				padding: 10px;
+				border: 1px solid;
+				&:hover{
+					border: double;
+				}
+			}
+
+
+		}
+	}
+
+}
 
 // ユーザーページ
 .user-show{

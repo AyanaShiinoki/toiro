@@ -1,8 +1,20 @@
-<div class="container">
-	<h1>ユーザー一覧</h1>
-
-	<% @users.each do |user| %>
-		<%= link_to "#{user.name}" ,users_user_path(user.id) %>
-		<%= user.introduction %><br>
-	<% end %>
+<div class="container user-index">
+	<div class = "row">
+		<h1 class = "center">Creator</h1>
+			<div class = "col xl12 l12 m12 s12">
+				<% @users.each do |user| %>
+				<div class = "col xl4 l4 m4 s4 user-info">
+					<%= link_to users_user_path(user.id) do %>
+						<div class = "center image">
+						<%= attachment_image_tag user, :user_image, :fill, 150, 150, format: 'jpeg',class:"user-image responsive-img" %>
+						</div>
+						<h4 class = "center name"><%= user.name %></h4>
+					<% end %>
+				</div>
+				<% end %>
+			</div>
+	</div>
+	<div class ="pagenate center">
+	    <%= paginate @users %>
+	</div>
 </div>

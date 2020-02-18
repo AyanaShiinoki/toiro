@@ -28,7 +28,7 @@ before_action :authenticate_user!
 
 	def followed
 		user = User.find(params[:user_id])
-		@users = user.follower_user
+		@users = user.follower_user.page(params[:page]).per(12)
 	end
 
 end
