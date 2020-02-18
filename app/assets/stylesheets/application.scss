@@ -408,6 +408,7 @@ footer{
 		margin-bottom: 50px;
 		border: 1px solid;
 		height: 500px;
+		position: relative;
 
 		.comment-content{
 			border-bottom: 1px solid;
@@ -424,7 +425,11 @@ footer{
 				}
 			}
 		}
-
+		.flower{
+			position: relative;
+			left: 270px;
+			bottom:10px;
+		}
 	}
 	#comment_form{
 		width: 400px;
@@ -450,6 +455,7 @@ footer{
 			margin:0;
 		}
 	}
+
 }
 
 

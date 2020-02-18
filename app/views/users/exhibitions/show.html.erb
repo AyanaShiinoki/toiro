@@ -10,8 +10,12 @@
 					<div class = "comment_<%= @exhibition.id%>">
 						<%= render 'users/exhibitions/comment', exhibition: @exhibition %>
 					</div>
-<!--  -->
-
+<!-- 花表示 -->
+		<% if @exhibition.liked_by?(current_user) %>
+			<div class = "flower">
+				<%= image_tag 'flower.svg' , :size=>"180x240"%>
+			</div>
+		<% end %>
 				</div>
 
 				<div id = "comment_form">
@@ -35,29 +39,20 @@
 					</div>
 
 
-<!-- フォルダに追加 --><!-- モーダル -->
-<!-- 		<div class = "row" >
-			<div class = "col l12 m12"> -->
 
-<!-- 			</div>
-		</div> -->
 <!-- いいね -->
 		<% if @exhibition.liked_by?(current_user) %>
-			<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
-				<p>花を送る</p>
+			<%= link_to users_exhibition_likes_path(@exhibition),method: :delete,class: "btn waves-effect waves-light" , type: 'button' do %>
+				Delete
 			<% end %>
 		<% else %>
 			<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
-				<i class="material-icons" >filter_drama</i>
+				花を送る
 			<% end %>
 		<% end %>
 <!-- いいね -->
-<!-- いいね表示用 -->
-		<% if @exhibition.liked_by?(current_user) %>
-			<i class="material-icons" >favorite</i>
-		<% else %>
-			<i class="material-icons", style="color: red;" >favorite</i>
-		<% end %>
+
+
 	<% else %>
 		<p>会員登録するとコメント機能、フォルダ追加機能が使えます。</p>
 		<%= link_to "会員登録はこちらから",new_user_registration_path %>
