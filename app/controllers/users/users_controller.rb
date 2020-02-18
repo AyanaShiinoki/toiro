@@ -32,6 +32,12 @@ before_action :authenticate_user!, except: [:index,:show]
 		end
 	end
 
+	def destroy
+		@user = current_user
+		@user.destroy
+		redirect_to root_path
+	end
+
 
 
 private

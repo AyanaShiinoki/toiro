@@ -86,3 +86,5 @@ gem 'material_icons'
 gem 'kaminari'
 
 gem 'faker'
+
+gem 'paranoia'

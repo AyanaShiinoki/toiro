@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "random/:id" => "users/exhibitions#random" , as: "random"
 namespace :users do
   resources :notifications, only: :index
-  resources :users, only: [:show, :index, :edit, :update] do
+  resources :users, only: [:show, :index, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]
     get 'follows' => 'relationships#follower', as: 'follows'
     get 'followers' => 'relationships#followed', as: 'followers'
