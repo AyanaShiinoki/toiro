@@ -20,9 +20,13 @@
           <i class="material-icons Medium">notifications</i>
           <%= render 'users/notifications/index' %>
         <% end %>
-        <%= link_to new_users_exhibition_path do%>
-          <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%>
-        <% end %>
+          <% if current_user.gallery == nil %>
+            <%= link_to "ギャラリー作成", new_users_gallery_path %>
+          <% else %>
+            <%= link_to new_users_exhibition_path do%>
+             <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%>
+            <% end %>
+          <% end %>
 
         <a class="modal-trigger" href="#modal2"><%= image_tag 'watch.svg' , :size=>"100x50"%></a>
         <div id="modal2" class="modal">
@@ -60,6 +64,10 @@
 
     <!-- ヘッダー -->
     <%= yield %>
+
+<footer>
+
+</footer>
 
 
 

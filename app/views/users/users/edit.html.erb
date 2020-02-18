@@ -4,10 +4,15 @@
 			<h1 class = "center">Edit</h1>
 			<%= form_with model: @user, url: {controller: 'users' , action: 'update' } do |f| %>
 				<div class = "col xl6 l6 m6 s6 center">
+<!-- 変更 -->
 					<% if @user.user_image.present? %>
-  					<%= attachment_image_tag @user, :user_image, :fill, 300, 300, id: :img_prev, size: "300x250"%>
+  						<%= attachment_image_tag @user, :user_image, :fill, 300, 300, id: :img_prev, size: "300x300"%>
+  						<%= f.attachment_field :user_image, placeholder: "画像選択", class: "item-edit-form", id: :user_image %>
+<!-- 新規登録 -->
+  					<% else %>
+  						<%= attachment_image_tag @user, :user_image, src: "", size: "300x300", alt:"Image preview", id: "img_prev", fallback: "noimage2.png" %>
+  						<%= f.attachment_field :user_image, onchange: "previewFile()" %>
 					<% end %>
-					<%= f.attachment_field :user_image, placeholder: "画像選択", class: "item-edit-form", id: :user_image %>
 				</div>
 				<div class = "col xl6 l6 m6 s6">
 					<label>名前</label>
@@ -50,3 +55,19 @@
 </script>
 
 
+<script>
+	function previewFile() {
+  var preview = document.querySelector('#img_prev');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    preview.src = reader.result;
+
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+</script>

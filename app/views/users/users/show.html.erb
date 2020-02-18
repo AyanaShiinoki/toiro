@@ -2,8 +2,15 @@
   <div class ="row">
      <div class = "col xl12 l12 m12 s12">
       <div class ="user-folder  col xl5 l5 m5 s5">
+
+<% if @user.gallery == nil %>
+      <%= link_to "早速ギャラリーを作りましょう！", new_users_gallery_path %>
+<% else %>
         <h4 class ="center-align gellery_name"><%= @user.gallery.gallery_name%></h4>
         <p class="center-align concept"><%= @user.gallery.concept %></p>
+<% end %>
+
+
         <div class = "user-content center">
 <!-- 他のユーザー -->
 <% if user_signed_in? %>
@@ -72,10 +79,19 @@
                   <div class="modal-content edit-contents">
                     <h5 class="center">編集項目</h5>
                       <div class ="edit-gallery">
-                        <%= link_to edit_users_gallery_path(@user.gallery.id) do %>
-                        <%= image_tag 'house.svg' , :size=>"80x80" %>
-                        <span>ギャラリー</span>
+<!-- ギャラリー作成・編集 -->
+                        <% if @user.gallery == nil %>
+                          <%= link_to new_users_gallery_path do %>
+                          <%= image_tag 'house.svg' , :size=>"80x80" %>
+                          <span>ギャラリー作成</span>
+                          <% end %>
+                        <% else %>
+                          <%= link_to edit_users_gallery_path(@user.gallery.id) do %>
+                          <%= image_tag 'house.svg' , :size=>"80x80" %>
+                          <span>ギャラリー</span>
+                          <% end %>
                         <% end %>
+<!-- ギャラリー作成・編集 -->
                       </div>
                       <div class ="edit-user">
                         <%= link_to edit_users_user_path(@user.id) do %>
@@ -120,46 +136,48 @@
   </div>
 <!-- 名刺ダウンロード -->
 <!-- 個展一覧 -->
-  <div class ="row user-exhibitions">
-    <h4 class="center">開催中の個展</h4>
-    <div class="col xl12 l12 m12 s12 ">
-      <% @exhibitions.each do |exhibition| %>
-      <div class ="col xl4 l4 m4 s4 center">
-          <h5><%= exhibition.title %></h5>
-          <% exhibition.works.shuffle.first(1).each do |work| %>
-          <%= link_to users_exhibition_path(exhibition) do %>
-          <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
-          <% end %>
-          <% end %>
+<% if @user.gallery != nil %>
+    <div class ="row user-exhibitions">
+      <h4 class="center">開催中の個展</h4>
+      <div class="col xl12 l12 m12 s12 ">
+        <% @exhibitions.each do |exhibition| %>
+        <div class ="col xl4 l4 m4 s4 center">
+            <h5><%= exhibition.title %></h5>
+            <% exhibition.works.shuffle.first(1).each do |work| %>
+            <%= link_to users_exhibition_path(exhibition) do %>
+            <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
+            <% end %>
+            <% end %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
-  </div>
-    <div class ="pagenate center">
-      <%= paginate @exhibitions , :param_name => 'active'%>
-    </div>
-<!-- 個展一覧 -->
-<!-- 休止中個展 -->
-  <% if @user == current_user %>
-  <div class ="row user-exhibitions">
-     <h4 class="center">休止している個展</h4>
-    <div class="col xl12 l12 m12 s12 ">
-      <% @exhibitions_f.each do |exhibition_f| %>
-      <div class ="col xl4 l4 m4 s4 center">
-          <h5><%= exhibition_f.title %></h5>
-          <% exhibition_f.works.shuffle.first(1).each do |work| %>
-          <%= link_to users_exhibition_path(exhibition_f) do %>
-          <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
-          <% end %>
-          <% end %>
+      <div class ="pagenate center">
+        <%= paginate @exhibitions , :param_name => 'active'%>
       </div>
-      <% end %>
+  <!-- 個展一覧 -->
+  <!-- 休止中個展 -->
+    <% if @user == current_user %>
+    <div class ="row user-exhibitions">
+       <h4 class="center">休止している個展</h4>
+      <div class="col xl12 l12 m12 s12 ">
+        <% @exhibitions_f.each do |exhibition_f| %>
+        <div class ="col xl4 l4 m4 s4 center">
+            <h5><%= exhibition_f.title %></h5>
+            <% exhibition_f.works.shuffle.first(1).each do |work| %>
+            <%= link_to users_exhibition_path(exhibition_f) do %>
+            <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
+            <% end %>
+            <% end %>
+        </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-    <div class ="pagenate center">
-      <%= paginate @exhibitions_f , :param_name => 'not_active'%>
-    </div>
-  <% end %>
+      <div class ="pagenate center">
+        <%= paginate @exhibitions_f , :param_name => 'not_active'%>
+      </div>
+    <% end %>
+<% end %>
 <!-- 休止中個展 -->
 </div>
 

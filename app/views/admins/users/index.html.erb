@@ -1,12 +1,14 @@
 <div class="container admin-user-index">
 
 	<div class ="row">
-		<div class="col l6">
+		<h1 class = "center">会員一覧</h1>
+		<div class="col xl8 l8 m8 s8 offset-xl2 offset-l2 offset-m2 offset-s2">
 			<table class="highlight">
 				<thead>
 					<tr>
 					<th>Name</th>
 					<th>Gallery</th>
+					<th>Data</th>
 					<th>Status</th>
 					</tr>
 			        </thead>
@@ -16,8 +18,21 @@
 					<td>
 						<%= link_to "#{user.name}" ,admins_user_path(user) %>
 					</td>
+					<% if user.gallery == nil %>
+					<td>まだ作成されていません</td>
+					<% else %>
 					<td><%= user.gallery.gallery_name %></td>
-					<td><%= user.gallery.gallery_name %></td>
+					<% end %>
+					<td>
+						<%= user.created_at.strftime('%Y/%m/%d') %>
+					</td>
+					<td>
+					<% if user.deleted_at.nil?%>
+						有効
+					<% else %>
+						退会済み
+					<% end %>
+					</td>
 					</tr>
 					<% end %>
 			        </tbody>

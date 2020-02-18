@@ -26,7 +26,26 @@
 						<%= f.text_field :name %>
 						<label>自己紹介</label>
 						<%= f.text_area :introduction %>
+						<label>ステータス</label><br>
+						<% if @user.deleted_at.nil? %>
+						<label><%= f.radio_button :deleted_at, :true, {:checked => true} %>
+							 <span>現会員</span>
+						</label>
+						<label><%= f.radio_button :deleted_at, :false %>
+							 <span>退会済み</span>
+						</label>
+						<% else %>
+						<label><%= f.radio_button :deleted_at, :true %>
+							 <span>現会員</span>
+						</label>
+						<label>
+							<%= f.radio_button :deleted_at, :false, {:checked => true} %>
+							 <span>退会済み</span>
+						</label>
+						<% end %>
+						<div class = "right">
 						<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+						</div>
 					<% end %>
 				</div>
 		</div>

@@ -24,7 +24,7 @@
 			<h2 class="center">作品</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
 				<div class = "col l4 m12 s12 form">
-					<!-- ここでプレビュー -->
+<!-- ここでプレビュー -->
 					<div class ="work-image-pre center">
 						<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %><br>
 					</div>
@@ -37,7 +37,8 @@
 				    <div class="file-field input-field">
 				      <div class="btn">
 				        <span>File</span>
-				        <%= field.attachment_field :work_image, onchange: "previewFile(this)", class: 'preview_file'%><br>
+<!-- 画像フォーム -->
+				        <%= field.attachment_field :work_image, onchange: "previewFile(this)"%><br>
 				      </div>
 				      <div class="file-path-wrapper">
 				        <input class="file-path validate" type="text">
@@ -97,10 +98,10 @@ $(function() {
 <script>
 	// document.getElementsByClassName("preview_file").onchange = previewFile;
 	function previewFile(obj) {
-　　 console.log(obj)
-    // console.log(obj.find(".work_prev"))
-    console.log(document.querySelector(".work_prev"))
-    console.log(document.querySelector('input[type=file]').files[0])
+// 　　 console.log(obj)
+    // // console.log(obj.find(".work_prev"))
+    // console.log(document.querySelector(".work_prev"))
+    // console.log(document.querySelector('input[type=file]').files[0])
 
 
 

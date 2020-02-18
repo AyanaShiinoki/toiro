@@ -24,6 +24,16 @@
 				     <th>投稿日</th>
 				     <td><%= @exhibition.created_at.strftime('%Y/%m/%d') %></td>
 			     </tr>
+			     <tr>
+				     <th>ステータス</th>
+				     <td>
+				     	<% if @exhibition.is_active == true %>
+				     	開催中
+				     	<% else %>
+				     	休止中
+				     	<% end %>
+				     </td>
+			     </tr>
 				</table>
 				<div class="exhibition-menu">
 					<td><%= link_to "詳細ページに戻る",admins_user_path(@exhibition.user.id),class: 'btn waves-effect waves-light', type: 'button' %></td>

@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def after_sign_up_path_for(resource) 
+   		 new_users_gallery_path(resource)
+  	end
+
 	def after_sign_out_path_for(resource_or_scope)
     	if resource_or_scope == :admin
       	new_admin_session_path

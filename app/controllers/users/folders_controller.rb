@@ -23,13 +23,6 @@ before_action :authenticate_user!
 		@folder = Folder.new
 		@user = User.find(params[:user_id])
 		@folders = Folder.where(user_id: @user.id).page(params[:page]).per(6)
-		# if params[:user_id]
-		# @folders = Folder.where(user_id: params[:user_id]).page(params[:page]).per(6)
-		# else
-		# @folders = Folder.where(user_id: current_user.id).page(params[:page]).per(6)
-		# end
-
-
 	end
 
 	def edit
@@ -54,7 +47,7 @@ before_action :authenticate_user!
 			redirect_to root_path
 		end
 		@folder.destroy
-		redirect_to users_folders_path
+		redirect_to users_folders_path(user_id: current_user.id)
 	end
 
 	private
