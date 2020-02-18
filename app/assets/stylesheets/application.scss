@@ -55,6 +55,9 @@ $error:'arial unicode ms';
 	}
 }
 
+footer{
+	height: 300px;
+}
 
 .signup{
 	font-family: $dotum;
@@ -334,6 +337,10 @@ $error:'arial unicode ms';
 
 // 個展一覧
 .exhibition-index{
+	.random{
+		border-bottom: 1px solid;
+		margin-bottom: 50px;
+	}
 	h1{
 		font-family: 'Yu Gothic';
 	}
@@ -360,7 +367,7 @@ $error:'arial unicode ms';
 			height: 300px;
 			padding: 10px;
 			padding-top: 70px;
-			background: image-url('gaku.svg') no-repeat center;
+			// background: image-url('gaku-2.svg') no-repeat center;
 			.z-depth-5{
 				border: 1px solid;
 				border-color: $snow;

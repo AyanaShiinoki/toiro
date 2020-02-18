@@ -27,12 +27,13 @@ before_action :authenticate_user!, except: [:index,:show]
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
-		@comments = @exhibition.comments.order(updated_at: :desc).limit(5)
+		@comments = @exhibition.comments.order(created_at: :desc).limit(5)
+		# @comments = @exhibition.comments.page(params[:page]).reverse_order.per(5)
 		end
 	end
 
 	def index
-		@exhibitions = Exhibition.where(is_active: true).order(updated_at: :desc).page(params[:active]).per(10)
+		@exhibitions = Exhibition.where(is_active: true).order(created_at: :desc).page(params[:active]).per(10)
 		@random = @exhibitions.offset(rand( @exhibitions.count)).limit(1)
 	end
 
@@ -48,7 +49,7 @@ before_action :authenticate_user!, except: [:index,:show]
 		if @exhibition.update(exhibition_params)
 			redirect_to users_exhibition_path(@exhibition.id)
 		else
-			redirect_to edit_users_exhibition_path(@exhibition)
+			render 'edit'
 		end
 	end
 

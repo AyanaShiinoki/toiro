@@ -6,12 +6,12 @@
 				<div class = "col xl6 l6 m6 s6 center">
 <!-- 変更 -->
 					<% if @user.user_image.present? %>
-  					<%= attachment_image_tag @user, :user_image, :fill, 300, 300, id: :img_prev, size: "300x300"%>
-  					<%= f.attachment_field :user_image, placeholder: "画像選択", class: "item-edit-form", id: :user_image %>
+  						<%= attachment_image_tag @user, :user_image, :fill, 300, 300, id: :img_prev, size: "300x300"%>
+  						<%= f.attachment_field :user_image, placeholder: "画像選択", class: "item-edit-form", id: :user_image %>
 <!-- 新規登録 -->
   					<% else %>
-  					<%= attachment_image_tag @user, :user_image, src: "", size: "300x300", alt:"Image preview", id: "img_prev", fallback: "noimage2.png" %>
-  					<%= f.attachment_field :user_image, onchange: "previewFile()" %>
+  						<%= attachment_image_tag @user, :user_image, src: "", size: "300x300", alt:"Image preview", id: "img_prev", fallback: "noimage2.png" %>
+  						<%= f.attachment_field :user_image, onchange: "previewFile()" %>
 					<% end %>
 				</div>
 				<div class = "col xl6 l6 m6 s6">

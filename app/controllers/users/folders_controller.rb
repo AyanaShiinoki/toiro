@@ -23,13 +23,6 @@ before_action :authenticate_user!
 		@folder = Folder.new
 		@user = User.find(params[:user_id])
 		@folders = Folder.where(user_id: @user.id).page(params[:page]).per(6)
-		# if params[:user_id]
-		# @folders = Folder.where(user_id: params[:user_id]).page(params[:page]).per(6)
-		# else
-		# @folders = Folder.where(user_id: current_user.id).page(params[:page]).per(6)
-		# end
-
-
 	end
 
 	def edit
