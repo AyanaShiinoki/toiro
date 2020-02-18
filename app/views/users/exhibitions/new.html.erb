@@ -1,6 +1,6 @@
 <div class="container exhibition-new">
 	<div class="row">
-			<h1>個展開催</h1>
+			<h1 class="center">個展開催</h1>
 			<div class="error-box">
 				<% if @exhibition.errors.any? %>
 			    	<h2><%= @exhibition.errors.count %>件のエラーがあります</h2>
@@ -16,23 +16,34 @@
 				<label>タイトル</label><br>
 				<%= f.text_field :title %><br>
 				<label>個展概要</label><br>
-				<%= f.text_area :caption %><br>
+				<%= f.text_area :caption  ,class: "materialize-textarea" %><br>
 
 
 <!-- 作品フォーム -->
 		<div class = "col l12 m12 s12">
-			<h2>掲載作品</h2>
+			<h2 class="center">作品</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
 				<div class = "col l4 m12 s12 form">
+					<!-- ここでプレビュー -->
+					<div class ="work-image-pre center">
+						<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %><br>
+					</div>
 					<label>画像タイトル</label><br>
 					<%= field.text_field :work_title %><br>
 					<label>作品説明</label><br>
 					<%= field.text_field :description %><br>
 					<label>作品画像</label><br>
-					<%= field.attachment_field :work_image, onchange: "previewFile(this)", class: 'preview_file'%><br>
-						<img src="" class="work_prev" height="200" width="200" alt="Image preview" >
-					  <!-- <div id="preview"></div> -->
-					 <!-- ここでプレビュー -->
+
+				    <div class="file-field input-field">
+				      <div class="btn">
+				        <span>File</span>
+				        <%= field.attachment_field :work_image, onchange: "previewFile(this)", class: 'preview_file'%><br>
+				      </div>
+				      <div class="file-path-wrapper">
+				        <input class="file-path validate" type="text">
+				      </div>
+				    </div>
+
 <!-- フォーム削除 -->
 					<br><%= field.remove_nested_fields_link 'Delete' %>
 				</div>
@@ -44,9 +55,11 @@
 					<div class = "col l12 m12 s12">
 						<div class="col l5 m8 s6 offset-l10 offset-m8 offset-s8">
 						<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
-						<%= button_tag '開催', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
 						</div>
 					</div>
+				</div>
+				<div class="center">
+				<%= button_tag '開催する', class: 'waves-effect waves-light btn-large', type: 'button', onclick: 'submit();' %>
 				</div>
 			<% end %>
 		<% end %>
@@ -105,59 +118,3 @@ $(function() {
 	}
 }
 </script>
-<!-- <script>
-function previewFiles() {
-  console.log(document.querySelector("#preview"))
-  console.log(document.querySelector('input[type=file]').files)
-
-  var preview = document.querySelector('#preview');
-  var files   = document.querySelector('input[type=file]').files;
-
-  function readAndPreview(file) {
-
-    // Make sure `file.name` matches our extensions criteria
-    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
-      var reader = new FileReader();
-
-      reader.addEventListener("load", function () {
-        var image = new Image();
-        image.height = 100;
-        image.title = file.name;
-        image.src = this.result;
-        preview.appendChild( image );
-      }, false);
-
-      reader.readAsDataURL(file);
-    }
-
-  }
-
-  if (files) {
-    [].forEach.call(files, readAndPreview);
-  }
-
-}
-</script> -->
-
-<!-- 複数プレビュー -->
-<!-- <script>
-	function previewFile() {
-	var preview = document.querySelector("#work_prev");
-	// var file    = document.querySelector('input[type=file]').files[i];
-	var file_length = document.querySelector('input[type=file]').files.length;
-
-	for( var i=0,l = file_length.length; l > i; i++ ) {
-
-	var reader  = new FileReader();
-
-	reader.addEventListener("load", function () {
-    preview.src = reader.result;
-  	}, false)
-	}
-
-
-	if (file) {
-		reader.readAsDataURL(file_length[i]);
-	}
-}
-</script> -->

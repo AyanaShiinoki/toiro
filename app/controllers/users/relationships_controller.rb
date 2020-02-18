@@ -23,12 +23,12 @@ before_action :authenticate_user!
 
 	def follower
 		user = User.find(params[:user_id])
-		@users = user.following_user
+		@users = user.following_user.page(params[:page]).per(12)
 	end
 
 	def followed
 		user = User.find(params[:user_id])
-		@users = user.follower_user
+		@users = user.follower_user.page(params[:page]).per(12)
 	end
 
 end

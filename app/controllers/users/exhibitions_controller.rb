@@ -27,12 +27,12 @@ before_action :authenticate_user!, except: [:index,:show]
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
-		@comments = @exhibition.comments
+		@comments = @exhibition.comments.order(updated_at: :desc).limit(5)
 		end
 	end
 
 	def index
-		@exhibitions = Exhibition.where(is_active: true).order(updated_at: :desc).page(params[:active]).per(9)
+		@exhibitions = Exhibition.where(is_active: true).order(updated_at: :desc).page(params[:active]).per(10)
 		@random = @exhibitions.offset(rand( @exhibitions.count)).limit(1)
 	end
 

@@ -1,6 +1,12 @@
-<h1>フォロワー</h1>
-	<% if @users.count > 0 %>
-		<%= render '/users/users/index', users: @users %>
-		<% else %>
-		<p>いません。</p>
-	<% end %>
+<div class = "container follow">
+	<div class = "row">
+		<div class = "col xl12 l12 m12 s12">
+		<h1>Followed</h1>
+			<% if @users.count > 0 %>
+				<%= render '/users/users/index', users: @users %>
+				<% else %>
+				<p>いません。</p>
+			<% end %>
+		</div>
+	</div>
+</div>

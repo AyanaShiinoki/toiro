@@ -15,7 +15,7 @@ before_action :authenticate_user!, except: [:index,:show]
 	end
 
 	def index
-		@users = User.all
+		@users = User.all.page(params[:active]).per(6)
 	end
 
 	def edit
@@ -30,6 +30,12 @@ before_action :authenticate_user!, except: [:index,:show]
 		if @user.update (user_params)
 			redirect_to users_user_path(@user.id)
 		end
+	end
+
+	def destroy
+		@user = current_user
+		@user.destroy
+		redirect_to root_path
 	end
 
 

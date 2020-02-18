@@ -1,7 +1,13 @@
 <% exhibition.comments.each do |comment| %>
-<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' %>
-<%= comment.comment %>
-<% if comment.user_id == current_user.id %>
-<%= link_to "Destroy", users_exhibition_comments_path(exhibition_id: exhibition, id: comment.id), method: :delete ,remote: true %>
-<% end %><br>
+	<div class = "comment-content">
+		<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' ,class: "user-image" %>
+		<%= comment.comment %>
+		<% if comment.user_id == current_user.id %>
+		<%= link_to users_exhibition_comments_path(exhibition_id: exhibition, id: comment.id), method: :delete ,remote: true, class: "right" do %>
+		<i class="material-icons">delete</i>
+		<% end %>
+		<% end %>
+	</div>
+	<br>
+
 <% end %>

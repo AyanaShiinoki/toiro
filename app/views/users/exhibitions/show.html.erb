@@ -1,35 +1,26 @@
 <div class="container exhibition-show">
-	<% if @exhibition.is_active != true %>
-		<p>現在休止中です</p>
-	<% else %>
-		<p>開催中です</p>
-	<% end %>
 	<div class="exhibition_<%= @exhibition.id %>">
 		<%= render 'users/exhibitions/detail', exhibition: @exhibition %>
 	</div>
 	<% if user_signed_in? %>
-		<div class ="row">
-			<div class="col xl4 l4 m4 s4">
+
 <!-- コメント一覧 -->
 				<div class ="comment">
+					<h6 class = "center">感想ノート</h6>
 					<div class = "comment_<%= @exhibition.id%>">
 						<%= render 'users/exhibitions/comment', exhibition: @exhibition %>
 					</div>
 				</div>
-				<!-- コメントフォーム -->
+
 				<div id = "comment_form">
 					<%= form_with model: [:users, @exhibition , @comment], data: {remote: true} do |f| %>
-						<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想をここに"%>
+						<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想を送る" ,class: "materialize-textarea"%>
 						<div class="modal-footer">
-							<%= f.submit '送信' %>
+							<%= f.submit '書き込む' %>
 						</div>
 					<% end %>
 				</div>
-			</div>
-		</div>
-<!-- フォルダに追加 --><!-- モーダル -->
-		<div class = "row" >
-			<div class = "col l12 m12">
+
 				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
 					<div id="modal1" class="modal">
 						<div class="modal-content">
@@ -40,8 +31,14 @@
 							<% end %>
 						</div>
 					</div>
-			</div>
-		</div>
+
+
+<!-- フォルダに追加 --><!-- モーダル -->
+<!-- 		<div class = "row" >
+			<div class = "col l12 m12"> -->
+
+<!-- 			</div>
+		</div> -->
 <!-- いいね -->
 		<% if @exhibition.liked_by?(current_user) %>
 			<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>

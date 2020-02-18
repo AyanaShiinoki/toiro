@@ -1,8 +1,0 @@
-<div class="container">
-	<h1>フォルダ作成</h1>
-
-	<%= form_with model: [:users, @folder] do |f| %>
-		<%= f.text_field :folder_name %>
-		<%= button_tag '追加する', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
-	<% end %>
-</div>
