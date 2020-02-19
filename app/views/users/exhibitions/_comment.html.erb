@@ -1,7 +1,8 @@
 <% exhibition.comments.each do |comment| %>
 	<div class = "comment-content">
+		<p class ="center"><%= comment.user.name %></p>
 		<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' ,class: "user-image" %>
-		<%= comment.comment %>
+		<span><%= comment.comment %></span>
 		<% if comment.user_id == current_user.id %>
 		<%= link_to users_exhibition_comments_path(exhibition_id: exhibition, id: comment.id), method: :delete ,remote: true, class: "right" do %>
 		<i class="material-icons">delete</i>

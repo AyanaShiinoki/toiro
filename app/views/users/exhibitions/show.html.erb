@@ -5,17 +5,14 @@
 	<% if user_signed_in? %>
 
 <!-- コメント一覧 -->
+		<div class = "row">
+			<div class = "col xl6 l6 m6 s6">
 				<div class ="comment">
-					<h6 class = "center">感想ノート</h6>
+					<h5 class = "center">感想ノート</h5>
 					<div class = "comment_<%= @exhibition.id%>">
 						<%= render 'users/exhibitions/comment', exhibition: @exhibition %>
 					</div>
-<!-- 花表示 -->
-		<% if @exhibition.liked_by?(current_user) %>
-			<div class = "flower">
-				<%= image_tag 'flower.svg' , :size=>"180x240"%>
-			</div>
-		<% end %>
+
 				</div>
 
 				<div id = "comment_form">
@@ -26,7 +23,37 @@
 						</div>
 					<% end %>
 				</div>
-
+			</div>
+			<div class = "col xl6 l6 m6 s6">
+<!-- 花表示 -->
+			<div class = "flower">
+				<h5 class = "center">もらった花</h5>
+				<div class = "col xl6 l6 m6 s6">
+					<% @likes.each do |like| %>
+						<div class = "flower-user">
+							<%= attachment_image_tag like.user, :user_image, :fill, 50, 50, format: 'jpeg',class:"user-image responsive-img" %>
+							<%= like.user.name %>さん<br>
+						</div>
+					<% end %>
+				    <div class ="pagenate center row">
+				    	<%= paginate @likes %>
+				    </div>
+				</div>
+				<div class = "col xl6 l6 m6 s6 center">
+					<% if @exhibition.liked_by?(current_user) %>
+					<%= image_tag 'flower.svg' , :size=>"180x440"%>
+					<% end %>
+				</div>
+			</div>
+				<% if @exhibition.liked_by?(current_user) %>
+					<%= link_to users_exhibition_likes_path(@exhibition),method: :delete,class: "btn waves-effect waves-light" , type: 'button' do %>
+						Delete
+					<% end %>
+				<% else %>
+					<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
+						花を送る
+					<% end %>
+				<% end %>
 				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
 					<div id="modal1" class="modal">
 						<div class="modal-content">
@@ -34,32 +61,23 @@
 								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
 								<%= f.text_field :memo %>
 								<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
-							<% end %>
+								<% end %>
 						</div>
 					</div>
 
 
 
-<!-- いいね -->
-		<% if @exhibition.liked_by?(current_user) %>
-			<%= link_to users_exhibition_likes_path(@exhibition),method: :delete,class: "btn waves-effect waves-light" , type: 'button' do %>
-				Delete
-			<% end %>
-		<% else %>
-			<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
-				花を送る
-			<% end %>
-		<% end %>
-<!-- いいね -->
-
-
+			</div>
+		</div>
 	<% else %>
+	<div class = "row">
 		<p>会員登録するとコメント機能、フォルダ追加機能が使えます。</p>
 		<%= link_to "会員登録はこちらから",new_user_registration_path %>
 		<%= link_to "登録済みの方はこちら",new_user_session_path %>
 	<% end %>
-</div>
+	</div>
 
+</div>
 
 
 

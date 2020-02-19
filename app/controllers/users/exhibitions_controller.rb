@@ -28,6 +28,7 @@ before_action :authenticate_user!, except: [:index,:show]
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
 		@comments = @exhibition.comments.order(created_at: :desc).limit(5)
+		@likes = @exhibition.likes.page(params[:page]).per(5)
 		# @comments = @exhibition.comments.page(params[:page]).reverse_order.per(5)
 		end
 	end

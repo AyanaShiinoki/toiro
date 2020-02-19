@@ -1,0 +1,29 @@
+              <% if user.id == current_user.id %>
+                <a class="modal-trigger" href="#modal-edit"><%= image_tag 'edit.svg' , :size=>"80x80" %><span>Edit</span></a>
+                <div id="modal-edit" class="modal">
+                  <div class="modal-content edit-contents">
+                    <h5 class="center">編集項目</h5>
+                      <div class ="edit-gallery">
+<!-- ギャラリー作成・編集 -->
+                        <% if user.gallery == nil %>
+                          <%= link_to new_users_gallery_path do %>
+                          <%= image_tag 'house.svg' , :size=>"80x80" %>
+                          <span>ギャラリー作成</span>
+                          <% end %>
+                        <% else %>
+                          <%= link_to edit_users_gallery_path(user.gallery.id) do %>
+                          <%= image_tag 'house.svg' , :size=>"80x80" %>
+                          <span>ギャラリー</span>
+                          <% end %>
+                        <% end %>
+<!-- ギャラリー作成・編集 -->
+                      </div>
+                      <div class ="edit-user">
+                        <%= link_to edit_users_user_path(user.id) do %>
+                        <%= image_tag 'user.svg' , :size=>"80x80" %>
+                        <span>会員情報</span>
+                        <% end %>
+                      </div>
+                  </div>
+                </div>
+              <% end %>

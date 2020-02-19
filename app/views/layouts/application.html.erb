@@ -28,7 +28,9 @@
         <% end %>
 
           <% if current_user.gallery == nil %>
-            <%= link_to "ギャラリー作成", new_users_gallery_path %>
+            <%= link_to  new_users_gallery_path do %>
+              <%= image_tag 'create-g.svg' , :size=>"160x50"%>
+            <% end %>
           <% else %>
             <%= link_to new_users_exhibition_path do%>
              <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%>

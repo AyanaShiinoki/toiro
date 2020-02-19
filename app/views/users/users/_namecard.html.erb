@@ -1,0 +1,7 @@
+        <div class="col xl6 l7 m6 s6 user-image">
+          <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg',class:"image responsive-img" %>
+        </div>
+        <div class="col xl6 l5 m6 s6 center-align info-text">
+          <h4 class="center-align name"><%= @user.name %></h4>
+          <p><%= @user.introduction %></p>
+        </div>
