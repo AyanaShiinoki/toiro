@@ -16,10 +16,17 @@
       <div class="container header center">
 <!-- ユーザーログイン時 -->
       <% if user_signed_in? %>
+
         <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
-          <i class="material-icons Medium">notifications</i>
-          <%= render 'users/notifications/index' %>
+          <% if unchecked_notifications.any?%>
+            <i class="material-icons Medium">notifications</i>
+            <%= render 'users/notifications/index' %>
+          <% else %>
+            <i class="material-icons Medium">alarm</i>
+            <%= render 'users/notifications/index' %>
+          <% end %>
         <% end %>
+
           <% if current_user.gallery == nil %>
             <%= link_to "ギャラリー作成", new_users_gallery_path %>
           <% else %>
