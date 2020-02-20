@@ -18,7 +18,7 @@
 @import 'materialize';
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
 $snow: #fffafa; //赤味がかった白
 $ghost: #f8f8ff; //淡い青紫
@@ -40,6 +40,15 @@ $error:'arial unicode ms';
 .header{
 	padding-top: 50px;
 	height: 200px;
+	// border-bottom: double;
+	margin-bottom: 90px;
+	.links{
+		a{
+		color: $black;
+		font-size: 25px;
+		font-family: 'Noto Serif JP', serif;
+		}
+	}
 	.style_image {
 	  margin: 0 15px;
 	}
@@ -90,13 +99,30 @@ footer{
 // ユーザー一覧
 
 .user-index{
+	p{
+		font-size: 25px;
+		margin-bottom: 50px;
+		margin-top: 0;
+		border-bottom: 1px solid;
+		display: inline-block;
+		margin-left: 15px;
+	}
 	.user-info{
+		margin-bottom: 80px;
+		h5{
+			margin-top:5px;
+		}
 		a{
 			color: $black;
 			.user-image{
 				padding: 10px;
-				border: 1px solid;
+				border-top: 1px solid;
+				border-bottom: 1px solid;
+				transition:.2s;
 				&:hover{
+					padding: 5px;
+					transition:.2s;
+
 				}
 			}
 
@@ -125,6 +151,7 @@ footer{
 	.concept{
 		padding: 0 30px;
 	}
+
 	.user-info{
 		border-radius: 5px;
 		background-color:$snow;
@@ -148,6 +175,7 @@ footer{
 			}
 		}
 	}
+
 	.download{
 		a{
 		color:#37474f;
@@ -161,6 +189,7 @@ footer{
 			margin-right: 10px;
 		}
 	}
+
 	.user-content{
 		.folder{
 			width: 100px;
@@ -369,21 +398,14 @@ footer{
 // 個展一覧
 .exhibition-index{
 	.random{
-		border-bottom: 1px solid;
 		margin-bottom: 50px;
+		p{
+			// display: inline-block;
+			// font-size: 20px;
+			// margin-left: 100px;
+		}
 	}
-	h1{
-		font-family: 'Yu Gothic';
-	}
-	h5{
-		padding-top: 20px;
-		padding-bottom: 10px;
-		font-family: $sans;
-		width: 380px;
-		margin: 0 auto;
-		border-bottom: 1px solid;
-		border-color: $black;
-	}
+
 	.caption{
 		text-align: center;
 		// margin: 0 auto;
@@ -438,7 +460,7 @@ footer{
 		padding: 10px;
 		margin-bottom: 50px;
 		border: 1px solid;
-		height: 500px;
+		// height: 500px;
 		position: relative;
 
 		.comment-content{

@@ -1,20 +1,24 @@
 <div class="container user-index">
 	<div class = "row">
-		<h1 class = "center">Creator</h1>
+		<div class = "col xl4 l4 m4 s4 center">
+		<p>Creators</p>
+		</div>
+	</div>
+	<div class = "row">
 			<div class = "col xl12 l12 m12 s12">
 				<% @users.each do |user| %>
 				<div class = "col xl4 l4 m4 s4 user-info">
 					<%= link_to users_user_path(user.id) do %>
 						<div class = "center image">
-						<%= attachment_image_tag user, :user_image, :fill, 150, 150, format: 'jpeg',class:"user-image responsive-img" %>
+						<%= attachment_image_tag user, :user_image, :fill, 150, 150, format: 'jpeg',class:"user-image responsive-img" , fallback: "noimage2.png", size:'150x150' %>
 						</div>
-						<h4 class = "center name"><%= user.name %></h4>
+						<h5 class = "center name"><%= user.name %></h5>
 					<% end %>
 				</div>
 				<% end %>
 			</div>
 	</div>
-	<div class ="pagenate center">
+	<div class =" row pagenate center">
 	    <%= paginate @users %>
 	</div>
 </div>
