@@ -96,8 +96,35 @@ footer{
 	font-family: $dotum;
 	color: $black;
 }
-// ユーザー一覧
 
+// ギャラリー一覧
+.gallery-index{
+	.gallery-info{
+		
+		margin-bottom: 80px;
+		background-color: $snow;
+		.user-image{
+			padding-top: 20px;
+		}
+		.gallery-name{
+			border-bottom: 1px solid;
+			padding-bottom: 18px;
+			font-size: 20px;
+		}
+		.col{
+			padding: 0;
+		}
+		.concept{
+			border-left: 1px solid;
+			padding: 15px;
+			height: 130px;
+			margin: 0;
+		}
+	}
+}
+
+
+// ユーザー一覧
 .user-index{
 	p{
 		font-size: 25px;
@@ -323,6 +350,7 @@ footer{
 	}
 }
 
+// フォルダ一覧
 .folder-index{
 	font-family: $sans;
 	h3{
@@ -454,14 +482,13 @@ footer{
 		}
 	}
 	.comment{
-		// background: image-url('comment.png') no-repeat center;
-		// height: 320px;
-		// width: 400px;
+
 		padding: 10px;
 		margin-bottom: 50px;
 		border: 1px solid;
-		// height: 500px;
 		position: relative;
+		height: 500px;
+		overflow: scroll;
 
 		.comment-content{
 			border-bottom: 1px solid;

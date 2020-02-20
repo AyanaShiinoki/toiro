@@ -9,13 +9,15 @@
 			<div class = "col xl6 l6 m6 s6">
 				<div class ="comment">
 					<h5 class = "center">感想ノート</h5>
-					<div class = "comment_<%= @exhibition.id%>">
-						<%= render 'users/exhibitions/comment', exhibition: @exhibition %>
+
+					<div class="jscroll">
+						<div class = "comment_<%= @exhibition.id%>">
+							<%= render 'users/exhibitions/comment', comments: @comments %>
+						</div>
+						<div class ="pagenate center">
+
+						</div>
 					</div>
-<!-- 					<%= link_to_next_page @comments, 'つづきを見る', remote: true, id: 'more_link' %> -->
-	<div class ="pagenate center">
-	    <%= paginate @comments %>
-	</div>
 
 				</div>
 
@@ -101,7 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- モーダルウィンドウ -->
 
 
+<!-- <script>
+$(function() {
+  $('.jscroll').jscroll({
+    nextSelector: 'span.next a'
+  });
+});
 
+
+</script> -->
 
 
 
