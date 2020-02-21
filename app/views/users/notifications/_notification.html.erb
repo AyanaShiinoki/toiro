@@ -15,12 +15,14 @@
 				<% when 'follow' then %>
 					<%= "あなたをフォローしました。" %>
 				<% when 'like' then %>
-					<%= link_to "あなたの投稿", users_exhibition_path(notification.exhibition) %>にいいねしました。
+					<%= link_to "あなたの投稿", users_exhibition_path(notification.exhibition) %>に花を送りました。
 				<% when 'comment' then %>
 					<% if notification.exhibition.user_id == visited.id %>
 						<%= link_to "あなたの投稿", users_exhibition_path(notification.exhibition) %>
 					<% else %>
+					<%= link_to users_exhibition_path(notification.exhibition) do %>
 						<%= notification.exhibition.user.name + 'さんの投稿' %>
+					<% end %>
 					<% end %>
 					にコメントしました。
 			<% end %>

@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 
   </head>
 
@@ -16,19 +17,29 @@
       <div class="container header center">
 <!-- ユーザーログイン時 -->
       <% if user_signed_in? %>
+
         <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
-          <i class="material-icons Medium">notifications</i>
-          <%= render 'users/notifications/index' %>
+          <% if unchecked_notifications.any?%>
+            <i class="material-icons Medium">notifications</i>
+            <%= render 'users/notifications/index' %>
+          <% else %>
+            <i class="material-icons Medium">alarm</i>
+            <%= render 'users/notifications/index' %>
+          <% end %>
         <% end %>
+    <div class = "links">
           <% if current_user.gallery == nil %>
-            <%= link_to "ギャラリー作成", new_users_gallery_path %>
+            <%= link_to  new_users_gallery_path do %>
+              <%= image_tag 'create-g.svg' , :size=>"160x50"%>
+            <% end %>
           <% else %>
             <%= link_to new_users_exhibition_path do%>
-             <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%>
+           <!--   <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%> -->
+             ひらく /
             <% end %>
           <% end %>
 
-        <a class="modal-trigger" href="#modal2"><%= image_tag 'watch.svg' , :size=>"100x50"%></a>
+        <a class="modal-trigger" href="#modal2"> みる / </a>
         <div id="modal2" class="modal">
           <div class="modal-content container">
               <%= link_to users_exhibitions_path do %>
@@ -44,10 +55,12 @@
         </div>
 
         <%= link_to users_user_path(current_user) do %>
-          <%= image_tag 'mypage.svg' , :size=>"100x50", :class => "style_image"%>
+       <!--    <%= image_tag 'mypage.svg' , :size=>"100x50", :class => "style_image"%> -->
+       マイページ /
         <% end %>
         <%= link_to destroy_user_session_path , method: :delete do %>
-          <%= image_tag 'logout.svg' , :size=>"100x50", :class => "style_image"%>
+     <!--      <%= image_tag 'logout.svg' , :size=>"100x50", :class => "style_image"%> -->
+           ログアウト
         <% end %>
 <!-- 管理者ログイン時 -->
       <% elsif admin_signed_in? %>
@@ -60,6 +73,7 @@
         <%= link_to "クリエイター一覧" , users_users_path%>
         <%= link_to "管理者ログイン" , new_admin_session_path%>
       <% end %>
+    </div>
     </div>
 
     <!-- ヘッダー -->

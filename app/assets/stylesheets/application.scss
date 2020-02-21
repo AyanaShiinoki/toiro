@@ -18,7 +18,7 @@
 @import 'materialize';
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
 $snow: #fffafa; //赤味がかった白
 $ghost: #f8f8ff; //淡い青紫
@@ -40,6 +40,15 @@ $error:'arial unicode ms';
 .header{
 	padding-top: 50px;
 	height: 200px;
+	// border-bottom: double;
+	margin-bottom: 90px;
+	.links{
+		a{
+		color: $black;
+		font-size: 25px;
+		font-family: 'Noto Serif JP', serif;
+		}
+	}
 	.style_image {
 	  margin: 0 15px;
 	}
@@ -87,17 +96,60 @@ footer{
 	font-family: $dotum;
 	color: $black;
 }
-// ユーザー一覧
 
+// ギャラリー一覧
+.gallery-index{
+	.gallery-info{
+		
+		margin-bottom: 80px;
+		background-color: $snow;
+		.user-image{
+			padding-top: 20px;
+		}
+		.gallery-name{
+			border-bottom: 1px solid;
+			padding-bottom: 18px;
+			font-size: 20px;
+		}
+		.col{
+			padding: 0;
+		}
+		.concept{
+			border-left: 1px solid;
+			padding: 15px;
+			height: 130px;
+			margin: 0;
+		}
+	}
+}
+
+
+// ユーザー一覧
 .user-index{
+	p{
+		font-size: 25px;
+		margin-bottom: 50px;
+		margin-top: 0;
+		border-bottom: 1px solid;
+		display: inline-block;
+		margin-left: 15px;
+	}
 	.user-info{
+		margin-bottom: 80px;
+		h5{
+			margin-top:5px;
+		}
 		a{
 			color: $black;
 			.user-image{
 				padding: 10px;
-				border: 1px solid;
+				border-top: 1px solid;
+				border-bottom: 1px solid;
+				transition:.2s;
 				&:hover{
-					border: double;
+					padding: 5px;
+					transition:.2s;
+
 				}
 			}
 
@@ -110,18 +162,27 @@ footer{
 // ユーザーページ
 .user-show{
 	font-family: $sans;
+	.create-gallery{
+		font-size: 25px;
+		margin: 30px 0;
+		a{
+			color: $black;
+			&:hover{
+				color:$green;
+			}
+		}
+	}
 	.gellery_name{
 		margin-top: 0;
 	}
 	.concept{
 		padding: 0 30px;
 	}
+
 	.user-info{
 		border-radius: 5px;
 		background-color:$snow;
 		font-family:$sans;
-		// border: 1px solid;
-		// border-color:gray;
 		margin: 0 auto;
 		height: 250px;
 		.user-image{
@@ -141,35 +202,60 @@ footer{
 			}
 		}
 	}
+
+	.download{
+		a{
+		color:#37474f;
+		font-family: $gothic;
+		}
+		p{
+			display: inline-block;
+			margin: 0;
+			padding-top: 5px;
+			border-bottom: 1px solid;
+			margin-right: 10px;
+		}
+	}
+
 	.user-content{
 		.folder{
 			width: 100px;
 			display: inline-block;
 			span{
 				display: block;
+				color: $black;
+				text-align: center;
 			}
 		}
-		.follow{
-			margin-left: 60px;
+
+		.follow-action{
 			display: inline-block;
 			span{
+				padding-right: 18px;
 				display: block;
-				padding-right:15px;
+				color: $black;
+				text-align: center;
 			}
+		}
+
+	.mypage{
+		span{
+			display: block;
+			color: $black;
+			text-align: center;
+				&:hover{
+					color: $pink;
+				}
+		}
+		.myfolder{
+			width: 100px;
+			display: inline-block;
 		}
 		.friend{
 			display: inline-block;
-			margin-left: 30px;
-			margin-right: 30px;
-			span{
-				display: block;
-			}
 		}
 		.edit{
 			display: inline-block;
-			span{
-				display: block;
-			}
 			#modal-edit{
 				width: 500px;
 				border-radius: 100px;
@@ -187,6 +273,7 @@ footer{
 				}
 			}
 		}
+	}
 		#modal-follow{
 			width: 500px;
 			border-radius: 100px;
@@ -263,6 +350,7 @@ footer{
 	}
 }
 
+// フォルダ一覧
 .folder-index{
 	font-family: $sans;
 	h3{
@@ -338,21 +426,14 @@ footer{
 // 個展一覧
 .exhibition-index{
 	.random{
-		border-bottom: 1px solid;
 		margin-bottom: 50px;
+		p{
+			// display: inline-block;
+			// font-size: 20px;
+			// margin-left: 100px;
+		}
 	}
-	h1{
-		font-family: 'Yu Gothic';
-	}
-	h5{
-		padding-top: 20px;
-		padding-bottom: 10px;
-		font-family: $sans;
-		width: 380px;
-		margin: 0 auto;
-		border-bottom: 1px solid;
-		border-color: $black;
-	}
+
 	.caption{
 		text-align: center;
 		// margin: 0 auto;
@@ -401,16 +482,23 @@ footer{
 		}
 	}
 	.comment{
-		// background: image-url('comment.png') no-repeat center;
-		height: 320px;
-		width: 400px;
+
 		padding: 10px;
 		margin-bottom: 50px;
 		border: 1px solid;
+		position: relative;
 		height: 500px;
+		overflow: scroll;
 
 		.comment-content{
 			border-bottom: 1px solid;
+			p{
+				margin: 0;
+				width: 50px;
+			}
+			span{
+				font-size: 20px;
+			}
 			.user-image{
 			border-radius: 10px;
 			margin-right: 10px;
@@ -450,8 +538,28 @@ footer{
 			margin:0;
 		}
 	}
+
 }
 
+		.flower{
+			// background-color: $snow;
+			// border: 1px solid;
+			border: 1px solid;
+			height: 500px;
+			padding: 10px;
+			overflow: scroll;
+			h5{
+				// margin: 0;
+			}
+			.flower-user{
+				margin-bottom: 10px;
+				.user-image{
+					margin-right: 10px;
+					border-radius: 10px;
+				}
+			}
+
+		}
 
 
 // 通知
@@ -470,6 +578,7 @@ footer{
 		}
 
 		.notification-content{
+			overflow: scroll;
 			border-bottom: 1px dotted;
 			border-width: 90%;
 			padding-bottom: 20px;
@@ -496,7 +605,7 @@ footer{
 		border-bottom: 1px solid;
 	}
 	.user-info{
-		height: 400px;
+		height: 450px;
 		padding: 10px;
 		border-radius: 5px;
 		transition:.2s;

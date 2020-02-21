@@ -1,0 +1,19 @@
+            <% if user == current_user %>
+                <a class="modal-trigger" href="#modal-follow"><%= image_tag 'friend.svg' , :size=>"80x80" %><span>Follow</span></a>
+                <div id="modal-follow" class="modal">
+                  <div class="modal-content follow-contents">
+                    <div class ="following-user">
+                      <%= link_to users_user_follows_path(user) do %>
+                        <%= image_tag 'following-user.svg' , :size=>"90x90" %>
+                        <span>Following</span>
+                      <% end %>
+                    </div>
+                    <div class ="followed-user">
+                      <%= link_to users_user_followers_path(user) do %>
+                        <%= image_tag 'followed-user.svg' , :size=>"90x90" %>
+                        <span>Follower</span>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>

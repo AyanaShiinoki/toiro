@@ -20,6 +20,7 @@ before_action :authenticate_user!
 			@exhibition.create_notification_comment!(current_user, @comment.id)
 			# redirect_to users_exhibition_path(@exhibition)
 		end
+		@comments = @exhibition.comments.reverse
 	end
 
 	def destroy
@@ -30,6 +31,7 @@ before_action :authenticate_user!
 		redirect_to request.referer
 		end
 		@comment.destroy
+		@comments = @exhibition.comments.reverse
 	end
 
 

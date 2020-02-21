@@ -1,29 +1,32 @@
 <div class="container exhibition-index">
-	<div class="row center random">
+<!-- 	<div class="row  random">
 		<% @random.each do |r| %>
 			<%= link_to random_path(r) do %>
 			<%= image_tag 'door.svg', :size=>"150x150" %>
 			<span>個展巡り</span>
 			<% end %>
 		<% end %>
-	</div>
+	</div> -->
+
 	<div class="row center">
-		<% @exhibitions.each do |exhibition| %>
-			<div class ="col xl6 l6 m6 s6 work-one">
-				<% exhibition.works.shuffle.first(1).each do |work| %>
-					<div class="work-image">
-					<%= link_to users_exhibition_path(exhibition) do %>
-					<%= attachment_image_tag work, :work_image, :fill, 220, 220,class: "z-depth-5" %>
+		<div class ="col xl12 l12 m12 s12">
+			<% @exhibitions.each do |exhibition| %>
+				<div class ="col xl6 l6 m6 s6 work-one">
+					<% exhibition.works.shuffle.first(1).each do |work| %>
+						<div class="work-image">
+						<%= link_to users_exhibition_path(exhibition) do %>
+						<%= attachment_image_tag work, :work_image, :fill, 220, 220,class: "z-depth-5" %>
+						<% end %>
+						</div>
 					<% end %>
-					</div>
+						<h5><%= exhibition.title %></h5>
+						<p class="caption"><%= exhibition.caption %></p>
+						<div class="username">
+						<%= exhibition.user.name %>
+						</div>
+				</div>
 				<% end %>
-					<h5><%= exhibition.title %></h5>
-					<p class="caption"><%= exhibition.caption %><p>
-					<div class="username">
-					<%= exhibition.user.name %>
-					</div>
-			</div>
-			<% end %>
+		</div>
 	</div>
 	<div class ="pagenate center">
 	    <%= paginate @exhibitions , :param_name => 'active'%>

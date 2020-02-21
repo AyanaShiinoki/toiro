@@ -15,7 +15,7 @@ before_action :authenticate_user!, except: [:index,:show]
 	end
 
 	def index
-		@users = User.all.page(params[:active]).per(6)
+		@users = User.all.page(params[:page]).per(6)
 	end
 
 	def edit
