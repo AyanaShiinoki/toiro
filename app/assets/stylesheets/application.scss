@@ -547,6 +547,7 @@ footer{
 			border: 1px solid;
 			height: 500px;
 			padding: 10px;
+			overflow: scroll;
 			h5{
 				// margin: 0;
 			}
@@ -577,6 +578,7 @@ footer{
 		}
 
 		.notification-content{
+			overflow: scroll;
 			border-bottom: 1px dotted;
 			border-width: 90%;
 			padding-bottom: 20px;
