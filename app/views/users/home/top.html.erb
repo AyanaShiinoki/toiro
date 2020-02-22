@@ -1,1 +1,69 @@
-<h1>Top</h1>
+<div class = "container top">
+	<div class = "row center head">
+		<h2>toiro</h2>
+		<div class = "top-text">
+			<p>開くのも、足を運ぶのもちょっと敷居が高い個展を、もっと身近にという想いを込めて作られたオンラインギャラリーです。</p>
+			<p>個展とは言っても、そんなに気張る必要はありません。作品はもちろん、日常のふとした瞬間や、心を動かされた風景を共有しましょう。</p>
+			<p>個性というたったひとつの色が出会い、混ざり合う</p>
+			<p>toiroは絵具のパレットのような場所でありたいと願っています。</p>
+		</div>
+			<%= link_to "Concept" ,home_about_path %>
+	</div>
+
+
+	<div class = "row exhibitions">
+		<div class = "open">
+		<h4>開催中の個展</h4>
+		</div>
+		<div class = "col xl12 l12 m12 s12">
+			<% @exhibitions.each do |exhibition| %>
+				<div class = "col xl4 l4 m4 s4 center">
+					<% exhibition.works.shuffle.first(1).each do |work| %>
+					<div class = "work">
+						<%= link_to users_exhibition_path(exhibition) do %>
+						<%= attachment_image_tag work, :work_image, :fill, 150, 150 %>
+						<% end %>
+					</div>
+					<% end %>
+					<h5 class = "title center"><%= exhibition.title %></h5>
+					<p><%= exhibition.caption %></p>
+				</div>
+			<% end %>
+		</div>
+		<div class = "more center">
+		<%= link_to "もっと見る", users_exhibitions_path %>
+		</div>
+	</div>
+	<div class = "row session">
+		<% if user_signed_in? %>
+			<% if current_user.gallery == nil %>
+			<div class = "gallery">
+				<h5 class = "center">早速ギャラリーを作りましょう！</h5>
+				<p class = "center">ギャラリーを作ると個展を開催することができます。</p>
+				<div class = "center">
+				<%= link_to "Open Gallery", new_users_gallery_path ,class: "open" %>
+				</div>
+			</div>
+			<% else %>
+			<div class = "exhibition">
+				<h5 class = "center">さっそく個展を開催しましょう！</h5>
+				<div class = "center">
+				<%= link_to "Hold Exhibition", new_users_exhibition_path ,class: "holding" %>
+				</div>
+			</div>
+			<% end %>
+		<% else %>
+			<div class = "links center">
+				<p>ログインすると個展開催機能の他、フォロー機能やフォルダ機能などが利用できます。</p>
+				<%= link_to "登録がまだの方はこちらからアカウントを作成してください", new_user_registration_path %><br>
+				<%= link_to "Login" , new_user_session_path, class: "waves-effect teal lighten-4 btn-large" %><br>
+			</div>
+		<% end %>
+	</div>
+
+
+
+
+
+
+</div>

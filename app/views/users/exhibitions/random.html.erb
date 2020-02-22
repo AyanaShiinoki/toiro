@@ -3,72 +3,106 @@
 									<% end %>
 
 <div class="container exhibition-show">
-	<% if @exhibition.is_active != true %>
-		<p>現在休止中です</p>
-	<% else %>
-		<p>開催中です</p>
-	<% end %>
 	<div class="exhibition_<%= @exhibition.id %>">
 		<%= render 'users/exhibitions/detail', exhibition: @exhibition %>
 	</div>
 	<% if user_signed_in? %>
-		<div class ="row">
-			<div class="col xl4 l4 m4 s4">
+
 <!-- コメント一覧 -->
+		<div class = "row">
+			<div class = "col xl6 l6 m6 s6">
 				<div class ="comment">
-					<div class = "comment_<%= @exhibition.id%>">
-						<%= render 'users/exhibitions/comment', exhibition: @exhibition %>
+					<h5 class = "center">感想ノート</h5>
+
+					<div class="jscroll">
+						<div class = "comment_<%= @exhibition.id%>">
+							<%= render 'users/exhibitions/comment', comments: @comments %>
+						</div>
+						<div class ="pagenate center">
+
+						</div>
 					</div>
+
 				</div>
-				<!-- コメントフォーム -->
+
 				<div id = "comment_form">
 					<%= form_with model: [:users, @exhibition , @comment], data: {remote: true} do |f| %>
-						<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想を送る", class: "materialize-textarea"%>
-						<div class="modal-footer">
-							<%= f.submit '送信' %>
-						</div>
+						<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想を送る" ,class: "materialize-textarea"%>
+							<%= f.submit '書き込む',class: "right" %>
 					<% end %>
 				</div>
 			</div>
+			<div class = "col xl6 l6 m6 s6">
+<!-- 花表示 -->
+			<div class = "flower">
+				<h5 class = "center">もらった花</h5>
+				<div class = "col xl6 l6 m6 s6">
+					<% @likes.each do |like| %>
+						<div class = "flower-user">
+							<%= attachment_image_tag like.user, :user_image, :fill, 50, 50, format: 'jpeg',class:"user-image responsive-img" %>
+							<%= like.user.name %>さん<br>
+						</div>
+					<% end %>
+				    <div class ="pagenate center row">
+				    	<%= paginate @likes %>
+				    </div>
+				</div>
+				<div class = "col xl6 l6 m6 s6 center">
+					<% if @exhibition.liked_by?(current_user) %>
+					<%= image_tag 'flower.svg' , :size=>"180x440"%>
+					<% end %>
+				</div>
+			</div>
+			<div class = "right send-flower">
+				<% if @exhibition.liked_by?(current_user) %>
+					<%= link_to users_exhibition_likes_path(@exhibition),method: :delete,class: "btn waves-effect waves-light" , type: 'button' do %>
+						Delete
+					<% end %>
+				<% else %>
+					<%= link_to users_exhibition_likes_path(@exhibition),method: :post,class: "btn waves-effect pink lighten-3 send" , type: 'button' do %>
+						花を送る
+					<% end %>
+				<% end %>
+			</div>
+			</div>
 		</div>
-<!-- フォルダに追加 --><!-- モーダル -->
-		<div class = "row" >
-			<div class = "col l12 m12">
-				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
+<div class = "row">
+				フォルダに追加<button data-target="modal1" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></button>
 					<div id="modal1" class="modal">
 						<div class="modal-content">
 							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
 								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
 								<%= f.text_field :memo %>
 								<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
-							<% end %>
+								<% end %>
 						</div>
 					</div>
-			</div>
-		</div>
-<!-- いいね -->
-		<% if @exhibition.liked_by?(current_user) %>
-			<%= link_to users_exhibition_likes_path(@exhibition),method: :delete do %>
-				<p>花を送る</p>
-			<% end %>
-		<% else %>
-			<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
-				<i class="material-icons" >filter_drama</i>
-			<% end %>
-		<% end %>
-<!-- いいね -->
-<!-- いいね表示用 -->
-		<% if @exhibition.liked_by?(current_user) %>
-			<i class="material-icons", style="color: red;" >favorite</i>
-		<% else %>
-			<i class="material-icons" >favorite</i>
-		<% end %>
+</div>
 	<% else %>
+	<div class = "row">
 		<p>会員登録するとコメント機能、フォルダ追加機能が使えます。</p>
 		<%= link_to "会員登録はこちらから",new_user_registration_path %>
 		<%= link_to "登録済みの方はこちら",new_user_session_path %>
 	<% end %>
+	</div>
+
 </div>
+
+
+
+<!-- モーダルウィンドウ -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options={};
+    var instances = M.Modal.init(elems, options);
+  });
+
+
+  $(function(){
+    $('.modal').modal();
+  });
+</script>
 
 
 

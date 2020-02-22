@@ -1,7 +1,7 @@
 class Users::ExhibitionsController < ApplicationController
 
 # 未登録でも個展一覧機能と詳細機能は使用可
-before_action :authenticate_user!, except: [:index,:show]
+before_action :authenticate_user!, except: [:index,:show,:random]
 
 
 	def new
@@ -29,7 +29,6 @@ before_action :authenticate_user!, except: [:index,:show]
 		@folders = Folder.where(user_id: current_user.id)
 		@comments = @exhibition.comments.reverse
 		@likes = @exhibition.likes.page(params[:page]).per(5)
-		# @comments = @exhibition.comments.page(params[:page]).reverse_order.per(5)
 		end
 	end
 
@@ -57,12 +56,15 @@ before_action :authenticate_user!, except: [:index,:show]
 	def random
 		exhibitions = Exhibition.where(is_active: true).all
 		@random = exhibitions.offset(rand(exhibitions.count)).limit(1)
-
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
+		if user_signed_in?
 		@comment = Comment.new
+		@comments = @exhibition.comments.reverse
+		@likes = @exhibition.likes.page(params[:page]).per(5)
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
+		end
 	end
 
 	def destroy

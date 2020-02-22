@@ -24,9 +24,7 @@
 				<div id = "comment_form">
 					<%= form_with model: [:users, @exhibition , @comment], data: {remote: true} do |f| %>
 						<%= f.text_area :comment,id: "comment_field",size: "90×10" ,placeholder: "感想を送る" ,class: "materialize-textarea"%>
-						<div class="modal-footer">
-							<%= f.submit '書き込む' %>
-						</div>
+							<%= f.submit '書き込む',class: "right" %>
 					<% end %>
 				</div>
 			</div>
@@ -51,16 +49,21 @@
 					<% end %>
 				</div>
 			</div>
+			<div class = "right send-flower">
 				<% if @exhibition.liked_by?(current_user) %>
 					<%= link_to users_exhibition_likes_path(@exhibition),method: :delete,class: "btn waves-effect waves-light" , type: 'button' do %>
 						Delete
 					<% end %>
 				<% else %>
-					<%= link_to users_exhibition_likes_path(@exhibition),method: :post do %>
+					<%= link_to users_exhibition_likes_path(@exhibition),method: :post,class: "btn waves-effect pink lighten-3 send" , type: 'button' do %>
 						花を送る
 					<% end %>
 				<% end %>
-				<button data-target="modal1" class="btn modal-trigger">フォルダに追加</button>
+			</div>
+			</div>
+		</div>
+<div class = "row">
+				フォルダに追加<button data-target="modal1" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></button>
 					<div id="modal1" class="modal">
 						<div class="modal-content">
 							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
@@ -70,11 +73,7 @@
 								<% end %>
 						</div>
 					</div>
-
-
-
-			</div>
-		</div>
+</div>
 	<% else %>
 	<div class = "row">
 		<p>会員登録するとコメント機能、フォルダ追加機能が使えます。</p>
