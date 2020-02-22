@@ -97,12 +97,137 @@ footer{
 	color: $black;
 }
 
+// トップ
+.top{
+	// background-color:#cfe2e6;
+	padding: 50px 10px;
+	font-family: $sans;
+	.head{
+		margin-bottom: 100px;
+		h2{
+			margin-top: 0;
+			border-bottom: 1px solid;
+		}
+		.top-text{
+			margin-bottom: 50px;
+		}
+		a{
+			border:double;
+			padding: 10px 20px;
+			font-size:30px;
+			color: $black;
+			transition:.2s;
+			&:hover{
+				background-color: $black;
+				color:white;
+				transition:.2s;
+			}
+		}
+	}
+	.exhibitions{
+		border:double;
+		border-color: #cfe2e6;
+		padding: 20px;
+		margin-bottom:70px;
+		.work_image{
+		}
+
+		.open{
+			text-align: center;
+			h4{
+				display: inline-block;
+				border-bottom: 1px solid;
+				margin-bottom: 30px;
+			}
+		}
+		.more{
+			a{
+				color: $black;
+				&:hover{
+					border-bottom: double;
+				}
+			}
+		}
+	}
+	.session{
+
+		.gallery{
+			p{
+				margin-bottom: 50px;
+			}
+			.open{
+				border:double;
+				padding: 10px 20px;
+				font-size:30px;
+				color: $black;
+				transition:.2s;
+				&:hover{
+					background-color: $black;
+					color:white;
+					transition:.2s;
+				}
+			}
+		}
+
+		.exhibition{
+			h5{
+				margin-bottom: 50px;
+			}
+			.holding{
+				border:double;
+				padding: 10px 20px;
+				font-size:30px;
+				color: $black;
+				transition:.2s;
+				&:hover{
+					background-color: $black;
+					color:white;
+					transition:.2s;
+				}
+			}
+		}
+		.links{
+			.btn{
+				margin-bottom: 20px;
+				margin-top: 20px;
+			}
+		}
+	}
+}
+
+// アバウト
+.about{
+	font-family: $sans;
+	.about-content{
+		padding: 20px;
+	}
+}
+
+// ギャラリー作成
+.new-gallery{
+	font-family: $sans;
+	.btn{
+		margin-top: 30px;
+	}
+}
+
+
 // ギャラリー一覧
 .gallery-index{
+	.title{
+		// margin:0 auto;
+		.galleries{
+			font-size: 25px;
+			margin-bottom: 50px;
+			margin-top: 0;
+			border-bottom: 1px solid;
+			display: inline-block;
+		}
+	}
 	.gallery-info{
-		
 		margin-bottom: 80px;
-		background-color: $snow;
+		padding: 20px;
+		// background-color: $snow;
 		.user-image{
 			padding-top: 20px;
 		}
@@ -115,10 +240,24 @@ footer{
 			padding: 0;
 		}
 		.concept{
-			border-left: 1px solid;
+			// border-left: 1px solid;
+			text-align: center;
 			padding: 15px;
-			height: 130px;
+			padding-top:0;
+			height: 100px;
 			margin: 0;
+		}
+		.show-link{
+			a{
+			color: $black;
+			font-size: 20px;
+			transition:.2s;
+			&:hover{
+				transition:.2s;
+				color: $pink;
+				border-bottom: 1px solid;
+			}
+			}
 		}
 	}
 }
@@ -132,7 +271,6 @@ footer{
 		margin-top: 0;
 		border-bottom: 1px solid;
 		display: inline-block;
-		margin-left: 15px;
 	}
 	.user-info{
 		margin-bottom: 80px;
@@ -173,7 +311,7 @@ footer{
 		}
 	}
 	.gellery_name{
-		margin-top: 0;
+		margin-top: 20px;
 	}
 	.concept{
 		padding: 0 30px;
@@ -253,9 +391,11 @@ footer{
 		}
 		.friend{
 			display: inline-block;
+			margin: 0 10px;
 		}
 		.edit{
 			display: inline-block;
+			margin-left: 15px;
 			#modal-edit{
 				width: 500px;
 				border-radius: 100px;
@@ -303,6 +443,10 @@ footer{
 			border-bottom: 1px solid;
 			border-color: #6d4c41;
 			padding-bottom: 5px;
+			display: inline-block;
+		}
+		h6{
+			margin-top: 5px;
 		}
 		a{
 			transition:.2s;

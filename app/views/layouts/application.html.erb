@@ -30,7 +30,8 @@
     <div class = "links">
           <% if current_user.gallery == nil %>
             <%= link_to  new_users_gallery_path do %>
-              <%= image_tag 'create-g.svg' , :size=>"160x50"%>
+              <!-- <%= image_tag 'create-g.svg' , :size=>"160x50"%> -->
+              ギャラリー作成 /
             <% end %>
           <% else %>
             <%= link_to new_users_exhibition_path do%>

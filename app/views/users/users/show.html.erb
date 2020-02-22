@@ -8,7 +8,7 @@
               <%= link_to "早速ギャラリーを作りましょう！", new_users_gallery_path %>
           </div>
           <% else %>
-            <h4 class ="center-align gellery_name"><%= @user.gallery.gallery_name%></h4>
+            <h5 class ="center-align gellery_name"><%= @user.gallery.gallery_name%></h5>
             <p class="center-align concept"><%= @user.gallery.concept %></p>
         <% end %>
 
@@ -18,7 +18,7 @@
             <div class="folder">
             <% if current_user!= @user %>
             <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
-                <%= image_tag 'folder.svg' , :size=>"70x70"%>
+                <%= image_tag 'folder.svg' , :size=>"50x50"%>
                 <span>Folder</span>
               <% end %>
           </div>
@@ -26,12 +26,12 @@
           <div class="follow-action">
             <% if current_user.following?(@user) %>
                 <%= link_to users_user_relationships_path(@user.id),method: :delete do%>
-                  <%= image_tag 'fan.svg' , :size=>"80x80" %>
+                  <%= image_tag 'fan.svg' , :size=>"60x60" %>
                   <span>Following</span>
                 <% end %>
             <% else %>
                 <%= link_to users_user_relationships_path(@user.id), method: :POST do %>
-                <%= image_tag 'fan.svg' , :size=>"80x80" %>
+                <%= image_tag 'fan.svg' , :size=>"60x60" %>
                 <span>Follow</span>
                 <% end %>
               <% end %>
@@ -42,7 +42,7 @@
             <div class="myfolder">
               <% if current_user == @user %>
               <%= link_to controller: "folders", action: "index", user_id: current_user.id do %>
-                <%= image_tag 'folder.svg' , :size=>"70x70"%>
+                <%= image_tag 'folder.svg' , :size=>"50x50"%>
                 <span>Folder</span>
               <% end %>
               <% end %>
