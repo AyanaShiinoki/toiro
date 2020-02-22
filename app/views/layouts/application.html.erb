@@ -15,9 +15,23 @@
   <body>
 <!-- ヘッダー -->
       <div class="container header center">
+        <%= link_to root_path do %>
+          <h4>toiro</h4>
+        <% end %>
 <!-- ユーザーログイン時 -->
       <% if user_signed_in? %>
 
+<% if current_user.gallery == nil %>
+  <%= link_to  new_users_gallery_path do %>
+  ギャラリーを開く
+  <% end %>
+<% else %>
+  <%= link_to users_user_path(current_user) do %>
+    <%= current_user.gallery.gallery_name %>
+  <% end %>
+<% end %>
+
+      <div class = "notificationbar">
         <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
           <% if unchecked_notifications.any?%>
             <i class="material-icons Medium">notifications</i>
@@ -27,20 +41,20 @@
             <%= render 'users/notifications/index' %>
           <% end %>
         <% end %>
+      </div>
+
     <div class = "links">
           <% if current_user.gallery == nil %>
             <%= link_to  new_users_gallery_path do %>
-              <!-- <%= image_tag 'create-g.svg' , :size=>"160x50"%> -->
-              ギャラリー作成 /
+              ギャラリー作成
             <% end %>
           <% else %>
             <%= link_to new_users_exhibition_path do%>
-           <!--   <%= image_tag 'open.svg' , :size=>"100x50", :class => "style_image"%> -->
-             ひらく /
+             ひらく
             <% end %>
           <% end %>
 
-        <a class="modal-trigger" href="#modal2"> みる / </a>
+        <a class="modal-trigger" href="#modal2">みる</a>
         <div id="modal2" class="modal">
           <div class="modal-content container">
               <%= link_to users_exhibitions_path do %>
@@ -55,10 +69,6 @@
           </div>
         </div>
 
-        <%= link_to users_user_path(current_user) do %>
-       <!--    <%= image_tag 'mypage.svg' , :size=>"100x50", :class => "style_image"%> -->
-       マイページ /
-        <% end %>
         <%= link_to destroy_user_session_path , method: :delete do %>
      <!--      <%= image_tag 'logout.svg' , :size=>"100x50", :class => "style_image"%> -->
            ログアウト

@@ -29,7 +29,6 @@ before_action :authenticate_user!, except: [:index,:show,:random]
 		@folders = Folder.where(user_id: current_user.id)
 		@comments = @exhibition.comments.reverse
 		@likes = @exhibition.likes.page(params[:page]).per(5)
-		# @comments = @exhibition.comments.page(params[:page]).reverse_order.per(5)
 		end
 	end
 
