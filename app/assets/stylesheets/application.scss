@@ -515,7 +515,10 @@ footer{
 
 	}
 	#comment_form{
-		width: 400px;
+		padding: 0;
+		.write{
+			// display: inline-block;
+		}
 	}
 
 
@@ -536,6 +539,12 @@ footer{
 		}
 		h5{
 			margin:0;
+		}
+	}
+
+	.send-flower{
+		.send{
+			margin-top: 30px;
 		}
 	}
 
