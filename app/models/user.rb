@@ -1,11 +1,11 @@
 class User < ApplicationRecord
 
   # アソシエーション
-  has_one :gallery
-  has_many :exhibitions
-  has_many :works
+  has_one :gallery, dependent: :destroy
+  has_many :exhibitions, dependent: :destroy
+  has_many :works, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :folders
+  has_many :folders, dependent: :destroy
   has_many :comments, dependent: :destroy
   # プロフィール画像機能
   attachment :user_image

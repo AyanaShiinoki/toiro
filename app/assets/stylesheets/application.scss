@@ -815,6 +815,18 @@ footer{
 	// }
 }
 
+// 管理者の個展詳細
+.admin-exhibition{
+	.exhibition-menu{
+		margin-top: 20px;
+	}
+	.comments-contents{
+		overflow: scroll;
+		height: 200px;
+		// background-color: pink;
+	}
+}
+
 // 個展編集画面
 .exhibition-edit{
 

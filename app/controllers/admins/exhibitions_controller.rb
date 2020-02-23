@@ -7,7 +7,7 @@ class Admins::ExhibitionsController < ApplicationController
 	def show
 		@exhibition = Exhibition.find(params[:id])
 		@works = Work.where(exhibition_id: @exhibition.id)
-		@comments = Comment.where(exhibition_id: @exhibition.id).page(params[:page]).per(5)
+		@comments = Comment.where(exhibition_id: @exhibition.id)
 	end
 
 	def edit
@@ -19,6 +19,12 @@ class Admins::ExhibitionsController < ApplicationController
 		if @exhibition.update(exhibition_params)
 			redirect_to admins_exhibition_path(@exhibition.id)
 		end
+	end
+
+	def destroy
+		@exhibition = Exhibition.find(params[:id])
+		@exhibition.destroy
+		redirect_to admins_user_path(@exhibition.user)
 	end
 
 	private

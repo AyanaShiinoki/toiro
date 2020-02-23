@@ -22,6 +22,7 @@
       <% if user_signed_in? %>
 
 <% if current_user.gallery == nil %>
+ようこそ <%= link_to "#{current_user.name}", users_user_path(current_user.id) %>さん
   <%= link_to  new_users_gallery_path do %>
   ギャラリーを開く
   <% end %>

@@ -2,7 +2,7 @@ class Gallery < ApplicationRecord
 
 	# アソシエーション
 	belongs_to :user, optional: true
-	has_many :exhibitions
+	has_many :exhibitions, dependent: :destroy
 
 
 	#バリデーション

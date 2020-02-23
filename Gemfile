@@ -88,3 +88,5 @@ gem 'kaminari'
 gem 'faker'
 
 gem 'paranoia'
+
+gem "chartkick"

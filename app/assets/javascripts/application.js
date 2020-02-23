@@ -19,6 +19,8 @@
 //= require activestorage
 //= require_tree .
 //= require nested_form_fields
+//= require chartkick
+//= require Chart.bundle
 
 
 
