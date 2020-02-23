@@ -1,6 +1,9 @@
 <div class ="container admin-top">
 	<div class = "row exhibitions">
-		<h5>本日開催された個展</h5>
+		<div class = "top-exhibition">
+			<h5>本日開催された個展</h5>
+			<span>開催数: <%= @exhibitions.count %></span>
+		</div>
 	<!-- 	<h6>開催数: <%= @exhibitions.count %></h6> -->
 		<div class = "col xl12 l12 m12 s12 exhibitions-index">
 			<% @exhibitions.each do |exhibition| %>
@@ -23,7 +26,10 @@
 	</div>
 
 	<div class = "row users">
-		<h5>新規ユーザー</h5>
+		<div class = "top-user">
+		<h5>本日の新規ユーザー</h5>
+		<span>登録数: <%= @users.count %></span>
+		</div>
 		<div class = "col xl12 l12 m12 s12 users-index">
 				<% @users.each do |user| %>
 					<div class = "col xl2 l2 m2 s2">
