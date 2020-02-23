@@ -1,37 +1,148 @@
-<div class="container admin-exhibition-edit">
-	<div class="row">
-		<h1>投稿編集画面</h1>
-			<% if admin_signed_in? %>
-				<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'update' } do |f| %>
-					<label>タイトル</label><br>
-						<%= f.text_field :title %><br>
-					<label>個展概要</label><br>
-						<%= f.text_area :caption %><br>
-				<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
+<div class="container exhibition-edit">
+	<div class="row works">
+		<h1 class = "center" >Edit</h1>
+		<% if admin_signed_in? %>
+<!-- 個展概要編集フォーム -->
+			<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'update' } do |f| %>
+				<label>タイトル</label><br>
+				<%= f.text_field :title %><br>
+				<label>個展概要</label><br>
+				<%= f.text_area :caption, class: "materialize-textarea" %><br>
+			<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
+<!-- 削除機能（モーダル） -->
+		  <a class="waves-effect red lighten-1 btn modal-trigger" href="#modal_delete">完全に削除する</a>
+		  <div id="modal_delete" class="modal">
+		    <div class="modal-content center">
+		    	<h5>本当に削除しますか？</h5>
+		    	<p>削除した個展及び作品は元に戻せません</p>
+		    	<p>個展は休止中に設定することができます</p>
+		    	<p>休止中の個展は自分以外には公開されません</p>
+		    	<%= link_to "完全に削除する", admins_exhibition_path(@exhibition), method: :delete ,class: "waves-effect waves-light btn red darken-1" %>
+		    </div>
+		  </div>
+<!-- 作品フォーム -->
+		<div class = "col xl12 l12 m12 s12">
+			<h2 class = "center">Works</h2>
+			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
+			<div class = "col xl4 l4 m12 s12 form">
+				<div class ="work-image-pre center">
 
-						<div class = "col l12 m12 s12">
-						<h2>掲載作品</h2>
-							<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-								<div class = "col l4 m12 s12">
-									<label>画像タイトル</label><br>
-									<%= field.text_field :work_title %><br>
-									<label>作品説明</label><br>
-									<%= field.text_field :description %><br>
-									<label>作品画像</label><br>
-									<%= field.attachment_field :work_image %>
-									<br><%= field.remove_nested_fields_link 'Delete' %>
-								</div>
-							<% end %>
-						</div>
-					</div>
-					<div class="row add-form">
-						<div class = "col l12 m12 s12">
-							<div class="col l5 m8 s6 offset-l10 offset-m8 offset-s8">
-							<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
-							<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
-							</div>
-						</div>
-					</div>
-				<% end %>
+<!-- 変更 -->
+<!-- 元の画像があれば表示、差し替える -->
+			<% if field.object.work_image.present? %>
+
+<!-- field.objectでフォームにあるオブジェクトを確認 -->
+			<%= attachment_image_tag field.object, :work_image, :fill, 300, 300, class: "work_prev", size: "300x300"%>
+
+			<% else %>
+<!-- 新規 -->
+			<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %>
+
 			<% end %>
+
+
+				</div>
+				<label>画像タイトル</label><br>
+				<%= field.text_field :work_title %><br>
+				<label>作品説明</label><br>
+				<%= field.text_field :description %><br>
+				<label>作品画像</label><br>
+				    <div class="file-field input-field">
+				      <div class="btn">
+				        <span>File</span>
+<!-- 画像投稿フォーム（previewFile(this)呼び出し） -->
+				        <%= field.attachment_field :work_image, onchange: "previewFile(this)"%><br>
+				      </div>
+				      <div class="file-path-wrapper">
+				        <input class="file-path validate" type="text">
+				      </div>
+				    </div>
+<!-- フォーム削除 -->
+				<br><%= field.remove_nested_fields_link 'Delete' %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+<!-- フォーム追加・更新 -->
+				<div class="row add-form">
+					<div class = "col l12 m12 s12">
+						<div class="col l5 m8 s6 offset-l10 offset-m8 offset-s8">
+							<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
+						</div>
+					</div>
+				</div>
+				<div class="center">
+					<%= button_tag '更新する', class: 'waves-effect waves-light btn-large', type: 'button', onclick: 'submit();' %>
+				</div>
+			<% end %>
+		<% end %>
 </div>
+
+
+
+<% work_count = 5 - @exhibition.works.count %>
+
+<script>
+$(function() {
+  var fieldsCount,
+
+      maxFieldsCount = <%= work_count %>,
+      $addLink = $('a.add_nested_fields_link');
+
+  function toggleAddLink() {
+    $addLink.toggle(fieldsCount <= maxFieldsCount)
+  }
+
+  $(document).on('fields_adding.nested_form_fields', function() {
+    fieldsCount += 1;
+    toggleAddLink();
+  });
+
+  $(document).on('fields_removing.nested_form_fields', function() {
+    fieldsCount -= 1;
+    toggleAddLink();
+  });
+
+  // count existing nested fields after page was loaded
+  fieldsCount = $('form .fields').length;
+  toggleAddLink();
+})
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options = {};
+    var instances = M.Modal.init(elems, options);
+  });
+
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
+
+
+<!-- プレビュー -->
+<script>
+	// document.getElementsByClassName("preview_file").onchange = previewFile;
+	function previewFile(obj) {
+// 　　 console.log(obj)
+//     // console.log(obj.find(".work_prev"))
+//     console.log(document.querySelector(".work_prev"))
+//     console.log(document.querySelector('input[type=file]').files[0])
+
+	var preview = $(".work_prev")[obj.name[29]];
+	var file    = obj.files[0];
+	var reader  = new FileReader();
+
+	reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  }, false);
+
+
+	if (file) {
+		reader.readAsDataURL(file);
+	}
+}
+</script>

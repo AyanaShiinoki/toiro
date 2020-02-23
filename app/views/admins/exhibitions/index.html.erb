@@ -1,4 +1,4 @@
-<div class="container admin-user-index">
+<div class="container admin-exhibition-index">
 
 	<div class ="row">
 		<h1 class = "center">会員一覧</h1>
@@ -6,31 +6,27 @@
 			<table class="highlight">
 				<thead>
 					<tr>
-					<th>Name</th>
-					<th>Gallery</th>
+					<th>Title</th>
+					<th>Caption</th>
 					<th>Data</th>
 					<th>Status</th>
 					</tr>
 			        </thead>
 			        <tbody>
-					<% @users.each do |user| %>
+					<% @exhibitions.each do |exhibition| %>
 					<tr>
 					<td>
-						<%= link_to "#{user.name}" ,admins_user_path(user) %>
+						<%= link_to "#{exhibition.title}" ,admins_exhibition_path(exhibition) %>
 					</td>
-					<% if user.gallery == nil %>
-					<td>まだ作成されていません</td>
-					<% else %>
-					<td><%= user.gallery.gallery_name %></td>
-					<% end %>
+					<td><%= exhibition.caption %></td>
 					<td>
-						<%= user.created_at.strftime('%Y/%m/%d') %>
+						<%= exhibition.created_at.strftime('%Y/%m/%d') %>
 					</td>
 					<td>
-					<% if user.deleted_at.nil?%>
-						有効
+					<% if exhibition.is_active == true %>
+						開催中
 					<% else %>
-						退会済み
+						休止中
 					<% end %>
 					</td>
 					</tr>
@@ -40,6 +36,6 @@
 		</div>
 	</div>
 			<div class =" row pagenate center">
-			    <%= paginate @users %>
+			    <%= paginate @exhibitions %>
 			</div>
 </div>

@@ -569,40 +569,72 @@ footer{
 
 // 個展一覧
 .exhibition-index{
+	font-family: $sans;
 	.random{
-		margin-bottom: 50px;
-		p{
-			// display: inline-block;
-			// font-size: 20px;
-			// margin-left: 100px;
+		margin-bottom: 70px;
+		.random-contents{
+			border-color: $black;
+			border-bottom: 1px solid;
+			h5{
+				margin-bottom: 5px;
+			}
+			p{
+				margin-top: 0;
+				margin-bottom: 20px;
+			}
+			.link{
+				font-size: 20px;
+				color:#505b66;
+				border-bottom: 1px solid;
+				&:hover{
+					color: #662947;
+				}
+			}
 		}
 	}
 
-	.caption{
-		text-align: center;
-		// margin: 0 auto;
-		// width: 400px;
-	}
-	.work-one{
-		margin-bottom: 20px;
-		padding: 10px;
-		.work-image{
-			margin: 0 auto;
-			width: 400px;
-			height: 300px;
+	.exhibitions{
+		h3{
+			margin-bottom: 50px;
+		}
+		.work-one{
+			margin-bottom: 20px;
 			padding: 10px;
-			padding-top: 35px;
-			background: image-url('gaku4.svg') no-repeat center;
-			.z-depth-5{
-				border: 1px solid;
-				border-color: $snow;
-				border-radius: 5px;
+			.caption{
+				text-align: center;
+			}
+			.work-image{
+				margin: 0 auto;
+				width: 400px;
+				height: 300px;
+				padding: 10px;
+				padding-top: 35px;
+				background: image-url('gaku4.svg') no-repeat center;
+				.z-depth-5{
+					border: 1px solid;
+					border-color: $snow;
+					border-radius: 5px;
+				}
 			}
 		}
 	}
 
 }
 
+// ランダム遷移先
+.random-next{
+	font-family: $sans;
+	margin-bottom: 100px;
+	.random-contents{
+		border-bottom: 1px solid;
+		.link{
+			color:$black;
+			font-size: 20px;
+			display: inline-block;
+			padding-bottom: 50px;
+		}
+	}
+}
 
 
 // 個展詳細
@@ -794,6 +826,32 @@ footer{
 }
 
 
+// 管理者トップ
+.admin-top{
+	.exhibitions{
+		border-bottom: 1px solid;
+		h5{
+			border-bottom: 1px solid;
+		}
+		.exhibitions-index{
+			padding: 40px 0;
+		}
+	}
+
+	.users{
+		border-bottom: 1px solid;
+		margin-top: 70px;
+		h5{
+			border-bottom: 1px solid;
+		}
+		.users-index{
+			padding: 40px 0;
+		}
+	}
+}
+
+
+// 管理者ユーザー詳細
 .admin-user-show{
 
 	.exhibition-index{
@@ -813,6 +871,18 @@ footer{
 	// .user-content{
 	// 	margin:0 auto;
 	// }
+}
+
+// 管理者の個展詳細
+.admin-exhibition{
+	.exhibition-menu{
+		margin-top: 20px;
+	}
+	.comments-contents{
+		overflow: scroll;
+		height: 200px;
+		// background-color: pink;
+	}
 }
 
 // 個展編集画面

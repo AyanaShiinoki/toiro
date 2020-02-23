@@ -59,7 +59,9 @@ namespace :users do
     root 'home#top'
     resources :users, only: [:show, :index, :edit, :update]
     resources :galleries, except: [:destroy]
-    resources :exhibitions, except: [:destroy]
+    resources :exhibitions do
+      resource :comments, only: [:destroy]
+    end
     resources :works
   end
 

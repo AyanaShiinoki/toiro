@@ -9,16 +9,9 @@
 			<div class = "col xl6 l6 m6 s6">
 				<div class ="comment">
 					<h5 class = "center">感想ノート</h5>
-
-					<div class="jscroll">
 						<div class = "comment_<%= @exhibition.id%>">
 							<%= render 'users/exhibitions/comment', comments: @comments %>
 						</div>
-						<div class ="pagenate center">
-
-						</div>
-					</div>
-
 				</div>
 
 				<div id = "comment_form">
@@ -35,8 +28,10 @@
 				<div class = "col xl6 l6 m6 s6">
 					<% @likes.each do |like| %>
 						<div class = "flower-user">
-							<%= attachment_image_tag like.user, :user_image, :fill, 50, 50, format: 'jpeg',class:"user-image responsive-img" %>
-							<%= like.user.name %>さん<br>
+							<%= link_to users_user_path(like.user) do %>
+								<%= attachment_image_tag like.user, :user_image, :fill, 50, 50, format: 'jpeg',class:"user-image responsive-img",fallback: "noimage2.png", size:'50x50' %>
+								<%= like.user.name %>さん<br>
+							<% end %>
 						</div>
 					<% end %>
 				    <div class ="pagenate center row">

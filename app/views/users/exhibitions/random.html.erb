@@ -1,6 +1,20 @@
-									<% @random.each do |r| %>
-										<%= link_to "進む", random_path(r) %>
-									<% end %>
+	<div class="row  random-next">
+		<div class = "col xl12 l12 m12 s12 center ">
+			<div class = "col xl6 l6 m6 s6 offset-xl3 offset-l3 offset-m3 offset-s3 center random-contents">
+				<div class = "col xl4 l4 m4 s4 center ">
+					<%= link_to "個展一覧へ", users_exhibitions_path,class: "link"  %>
+				</div>
+				<div class = "col xl4 l4 m4 s4 center ">
+					<%= image_tag 'door.svg', :size=>"150x150" %>
+				</div>
+				<div class = "col xl4 l4 m4 s4 center ">
+					<% @random.each do |r| %>
+						<%= link_to "次の個展へ", random_path(r),class: "link" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <div class="container exhibition-show">
 	<div class="exhibition_<%= @exhibition.id %>">

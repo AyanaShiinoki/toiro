@@ -1,15 +1,28 @@
 <div class="container exhibition-index">
-<!-- 	<div class="row  random">
-		<% @random.each do |r| %>
-			<%= link_to random_path(r) do %>
-			<%= image_tag 'door.svg', :size=>"150x150" %>
-			<span>個展巡り</span>
-			<% end %>
-		<% end %>
-	</div> -->
 
-	<div class="row center">
+
+	<div class="row  random">
+		<div class = "col xl6 l6 m6 s6 offset-xl3 offset-l3 offset-m3 offset-s3 center random-contents">
+			<div class = "col xl8 l8 m8 s8">
+				<h5 class = "center">個展巡り</h5><br>
+				<p class = "center">開催中の個展をランダムに巡ることができます。</p>
+				<% @random.each do |r| %>
+					<%= link_to "個展巡りに出かける", random_path(r),class: "link" %>
+				<% end %>
+			</div>
+			<div class = "col xl4 l4 m4 s4">
+				<% @random.each do |r| %>
+					<%= link_to random_path(r) do %>
+						<%= image_tag 'door.svg', :size=>"150x150" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row center exhibitions">
 		<div class ="col xl12 l12 m12 s12">
+			<h3 class = "center">開催中の個展</h3>
 			<% @exhibitions.each do |exhibition| %>
 				<div class ="col xl6 l6 m6 s6 work-one">
 					<% exhibition.works.shuffle.first(1).each do |work| %>

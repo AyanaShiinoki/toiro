@@ -1,15 +1,15 @@
 <div class="container exhibition-new">
-	<div class="row">
-			<h1 class="center">個展開催</h1>
-			<div class="error-box">
+			<div class="row error-box">
 				<% if @exhibition.errors.any? %>
-			    	<h2><%= @exhibition.errors.count %>件のエラーがあります</h2>
+			    	<h5><%= @exhibition.errors.count %>件のエラーがあります</h5>
 			    	<ul>
 			    	<% @exhibition.errors.full_messages.each do |message| %>
 			    	<li><%= message %></li>
 			    	<% end %>
 			    <% end %>
 			</div>
+	<div class="row">
+			<h1 class="center">個展開催</h1>
 <!-- 個展概要フォーム -->
 		<% if user_signed_in? %>
 			<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>

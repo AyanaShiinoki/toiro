@@ -9,8 +9,8 @@
             <% exhibition.works.shuffle.first(1).each do |work| %>
             <%= link_to users_exhibition_path(exhibition) do %>
             <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
-            <% end %>
             <h6><%= exhibition.title %></h6>
+            <% end %>
             <% end %>
         </div>
         <% end %>
@@ -31,8 +31,8 @@
             <% exhibition_f.works.shuffle.first(1).each do |work| %>
             <%= link_to users_exhibition_path(exhibition_f) do %>
             <%= attachment_image_tag work, :work_image, :fill, 200, 200 ,class: "z-depth-2"%><br>
+             <h6><%= exhibition_f.title %></h6>
             <% end %>
-            <h6><%= exhibition_f.title %></h6>
             <% end %>
         </div>
         <% end %>

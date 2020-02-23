@@ -4,9 +4,9 @@ class Exhibition < ApplicationRecord
 	belongs_to :user, optional: true
 	# dependent: :destroyを書かないと個展（親）の物理削除ができない
 	has_many :works, dependent: :destroy
-	has_many :likes
-	has_many :comments
-	has_many :clips
+	has_many :likes, dependent: :destroy
+	has_many :comments, dependent: :destroy
+	has_many :clips, dependent: :destroy
 	has_many :folders, through: :clips
 	# 個展開催と同時に作品を公開　削除も同時に
 	accepts_nested_attributes_for :works, allow_destroy: true

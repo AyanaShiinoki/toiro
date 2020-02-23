@@ -11,7 +11,7 @@
 			<div class ="col xl4 l4 m4 s4 offset-xl1 offset-l1 offset-m1 offset-s1">
 				<%= link_to users_user_path(exhibition.user) do %>
 					<div class="user-info center card">
-		          		<%= attachment_image_tag exhibition.user, :user_image, :fill, 100, 100, format: 'jpeg',class:"image responsive-img" %>
+		          		<%= attachment_image_tag exhibition.user, :user_image, :fill, 100, 100, format: 'jpeg',class:"image responsive-img",fallback: "noimage2.png", size:'100x100' %>
 		          		<h5 class="center-align name"><%= exhibition.user.name %></h5>
 		          		<p><%= exhibition.user.introduction %></p>
 		         	</div>

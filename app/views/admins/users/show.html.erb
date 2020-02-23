@@ -3,7 +3,7 @@
 		<h1 class="center-align">User</h1>
 			<div class="col l10 m10 s12 ">
 				<div class="col l6 center">
-				<%= attachment_image_tag @user, :user_image, :fill, 300, 300, format: 'jpeg'%>
+				<%= attachment_image_tag @user, :user_image, :fill, 300, 300, format: 'jpeg',fallback: "noimage2.png", size:'300x300' %>
 				</div>
 				<div class="col l6">
 					<table>
@@ -17,7 +17,11 @@
 			     	</tr>
 			     	<tr>
 				     	<th>ギャラリー</th>
+				     	<% if @user.gallery == nil %>
+				     	<td>まだ作成されていません</td>
+				     	<% else %>
 				     	<td><%= @user.gallery.gallery_name %></td>
+				     	<% end %>
 			     	</tr>
 			     	<tr>
 				     	<th>個展</th>
