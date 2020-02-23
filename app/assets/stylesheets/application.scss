@@ -830,8 +830,14 @@ footer{
 .admin-top{
 	.exhibitions{
 		border-bottom: 1px solid;
-		h5{
+		.top-exhibition{
 			border-bottom: 1px solid;
+			h5{
+				display: inline-block;
+			}
+			span{
+				padding-left: 50px;
+			}
 		}
 		.exhibitions-index{
 			padding: 40px 0;
@@ -841,8 +847,14 @@ footer{
 	.users{
 		border-bottom: 1px solid;
 		margin-top: 70px;
-		h5{
+		.top-user{
 			border-bottom: 1px solid;
+			h5{
+				display: inline-block;
+			}
+			span{
+				padding-left: 50px;
+			}
 		}
 		.users-index{
 			padding: 40px 0;

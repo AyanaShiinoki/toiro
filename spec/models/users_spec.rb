@@ -70,23 +70,4 @@ RSpec.describe User, type: :model do
 	end
 
 
-	# describe 'ユーザー認証のテスト' do
-	# 	describe 'ユーザー新規登録' do
-	# 		before do
-	# 			visit new_user_registration_path
-	# 		end
-	# 		context '新規登録画面に遷移' do
-	# 			it '新規登録に成功する' do
-	# 				visit new_user_registration_path
-	# 				fill_in 'user[name]', with: 'User'
-	# 				fill_in 'user[email]', with: 'spec@test'
-	# 				fill_in 'user[password]', with: 'Test-01'
-	# 				fill_in 'user[password_confirmation]', with: 'Test-01'
-	# 				click_button 'Sign up'
-	# 			end
-	# 		end
-	# 	end
-	# end
-
-
 end

@@ -42,7 +42,7 @@ RSpec.describe Exhibition, type: :system do
 				expect(page).to have_field 'exhibition[works_attributes][0][description]'
 			end
 			it '作品画像フォームが表示される' do
-				expect(page).to have_field 'exhibition[works_attributes][0][work_image]'
+				expect(page).to have_content '作品画像'
 			end
 			it 'Createボタンが表示される' do
 		  	expect(page).to have_button '開催'
@@ -90,7 +90,7 @@ RSpec.describe Exhibition, type: :system do
 				expect(page).to have_field 'exhibition[works_attributes][0][description]',with: work.description
 			end
 			it '作品画像編集フォームが表示される' do
-				expect(page).to have_field 'exhibition[works_attributes][0][work_image]',with: work.work_image
+				expect(page).to have_content '作品画像'
 			end
 			it 'Updateボタンが表示される' do
 		  		expect(page).to have_button '更新'
@@ -105,8 +105,8 @@ RSpec.describe Exhibition, type: :system do
 			it '更新に失敗する' do
 				visit edit_users_exhibition_path(exhibition)
 				fill_in 'exhibition[title]', with: ''
-				click_button '更新'
-				expect(current_path).to eq ('/users/exhibitions/' + exhibition.id.to_s + '/edit')
+				click_button '更新する'
+				expect(page).to have_content 'Edit'
 			end
 		end
 	end
@@ -117,7 +117,7 @@ RSpec.describe Exhibition, type: :system do
 		end
 		context '表示のテスト' do
 			it '開催中個展一覧と表示される' do
-				expect(page).to have_content('開催中個展一覧')
+				expect(page).to have_content('開催中の個展')
 			end
 			it '個展タイトルが表示される' do
   				expect(page).to have_content exhibition.user.name

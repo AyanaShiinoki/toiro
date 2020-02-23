@@ -17,7 +17,7 @@ RSpec.describe User, type: :system do
 			        fill_in 'user[email]', with: Faker::Internet.email
 			        fill_in 'user[password]', with: 'Ayana-43'
 			        fill_in 'user[password_confirmation]', with: 'Ayana-43'
-			        click_button 'Sign up'
+			        click_button 'Sign Up'
 			        expect(current_path).to eq(root_path)
 				end
 
@@ -26,7 +26,7 @@ RSpec.describe User, type: :system do
 			        fill_in 'user[email]', with: ''
 			        fill_in 'user[password]', with: ''
 			        fill_in 'user[password_confirmation]', with: ''
-			        click_button 'Sign up'
+			        click_button 'Sign Up'
 			        expect(page).to have_content 'error'
 				end
 			end

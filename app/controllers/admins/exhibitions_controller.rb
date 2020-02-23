@@ -1,5 +1,7 @@
 class Admins::ExhibitionsController < ApplicationController
 
+before_action :authenticate_admin!
+
 	def index
 		@exhibitions = Exhibition.all.page(params[:page]).per(10)
 	end

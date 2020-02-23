@@ -22,8 +22,8 @@ RSpec.describe Exhibition, type: :model do
 				@exhibition.caption = ''
 				expect(@exhibition.valid?).to eq(false)
 			end
-			it '101文字以下であること' do
-				@exhibition.caption = Faker::Lorem.characters(number:102)
+			it '50文字以下であること' do
+				@exhibition.caption = Faker::Lorem.characters(number:51)
 				expect(@exhibition.valid?).to eq(false)
 			end
 		end
