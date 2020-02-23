@@ -1,7 +1,7 @@
 class Admins::ExhibitionsController < ApplicationController
 
 	def index
-		@exhibitions = Exhibition.all
+		@exhibitions = Exhibition.all.page(params[:page]).per(10)
 	end
 
 	def show

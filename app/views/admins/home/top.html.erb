@@ -1,19 +1,44 @@
 <div class ="container admin-top">
-	<div class = "row">
-		<div class = "col xl12 l12 m12 s12 today">
-			<div class = "col xl6 l6 m6 s6 users">
-					<div class = "row">
+	<div class = "row exhibitions">
+		<h5>本日開催された個展</h5>
+	<!-- 	<h6>開催数: <%= @exhibitions.count %></h6> -->
+		<div class = "col xl12 l12 m12 s12 exhibitions-index">
+			<% @exhibitions.each do |exhibition| %>
+				<div class = "col xl2 l2 m2 s2">
+					<div class = "center">
+						<%= link_to admins_exhibition_path(exhibition) do %>
+							<% exhibition.works.shuffle.first(1).each do |work| %>
+									<%= attachment_image_tag work, :work_image, :fill, 100, 100 %>
+							<% end %><br>
+							<%= exhibition.title %>
+						<% end %><br>
+						<%= link_to "#{exhibition.user.name}", admins_user_path(exhibition.user) %>
 					</div>
-			</div>
-			<div class = "col xl6 l6 m6 s6 exhibitions">
-				<% @exhibitions.each do |exhibition| %>
-					<div class = "row">
-						<%= exhibition.title %><br>
-						<%= exhibition.caption %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class ="pagenate center">
+		<%= paginate @exhibitions, :param_name => 'exhibition' %>
+	</div>
+
+	<div class = "row users">
+		<h5>新規ユーザー</h5>
+		<div class = "col xl12 l12 m12 s12 users-index">
+				<% @users.each do |user| %>
+					<div class = "col xl2 l2 m2 s2">
+						<div class = "center">
+							<%= link_to admins_user_path(user) do %>
+								<%= attachment_image_tag user, :user_image, :fill, 100, 100, format: 'jpeg',class:"user-image responsive-img" , fallback: "noimage2.png", size:'100x100' %><br>
+								<%= user.name %>
+							<% end %>
+						</div>
 					</div>
 				<% end %>
-			</div>
 		</div>
+	</div>
+	<div class ="pagenate center">
+		<%= paginate @users, :param_name => 'users' %>
 	</div>
 
 

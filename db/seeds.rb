@@ -13,7 +13,16 @@ Admin.create(email: "ayana43.iroha@gmail.com", password:"admins")
 User.create([
 	{name: "Ayana", email: "a@a" , introduction: "よろしくお願いします！", password: "Ayana-43"},
 	{name: "Taichi", email: "b@b" , introduction: "よろしくお願いします！", password: "Taichi-827"},
-	{name: "Yurika", email: "c@c" , introduction: "よろしくお願いします！", password: "Yurika-1028"}
+	{name: "Yurika", email: "c@c" , introduction: "よろしくお願いします！", password: "Yurika-1028"},
+	{name: "Noriko", email: "1@1" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Taketoshi", email: "2@2" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Iroha", email: "3@3" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Tarou", email: "4@4" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Garou", email: "5@5" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Shirou", email: "6@6" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Saburou", email: "7@7" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+	{name: "Jirou", email: "8@8" , introduction: "よろしくお願いします！", password: "Ayana-43"},
+
 	])
 
 # ギャラリー
@@ -26,7 +35,8 @@ Gallery.create!([
 # 個展
 Exhibition.create!([
 	{user_id: 1 , gallery_id:1,title: "猫" , caption: "飼い猫たち" , is_active: true},
-	{user_id: 2 , gallery_id:3,title: "犬" , caption: "飼い犬たち" , is_active: true}
+	{user_id: 2 , gallery_id:3,title: "犬" , caption: "飼い犬たち" , is_active: true},
+	{user_id: 3 , gallery_id:3,title: "犬" , caption: "飼い犬たち" , is_active: true}
 	])
 
 

@@ -55,10 +55,10 @@
 						<h6>コメント一覧</h6>
 						<div class = "comments-contents">
 							<% @comments.each do |comment| %>
-							<%= link_to "削除", admins_exhibition_comments_path(exhibition_id: comment.exhibition_id, id: comment.id), method: :delete  %>
 							<%= comment.comment %>
 							by
 							<%= link_to "#{comment.user.name}",admins_user_path(comment.user.id)%>
+							<%= link_to "削除", admins_exhibition_comments_path(exhibition_id: comment.exhibition_id, id: comment.id), method: :delete ,class: "right" %>
 							<br>
 							<% end %>
 						</div>

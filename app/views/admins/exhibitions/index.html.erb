@@ -1,0 +1,41 @@
+<div class="container admin-exhibition-index">
+
+	<div class ="row">
+		<h1 class = "center">会員一覧</h1>
+		<div class="col xl8 l8 m8 s8 offset-xl2 offset-l2 offset-m2 offset-s2">
+			<table class="highlight">
+				<thead>
+					<tr>
+					<th>Title</th>
+					<th>Caption</th>
+					<th>Data</th>
+					<th>Status</th>
+					</tr>
+			        </thead>
+			        <tbody>
+					<% @exhibitions.each do |exhibition| %>
+					<tr>
+					<td>
+						<%= link_to "#{exhibition.title}" ,admins_exhibition_path(exhibition) %>
+					</td>
+					<td><%= exhibition.caption %></td>
+					<td>
+						<%= exhibition.created_at.strftime('%Y/%m/%d') %>
+					</td>
+					<td>
+					<% if exhibition.is_active == true %>
+						開催中
+					<% else %>
+						休止中
+					<% end %>
+					</td>
+					</tr>
+					<% end %>
+			        </tbody>
+			</table>
+		</div>
+	</div>
+			<div class =" row pagenate center">
+			    <%= paginate @exhibitions %>
+			</div>
+</div>

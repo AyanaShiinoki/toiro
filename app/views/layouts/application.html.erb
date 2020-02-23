@@ -76,8 +76,9 @@
         <% end %>
 <!-- 管理者ログイン時 -->
       <% elsif admin_signed_in? %>
-        <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete%>
         <%= link_to "会員一覧" , admins_users_path%>
+        <%= link_to "個展一覧" , admins_exhibitions_path%>
+        <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete%>
       <% else %>
 <!-- 未ログイン -->
         <%= link_to "Login" , new_user_session_path%>
