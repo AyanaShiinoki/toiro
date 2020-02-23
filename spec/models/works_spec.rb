@@ -46,13 +46,4 @@ RSpec.describe Work, type: :model do
 			  end
 		end
 	end
-
-	# description 'アソシエーションのテスト' do
-	# 	context 'Userとの関係' do
-	# 		it '1:Nとなっている' do
-	# 			expect(Work.reflect_on_association(:user).macro).to eq :belongs_to
-	# 		end
-	# 	end
-	# end
-
 end

@@ -30,20 +30,20 @@ RSpec.describe User, type: :system do
 				end
 
 				it 'Create Galleryボタンが表示される' do
-					expect(page).to have_button 'Create Gallery'
+					expect(page).to have_button 'Open'
 				end
 
 				it '作成に成功する' do
 					fill_in 'gallery[gallery_name]', with: Faker::Lorem.characters(number:10)
 					fill_in 'gallery[concept]', with: Faker::Lorem.characters(number:20)
-					click_button 'Create Gallery'
-					expect(page).to have_content 'ギャラリー'
+					click_button 'Open'
+					expect(current_path).to eq(users_user_path(user))
 				end
 
 				it '作成に失敗する' do
 					fill_in 'gallery[gallery_name]', with: ''
 					fill_in 'gallery[concept]', with: ''
-					click_button 'Create Gallery'
+					click_button 'Open'
 					expect(current_path).to eq(new_users_gallery_path)
 				end
 			end

@@ -12,8 +12,8 @@ RSpec.describe Gallery, type: :model do
 				expect(@gallery.valid?).to eq(false)
 			end
 
-			it '20文字以下であること' do
-				@gallery.gallery_name = Faker::Lorem.characters(number:21)
+			it '10文字以下であること' do
+				@gallery.gallery_name = Faker::Lorem.characters(number:11)
 				expect(@gallery.valid?).to eq(false)
 			end
 		end
@@ -23,8 +23,8 @@ RSpec.describe Gallery, type: :model do
 				@gallery.concept = ''
 				expect(@gallery.valid?).to eq(false)
 			end
-			it '200文字以下であること' do
-				@gallery.concept = Faker::Lorem.characters(number:201)
+			it '100文字以下であること' do
+				@gallery.concept = Faker::Lorem.characters(number:101)
 				expect(@gallery.valid?).to eq(false)
 			end
 		end

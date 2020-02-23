@@ -31,11 +31,6 @@ require 'rails_helper'
 					visit edit_users_gallery_path(user)
 					expect(current_path).to eq('/users/sign_in')
 				end
-
-				it 'フォルダ作成画面に遷移できない' do
-					visit new_users_folder_path
-					expect(current_path).to eq('/users/sign_in')
-				end
 			end
 		end
 	end
