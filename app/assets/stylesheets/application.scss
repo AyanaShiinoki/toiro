@@ -38,8 +38,11 @@ $error:'arial unicode ms';
 
 // ヘッダー
 .header{
+	// background-color: pink;
+	background: image-url('toiro-header-0.png') no-repeat;
+	background-size: 100%;
 	padding-top: 50px;
-	height: 200px;
+	height: 280px;
 	// border-bottom: double;
 	margin-bottom: 90px;
 	.links{
