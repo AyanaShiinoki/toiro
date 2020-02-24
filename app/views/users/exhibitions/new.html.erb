@@ -20,10 +20,10 @@
 
 
 <!-- 作品フォーム -->
-		<div class = "col l12 m12 s12">
+		<div class = "col xl12 l12 m12 s12">
 			<h2 class="center">作品</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
-				<div class = "col l4 m12 s12 form">
+				<div class = "col xl4 l4 m12 s12 form">
 <!-- ここでプレビュー -->
 					<div class ="work-image-pre center">
 						<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %><br>
@@ -53,8 +53,8 @@
 	</div>
 <!-- フォーム追加・開催 -->
 				<div class="row add-form">
-					<div class = "col l12 m12 s12">
-						<div class="col l5 m8 s6 offset-l10 offset-m8 offset-s8">
+					<div class = "col xl12 l12 m12 s12">
+						<div class="col xl5 l5 m8 s6 offset-xl10 offset-l10 offset-m8 offset-s8">
 						<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
 						</div>
 					</div>
