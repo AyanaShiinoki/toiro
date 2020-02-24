@@ -629,13 +629,26 @@ footer{
 	font-family: $sans;
 	margin-bottom: 100px;
 	.random-contents{
-		border-bottom: 1px solid;
-		.link{
-			color:$black;
-			font-size: 20px;
-			display: inline-block;
-			padding-bottom: 50px;
+		a{
+		color:$black;
+			&:hover{
+				color:#26c6da;
+			}
 		}
+		.back{
+			font-size: 20px;
+		}
+		.next{
+			font-size: 20px;
+		}
+		// .link{
+		// 	// padding-bottom: 100px;
+		// 	color:$black;
+		// 	font-size: 20px;
+		// 	// line-height: 200px;
+		// 	display: inline-block;
+		// 	// padding-bottom: 50px;
+		// }
 	}
 }
 
