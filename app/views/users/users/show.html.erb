@@ -18,7 +18,7 @@
             <div class="folder">
             <% if current_user!= @user %>
             <%= link_to controller: "folders", action: "index", user_id: @user.id do %>
-                <%= image_tag 'folder.svg' , :size=>"50x50"%>
+                <%= image_tag 'folder.svg' , :size=>"60x60"%>
                 <span>Folder</span>
               <% end %>
           </div>
@@ -26,12 +26,12 @@
           <div class="follow-action">
             <% if current_user.following?(@user) %>
                 <%= link_to users_user_relationships_path(@user.id),method: :delete do%>
-                  <%= image_tag 'fan.svg' , :size=>"60x60" %>
-                  <span>Following</span>
+                  <%= image_tag 'fan.svg' , :size=>"70x70" %>
+                  <span class = "following">Following</span>
                 <% end %>
             <% else %>
                 <%= link_to users_user_relationships_path(@user.id), method: :POST do %>
-                <%= image_tag 'fan.svg' , :size=>"60x60" %>
+                <%= image_tag 'fan.svg' , :size=>"70x70" %>
                 <span>Follow</span>
                 <% end %>
               <% end %>
@@ -42,7 +42,7 @@
             <div class="myfolder">
               <% if current_user == @user %>
               <%= link_to controller: "folders", action: "index", user_id: current_user.id do %>
-                <%= image_tag 'folder.svg' , :size=>"50x50"%>
+                <%= image_tag 'folder.svg' , :size=>"60x60"%>
                 <span>Folder</span>
               <% end %>
               <% end %>

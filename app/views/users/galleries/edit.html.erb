@@ -1,22 +1,30 @@
-<div class="container">
-<div class="error-box">
-	<% if @gallery.errors.any? %>
-         <h2><%= @gallery.errors.count %>件のエラーがあります</h2>
-            <ul>
-               <% @gallery.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-            </ul>
-    <% end %>
-</div>
-	<h1>Edit</h1>
-
-		<%= form_with model: @gallery, url: {controller: 'galleries', action: 'update' } do |f| %>
-
-			<label>ギャラリー名</label>
-			<%= f.text_field :gallery_name %>
-			<label>コンセプト</label>
-			<%= f.text_field :concept %>
-			<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+<div class="container gallery-edit">
+		<%= link_to users_user_path(@gallery.user) do %>
+			<i class="material-icons medium">chevron_left</i>
 		<% end %>
+	<div class="row error-box">
+		<% if @gallery.errors.any? %>
+	         <h2><%= @gallery.errors.count %>件のエラーがあります</h2>
+	            <ul>
+	               <% @gallery.errors.full_messages.each do |message| %>
+	                  <li><%= message %></li>
+	                <% end %>
+	            </ul>
+	    <% end %>
+	</div>
+	<div class = "row">
+		<div class = "col xl10 l10 m10 s10 offset-xl1 offset-l1 offset-m1 offset-s1">
+			<h1 class = "center">Gallery Edit</h1>
+				<%= form_with model: @gallery, url: {controller: 'galleries', action: 'update' } do |f| %>
+					<label>ギャラリー名</label>
+					<%= f.text_field :gallery_name %>
+					<label>コンセプト</label>
+					<%= f.text_field :concept %>
+					<div class = "update right">
+					<%= button_tag '更新', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+					</div>
+				<% end %>
+		</div>
+	</div>
+
 </div>

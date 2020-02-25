@@ -29,6 +29,8 @@ before_action :authenticate_user!, except: [:index,:show]
 		@user = User.find (params[:id])
 		if @user.update (user_params)
 			redirect_to users_user_path(@user.id)
+		else
+			render 'edit'
 		end
 	end
 

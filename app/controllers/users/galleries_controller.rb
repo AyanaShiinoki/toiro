@@ -23,8 +23,8 @@ before_action :authenticate_user!
 	end
 
 	def show
-		@gallery = Gallery.find(params[:id])
-		@user = User.find (@gallery.user.id)
+		# @gallery = Gallery.find(params[:id])
+		# @user = User.find (@gallery.user.id)
 	end
 
 	def index
@@ -41,7 +41,7 @@ before_action :authenticate_user!
 	def update
 		@gallery = Gallery.find(params[:id])
 		if @gallery.update(gallery_params)
-			redirect_to users_gallery_path(@gallery.id),notice_update: "successfully updated!"
+			redirect_to users_user_path(@gallery.user.id),notice_update: "successfully updated!"
 		else
 			redirect_to edit_users_gallery_path(@gallery)
 		end

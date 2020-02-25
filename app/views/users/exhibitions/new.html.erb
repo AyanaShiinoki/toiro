@@ -9,7 +9,7 @@
 			    <% end %>
 			</div>
 	<div class="row">
-			<h1 class="center">個展開催</h1>
+			<h2 class="center"> Exhibition</h2>
 <!-- 個展概要フォーム -->
 		<% if user_signed_in? %>
 			<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>
@@ -21,7 +21,7 @@
 
 <!-- 作品フォーム -->
 		<div class = "col xl12 l12 m12 s12">
-			<h2 class="center">作品</h2>
+			<h2 class="center">Works</h2>
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
 				<div class = "col xl4 l4 m12 s12 form">
 <!-- ここでプレビュー -->
@@ -70,7 +70,7 @@
 <script>
 $(function() {
   var fieldsCount,
-      maxFieldsCount = 4,
+      maxFieldsCount = 7,
       $addLink = $('a.add_nested_fields_link');
 
   function toggleAddLink() {

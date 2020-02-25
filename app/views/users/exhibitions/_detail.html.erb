@@ -1,10 +1,10 @@
-	<div class = "row" >
+	<div class = "row exhibition-top" >
 		<div class = "col xl7 l7 m7 s7">
-			<h1 class ="flow-text center-align"><%= exhibition.title %></h1>
+			<h1 class ="flow-text center-align title"><%= exhibition.title %></h1>
 			<p class ="center-align caption"><%= exhibition.caption %></p>
 				<div class ="right">
 					<% if exhibition.user == current_user %>
-					<%= link_to "編集" ,  edit_users_exhibition_path(exhibition.id) %>
+					<%= link_to "編集" ,  edit_users_exhibition_path(exhibition.id) ,class: "exhibition-edit" %>
 					<% end %>
 				</div>
 		</div>

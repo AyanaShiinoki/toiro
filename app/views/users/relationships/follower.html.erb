@@ -1,11 +1,14 @@
 <div class = "container follow">
+		<%= link_to users_user_path(@user) do %>
+			<i class="material-icons medium">chevron_left</i>
+		<% end %>
 	<div class = "row">
 		<div class = "col xl12 l12 m12 s12">
 		<h1>Following</h1>
 			<% if @users.count > 0 %>
 				<%= render '/users/users/index', users: @users %>
 				<% else %>
-				<p>いません。</p>
+				<p>フォローしているユーザーはいません。</p>
 			<% end %>
 		</div>
 	</div>
