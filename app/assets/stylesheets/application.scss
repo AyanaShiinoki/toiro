@@ -100,6 +100,8 @@ $sp: 480px;  // スマホ
 				// top:0;
 				background-color:rgba(145, 219, 198, 0.3);
 				height:50px;
+				border-bottom:double;
+				border-color: $gray;
 				// padding-top: 50px;
 				.current-gallery{
 					margin-bottom: 20px;
@@ -180,7 +182,47 @@ $sp: 480px;  // スマホ
 
 
 footer{
-	height: 300px;
+	height: 200px;
+	background-color: #80cbc4;
+	opacity: 0.6;
+	margin-top: 100px;
+	border-top:double;
+	border-color: $gray;
+	font-family: $sans;
+	margin-bottom: 0;
+	.row{
+		margin-bottom: 0;
+		h1{
+			margin-bottom: 10px;
+		}
+		h5{
+			border-bottom: 1px solid;
+		}
+		.concept{
+			color: $black;
+			font-size: 20px;
+			border:1px solid;
+			padding: 5px 10px;
+			transition:.2s;
+			&:hover{
+				transition:.2s;
+				color: white;
+				background-color: $black;
+			}
+		}
+		.contents{
+			margin-top: 10px;
+			font-size: 18px;
+			a{
+				color: $black;
+				transition:.2s;
+				&:hover{
+					transition:.2s;
+					color:#fafafa;
+				}
+			}
+		}
+	}
 }
 
 .signup{
@@ -364,7 +406,7 @@ footer{
 		}
 		.show-link{
 			a{
-			color: $black;
+			color: #006064 ;
 			font-size: 20px;
 			transition:.2s;
 			&:hover{
@@ -1042,7 +1084,6 @@ footer{
 
 // 管理者ユーザー詳細
 .admin-user-show{
-
 	.exhibition-index{
 		font-size: 15px;
 	}
@@ -1055,11 +1096,18 @@ footer{
 		margin-right: 0;
 	}
 
+}
 
+// 管理者のユーザー編集
 
-	// .user-content{
-	// 	margin:0 auto;
-	// }
+.admin-user-edit{
+	.backlink{
+		color: $black;
+		font-size: 20px;
+		&:hover{
+			color:$pink;
+		}
+	}
 }
 
 // 管理者の個展詳細
@@ -1071,6 +1119,31 @@ footer{
 		overflow: scroll;
 		height: 200px;
 		// background-color: pink;
+	}
+}
+
+
+// 管理者個展編集画面
+.admin-exhibition-edit{
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
+	.ex-form{
+		width: 500px;
+	}
+	#modal_delete{
+		width: 600px;
+		border-radius: 10px;
+	}
+	.backlink{
+		color: $black;
+		font-size: 20px;
+		&:hover{
+			color:$pink;
+		}
 	}
 }
 

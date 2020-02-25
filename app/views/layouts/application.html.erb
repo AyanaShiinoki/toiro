@@ -100,6 +100,53 @@
     <%= yield %>
 
 <footer>
+<div class = "container">
+  <div class = "row">
+    <div class = "col xl10 l10 m10 s10 footer-contents center">
+      <div class = "col xl4 l4 m4 s4">
+        <h1 class = "center">Toiro</h1>
+        <%= link_to "Concept", home_about_path,class: "concept" %>
+      </div>
+      <div class = "col xl4 l4 m4 s4 contents">
+        <h5>Main Contents</h5>
+        <ul>
+          <% if user_signed_in? %>
+            <% if current_user.gallery == nil %>
+              <li><%= link_to "ギャラリー作成",new_users_gallery_path %></li>
+            <% else %>
+              <li><%= link_to "個展開催", new_users_exhibition_path %></li>
+           <% end %>
+            <li><%= link_to "個展一覧", users_exhibitions_path %></li>
+            <li><%= link_to "クリエイター一覧", users_users_path %></li>
+            <li><%= link_to "ギャラリー一覧", users_galleries_path %></li>
+          <% elsif admin_signed_in? %>
+            <li><%= link_to "会員一覧" , admins_users_path%></li>
+            <li><%= link_to "個展一覧" , admins_exhibitions_path%></li>
+          <% else %>
+            <li><%= link_to "個展一覧", users_exhibitions_path %></li>
+            <li><%= link_to "クリエイター一覧", users_users_path %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class = "col xl4 l4 m4 s4 contents">
+        <h5>Login & Sign Up</h5>
+        <ul>
+          <% if user_signed_in? %>
+          <li><%= link_to "ログアウト" ,destroy_user_session_path , method: :delete %></li>
+          <% elsif admin_signed_in? %>
+          <li><%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "新規登録" , new_user_registration_path%></li>
+          <li><%= link_to "ユーザーログイン" , new_user_session_path%></li>
+          <li><%= link_to "管理者はこちら" , new_admin_session_path%></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </footer>
 
