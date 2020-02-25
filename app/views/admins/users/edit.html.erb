@@ -1,5 +1,5 @@
 <div class ="container admin-user-edit">
-
+		<%= link_to "＜ 会員詳細へ" ,admins_user_path(@user),class: "backlink" %>
 <div class="error-box">
 	<% if @user.errors.any? %>
          <h2><%= @user.errors.count %>件のエラーがあります</h2>

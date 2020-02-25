@@ -1,12 +1,29 @@
 <div class = "container folder-edit">
+	<div class="row error-box">
+		<% if @folder.errors.any? %>
+	         <h5><%= @folder.errors.count %>件のエラーがあります</h5>
+	            <ul>
+	               <% @folder.errors.full_messages.each do |message| %>
+	                  <li><%= message %></li>
+	                <% end %>
+	            </ul>
+	    <% end %>
+	</div>
+		<%= link_to controller: "folders", action: "index", user_id: @folder.user.id do %>
+			<i class="material-icons medium">chevron_left</i>
+		<% end %>
 	<div class = "row">
-		<h1>Folder Edit</h1>
-		<div class = "col xl6 l6 m6 s6">
+		<div class = "col xl6 l6 m6 s6 offset-xl3 offset-l3 offset-m3 offset-s3">
+			<h1 class = "center" >Folder Edit</h1>
 			<%= form_with model: [:users, @folder] do |f| %>
 					<%= f.text_field :folder_name %>
-					 <%= button_tag '更新', class: 'btn waves-effect waves-green', type: 'button', onclick: 'submit();' %>
+					<div class = "row right">
+					<%= button_tag '更新', class: 'btn-large waves-effect waves-green', type: 'button', onclick: 'submit();' %>
+					</div>
 			<% end %>
-			<%= link_to "削除する", users_folder_path(@folder.id), method: :delete ,class: "waves-effect waves-light btn red darken-1"%>
 		</div>
+	</div>
+	<div class = "row center">
+		<%= link_to "削除する", users_folder_path(@folder.id), method: :delete ,class: "waves-effect waves-light btn-small red darken-1"%>
 	</div>
 </div>

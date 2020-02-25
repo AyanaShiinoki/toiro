@@ -3,7 +3,7 @@
 		<div class = "col xl3 l3 m4 s4">
 			<%= link_to users_user_path(user) do %>
 				<div class = "user-info card">
-					<%= attachment_image_tag user, :user_image, :fill, 100, 100, format: 'jpeg',class:"user-image responsive-img" %><br>
+					<%= attachment_image_tag user, :user_image, :fill, 100, 100, format: 'jpeg',class:"user-image responsive-img", fallback: "noimage2.png", size:'100x100'%><br>
 					<h5><%= user.name %></h5>
 					<p><%= user.introduction %></p>
 					<h5><%= user.gallery.gallery_name %></h5>

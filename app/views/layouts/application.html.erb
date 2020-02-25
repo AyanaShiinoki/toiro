@@ -14,78 +14,139 @@
 
   <body>
 <!-- ヘッダー -->
-  <div class=" header center">
-        <%= link_to root_path do %>
-          <h4>toiro</h4>
-        <% end %>
-<!-- ユーザーログイン時 -->
-      <% if user_signed_in? %>
-      <% if current_user.gallery == nil %>
-      ようこそ <%= link_to "#{current_user.name}", users_user_path(current_user.id) %>さん
-        <%= link_to  new_users_gallery_path do %>
-        ギャラリーを開く
-        <% end %>
-      <% else %>
-        <%= link_to users_user_path(current_user) do %>
-          <%= current_user.gallery.gallery_name %>
-        <% end %>
-      <% end %>
-      <div class = "notificationbar">
-        <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
-          <% if unchecked_notifications.any?%>
-            <i class="material-icons Medium">notifications</i>
-            <%= render 'users/notifications/index' %>
-          <% else %>
-            <i class="material-icons Medium">alarm</i>
-            <%= render 'users/notifications/index' %>
-          <% end %>
-        <% end %>
-      </div>
-    <div class = "links">
-          <% if current_user.gallery == nil %>
-            <%= link_to  new_users_gallery_path do %>
-              ギャラリー作成
-            <% end %>
-          <% else %>
-            <%= link_to new_users_exhibition_path do%>
-             ひらく
-            <% end %>
-          <% end %>
-        <a class="modal-trigger" href="#modal2">みる</a>
-        <div id="modal2" class="modal">
-          <div class="modal-content container">
-              <%= link_to users_exhibitions_path do %>
-                <%= image_tag 'exhibition.svg' , :size=>"80x50"%>
-              <% end %>
-              <%= link_to users_galleries_path do %>
-                <%= image_tag 'gallery.svg' , :size=>"100x50"%>
-              <% end %>
-              <%= link_to users_users_path do %>
-                <%= image_tag 'creator.svg' , :size=>"100x50"%>
-              <% end %>
-          </div>
+  <div class= "header" >
+    <div class = "header-cover" >
+    <!-- ユーザーログイン時 -->
+      <div class = "header-contents">
+        <div class = "row">
+
+                <div class = "logo center">
+                  <% if admin_signed_in? %>
+                      <%= link_to admins_root_path do %>
+                        <%= image_tag 'toiro-logo.svg', :size=>"200x200" ,class: "logo-image" %>
+                      <% end %>
+                  <% else %>
+                      <%= link_to root_path do %>
+                        <%= image_tag 'toiro-logo.svg', :size=>"200x200" ,class: "logo-image" %>
+                      <% end %>
+                  <% end %>
+                </div>
+
+              <div class = "session">
+                <% if user_signed_in? %>
+                  <%= link_to "Logout" ,destroy_user_session_path , method: :delete ,class: "logout" %>
+                <% elsif admin_signed_in? %>
+                  <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete,class: "admin-logout" %>
+                <% else %>
+                    <%= link_to "管理者はこちら" , new_admin_session_path,class: "admin-login"%>
+                <% end %>
+              </div>
+
+                <div class = "links center">
+                  <% if user_signed_in? %>
+
+                      <% if current_user.gallery == nil %>
+                        <%= link_to "ギャラリー作成",new_users_gallery_path %>
+                      <% else %>
+                        <%= link_to "ひらく", new_users_exhibition_path %>
+                      <% end %>
+                    <a class="modal-trigger" href="#modal2">みる</a>
+                    <div id="modal2" class="modal">
+                      <div class="modal-content container watch">
+                          <%= link_to "個展" ,users_exhibitions_path,class: "exhibition" %>
+                          <%= link_to  "ギャラリー" ,users_galleries_path,class: "gallery" %>
+                          <%= link_to "クリエイター",users_users_path,class: "user" %>
+                      </div>
+                    </div>
+                    <div class = "current-gallery">
+                      <% if current_user.gallery == nil %>
+                      ようこそ <%= link_to "#{current_user.name}", users_user_path(current_user.id) %>さん
+                        <%= link_to  new_users_gallery_path do %>
+                        ギャラリーを開く
+                        <% end %>
+                      <% else %>
+                        <%= link_to "#{current_user.gallery.gallery_name}",users_user_path(current_user) %>
+                      <% end %>
+                    </div>
+                    <div class = "notificationbar">
+                      <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
+                        <% if unchecked_notifications.any?%>
+                          <i class="material-icons Medium">notifications</i>
+                          <%= render 'users/notifications/index' %>
+                        <% else %>
+                          <i class="material-icons Medium">alarm</i>
+                          <%= render 'users/notifications/index' %>
+                        <% end %>
+                      <% end %>
+                    </div>
+            <!-- 管理者ログイン時 -->
+                <% elsif admin_signed_in? %>
+                    <%= link_to "会員一覧" , admins_users_path%>
+                    <%= link_to "個展一覧" , admins_exhibitions_path%>
+                <% else %>
+            <!-- 未ログイン -->
+                    <%= link_to "個展一覧" , users_exhibitions_path%>
+                    <%= link_to "クリエイター一覧" , users_users_path%>
+                    <%= link_to "Login" , new_user_session_path%>
+                    <%= link_to "Sign Up" , new_user_registration_path%>
+                  <% end %>
+                </div>
+
         </div>
-        <%= link_to destroy_user_session_path , method: :delete do %>
-           ログアウト
-        <% end %>
-<!-- 管理者ログイン時 -->
-      <% elsif admin_signed_in? %>
-        <%= link_to "会員一覧" , admins_users_path%>
-        <%= link_to "個展一覧" , admins_exhibitions_path%>
-        <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete%>
-      <% else %>
-<!-- 未ログイン -->
-        <%= link_to "Login" , new_user_session_path%>
-        <%= link_to "個展一覧" , users_exhibitions_path%>
-        <%= link_to "クリエイター一覧" , users_users_path%>
-        <%= link_to "管理者ログイン" , new_admin_session_path%>
-      <% end %>
+      </div>
     </div>
   </div>
     <!-- ヘッダー -->
     <%= yield %>
 
 <footer>
+<div class = "container">
+  <div class = "row">
+    <div class = "col xl10 l10 m10 s10 footer-contents center">
+      <div class = "col xl4 l4 m4 s4">
+        <h1 class = "center">Toiro</h1>
+        <%= link_to "Concept", home_about_path,class: "concept" %>
+      </div>
+      <div class = "col xl4 l4 m4 s4 contents">
+        <h5>Main Contents</h5>
+        <ul>
+          <% if user_signed_in? %>
+            <% if current_user.gallery == nil %>
+              <li><%= link_to "ギャラリー作成",new_users_gallery_path %></li>
+            <% else %>
+              <li><%= link_to "個展開催", new_users_exhibition_path %></li>
+           <% end %>
+            <li><%= link_to "個展一覧", users_exhibitions_path %></li>
+            <li><%= link_to "クリエイター一覧", users_users_path %></li>
+            <li><%= link_to "ギャラリー一覧", users_galleries_path %></li>
+          <% elsif admin_signed_in? %>
+            <li><%= link_to "会員一覧" , admins_users_path%></li>
+            <li><%= link_to "個展一覧" , admins_exhibitions_path%></li>
+          <% else %>
+            <li><%= link_to "個展一覧", users_exhibitions_path %></li>
+            <li><%= link_to "クリエイター一覧", users_users_path %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class = "col xl4 l4 m4 s4 contents">
+        <h5>Login & Sign Up</h5>
+        <ul>
+          <% if user_signed_in? %>
+          <li><%= link_to "ログアウト" ,destroy_user_session_path , method: :delete %></li>
+          <% elsif admin_signed_in? %>
+          <li><%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "新規登録" , new_user_registration_path%></li>
+          <li><%= link_to "ユーザーログイン" , new_user_session_path%></li>
+          <li><%= link_to "管理者はこちら" , new_admin_session_path%></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </footer>
 

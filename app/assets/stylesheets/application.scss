@@ -35,40 +35,194 @@ $dotum: Dotum;
 $gothic: 'arial narrow';
 $error:'arial unicode ms';
 
+$pc: 1024px; // PC
+$tab: 680px; // タブレット
+$sp: 480px;  // スマホ
+
+@mixin session{
+	top:30px;
+	right: 50px;
+	position: absolute;
+	border:1px dotted;
+	border-color: #2c3a36;
+	background-color:rgba(229, 120, 115, 0.3);
+	padding: 5px 10px;
+	border-radius: 10px;
+	font-size: 20px;
+	transition:.2s;
+	&:hover{
+		background-color:rgba(229, 120, 115, 0.8);
+		transition:.2s;
+	}
+}
+
 
 // ヘッダー
 .header{
-	// background-color: pink;
 	background: image-url('toiro-header-0.png') no-repeat;
-	background-size: 100%;
-	padding-top: 50px;
+	background-color:rgba(255, 255, 255, 0.7);
+	background-size: cover;
 	height: 280px;
-	// border-bottom: double;
-	margin-bottom: 90px;
-	.links{
-		a{
-		color: $black;
-		font-size: 25px;
-		font-family: 'Noto Serif JP', serif;
-		}
-	}
-	.style_image {
-	  margin: 0 15px;
-	}
+	margin-bottom: 150px;
+	padding-bottom: 20px;
+	.header-cover{
+		background-color:rgba(255, 255, 255, 0.7);
+		background-size: cover;
+		padding-top: 20px;
+		position: relative;
+		.header-contents{
 
-	#modal2{
-	width: 700px;
-	border-radius: 100px;
-	background: rgba(255,255,255,1);
-	padding: 5px;
-		img{
-			margin: 0 15px;
+			height: 280px;
+			.logo{
+				.logo-image{
+					// margin-top: 40px;
+				}
+			}
+			a{
+			color: #2c3a36;
+			}
+			.session{
+				.logout{
+					@include session;
+				}
+				.admin-logout{
+					@include session;
+				}
+				.admin-login{
+					@include session;
+				}
+
+			}
+			.links{
+				position: absolute;
+				width: 100%;
+				bottom: 20px;
+				// top:0;
+				background-color:rgba(145, 219, 198, 0.3);
+				height:50px;
+				border-bottom:double;
+				border-color: $gray;
+				// padding-top: 50px;
+				.current-gallery{
+					margin-bottom: 20px;
+					// margin-left: 200px;
+					// border-bottom: double;
+					display: inline-block;
+				}
+				a{
+				line-height: 50px;
+				color: #2c3a36;
+				font-size: 25px;
+				font-family:$sans;
+				}
+			}
+			.style_image {
+			  margin: 0 15px;
+			}
+
+			#modal2{
+				width: 700px;
+				border-radius: 10px;
+				background: rgba(255,255,255,1);
+				padding: 5px;
+				.watch{
+					.gallery{
+						margin: 0 50px;
+					}
+					a{
+						&:hover{
+							color: $pink;
+						}
+					}
+				}
+			}
 		}
 	}
 }
 
+// 通知
+.notificationbar{
+	display: inline-block;
+
+		.notification{
+			// text-align: center;
+			.sidenav{
+				background-color: $ghost;
+				padding:50px 20px 0 20px;
+				border-radius: 10px;
+				width: 450px;
+				.index{
+					text-align: center;
+					font-family: $gothic;
+					color: #17171a;
+					margin-bottom: 40px;
+				}
+
+				.notification-content{
+					border-bottom: 1px dotted;
+					border-width: 90%;
+					padding-bottom: 0px;
+					a{
+					font-size: 18px;
+					font-family: $gothic;
+					}
+					.notification_user{
+						vertical-align: middle;
+						border-radius: 50%;
+					}
+				}
+
+			}
+
+		}
+}
+
+
+
+
+
 footer{
-	height: 300px;
+	height: 200px;
+	background-color: #80cbc4;
+	opacity: 0.6;
+	margin-top: 100px;
+	border-top:double;
+	border-color: $gray;
+	font-family: $sans;
+	margin-bottom: 0;
+	.row{
+		margin-bottom: 0;
+		h1{
+			margin-bottom: 10px;
+		}
+		h5{
+			border-bottom: 1px solid;
+		}
+		.concept{
+			color: $black;
+			font-size: 20px;
+			border:1px solid;
+			padding: 5px 10px;
+			transition:.2s;
+			&:hover{
+				transition:.2s;
+				color: white;
+				background-color: $black;
+			}
+		}
+		.contents{
+			margin-top: 10px;
+			font-size: 18px;
+			a{
+				color: $black;
+				transition:.2s;
+				&:hover{
+					transition:.2s;
+					color:#fafafa;
+				}
+			}
+		}
+	}
 }
 
 .signup{
@@ -252,7 +406,7 @@ footer{
 		}
 		.show-link{
 			a{
-			color: $black;
+			color: #006064 ;
 			font-size: 20px;
 			transition:.2s;
 			&:hover{
@@ -261,6 +415,17 @@ footer{
 				border-bottom: 1px solid;
 			}
 			}
+		}
+	}
+}
+
+// ギャラリー編集
+.gallery-edit{
+	font-family: $sans;
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
 		}
 	}
 }
@@ -362,6 +527,7 @@ footer{
 		.folder{
 			width: 100px;
 			display: inline-block;
+			font-size: 20px;
 			span{
 				display: block;
 				color: $black;
@@ -376,6 +542,10 @@ footer{
 				display: block;
 				color: $black;
 				text-align: center;
+				font-size: 20px;
+			}
+			.following{
+				color: $green;
 			}
 		}
 
@@ -391,17 +561,20 @@ footer{
 		.myfolder{
 			width: 100px;
 			display: inline-block;
+			font-size: 20px;
 		}
 		.friend{
 			display: inline-block;
 			margin: 0 10px;
+			font-size: 20px;
 		}
 		.edit{
 			display: inline-block;
 			margin-left: 15px;
+			font-size: 20px;
 			#modal-edit{
 				width: 500px;
-				border-radius: 100px;
+				border-radius: 10px;
 				.edit-contents{
 					padding-top:30px;
 					padding-bottom: 40px;
@@ -419,7 +592,7 @@ footer{
 	}
 		#modal-follow{
 			width: 500px;
-			border-radius: 100px;
+			border-radius: 10px;
 			.follow-contents{
 					padding-top:30px;
 					padding-bottom: 40px;
@@ -453,6 +626,7 @@ footer{
 		}
 		a{
 			transition:.2s;
+			color: $black;
 			&:hover{
 				opacity: 0.8;
 				transition:.2s;
@@ -466,9 +640,16 @@ footer{
 
 // ユーザ編集
 .user-edit{
+	font-family: $sans;
 	#modal-user-delete{
 		width: 500px;
 		border-radius: 10px;
+	}
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
 	}
 }
 
@@ -497,9 +678,26 @@ footer{
 	}
 }
 
+// フォルダ編集
+.folder-edit{
+	font-family: $sans;
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
+}
+
 // フォルダ一覧
 .folder-index{
 	font-family: $sans;
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
 	h3{
 		margin-bottom: 60px;
 	}
@@ -557,6 +755,7 @@ footer{
 	.modal{
 		width: 500px;
 		padding: 20px;
+		border-radius: 10px;
 	}
 }
 
@@ -641,14 +840,6 @@ footer{
 		.next{
 			font-size: 20px;
 		}
-		// .link{
-		// 	// padding-bottom: 100px;
-		// 	color:$black;
-		// 	font-size: 20px;
-		// 	// line-height: 200px;
-		// 	display: inline-block;
-		// 	// padding-bottom: 50px;
-		// }
 	}
 }
 
@@ -656,32 +847,47 @@ footer{
 // 個展詳細
 .exhibition-show{
 	font-family: $sans;
-	.caption{
-		font-size: 20px;
+	color: $black;
+	border-color: $black;
+	.exhibition-top{
+		margin-bottom: 100px;
+		.title{
+			border-bottom: double;
+		}
+		.caption{
+			font-size: 20px;
+		}
+		.exhibition-edit{
+			color: $black;
+			&:hover{
+				color: $pink;
+			}
+		}
 	}
 	.works{
 		border-bottom: 1px dotted;
 		border-color: $black;
-		margin-bottom: 30px;
-		padding: 20px 0;
+		margin-bottom: 100px;
+		padding: 70px 0 90px 0;
 		.work-image{
 			width: 340px;
 			height: 340px;
 			padding-top: 20px;
-			background: image-url('Flame2.png') no-repeat center;
+			// background: image-url('Flame2.png') no-repeat center;
 			margin: 0 auto;
 
 		}
+		.work-title{
+			border-bottom: 1px solid;
+		}
 	}
 	.comment{
-
 		padding: 10px;
 		margin-bottom: 50px;
 		border: 1px solid;
 		position: relative;
 		height: 500px;
 		overflow: scroll;
-
 		.comment-content{
 			border-bottom: 1px solid;
 			p{
@@ -715,93 +921,92 @@ footer{
 
 
 
-	.card{
-		margin: 0 auto;
-		width: 300px;
-		padding: 10px;
-		background-color: $snow;
-		text-align: center;
+.card{
+	margin: 0 auto;
+	width: 300px;
+	padding: 10px;
+	background-color: $snow;
+	text-align: center;
+	transition:.2s;
+	color: $black;
+	&:hover{
 		transition:.2s;
-		color: $black;
-		&:hover{
-			transition:.2s;
-			opacity:0.9;
-			background-color:$ghost;
-			transform: scale(1.1);
-		}
-		h5{
-			margin:0;
-		}
+		opacity:0.9;
+		background-color:$ghost;
+		transform: scale(1.1);
 	}
+	h5{
+		margin:0;
+	}
+}
 
 	.send-flower{
 		.send{
-			margin-top: 30px;
+			margin-top: 60px;
+		}
+	}
+	.add-folder{
+		font-size: 20px;
+		.modal{
+			border-radius: 10px;
+			width: 500px;
+		}
+		.btn{
+			margin-left: 20px;
 		}
 	}
 
 }
-
-		.flower{
-			// background-color: $snow;
-			// border: 1px solid;
-			border: 1px solid;
-			height: 500px;
-			padding: 10px;
-			overflow: scroll;
-			h5{
-				// margin: 0;
+.flower{
+	border: 1px solid;
+	height: 500px;
+	padding: 10px;
+	overflow: scroll;
+	.flower-user{
+		margin-bottom: 10px;
+			.user-image{
+				margin-right: 10px;
+				border-radius: 10px;
 			}
-			.flower-user{
-				margin-bottom: 10px;
-				.user-image{
-					margin-right: 10px;
-					border-radius: 10px;
-				}
-			}
-
-		}
-
-
-// 通知
-.notification{
-	// text-align: center;
-	.sidenav{
-		background-color: $ghost;
-		padding:50px 20px 0 20px;
-		border-radius: 10px;
-		width: 450px;
-		.index{
-			text-align: center;
-			font-family: $sans;
-			color: #17171a;
-			margin-bottom: 40px;
-		}
-
-		.notification-content{
-			// overflow: scroll;
-			border-bottom: 1px dotted;
-			border-width: 90%;
-			padding-bottom: 20px;
-			.notification_user{
-				vertical-align: middle;
-				border-radius: 50%;
-			}
-		}
-
 	}
 
 }
-
 #info{
 	width: 200px;
 	height: 200px;
 	background-color: pink;
 }
 
+// 個展編集画面
+.exhibition-edit{
+	font-family: $sans;
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
+	.ex-form{
+		width: 500px;
+	}
+	#modal_delete{
+		width: 600px;
+		border-radius: 10px;
+	}
+}
+
+
+
 
 // フォロー
 .follow{
+	font-family: $sans;
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
 	h1{
 		border-bottom: 1px solid;
 	}
@@ -811,7 +1016,6 @@ footer{
 		border-radius: 5px;
 		transition:.2s;
 		color:#37474f;
-		// background-color: $snow;
 		h5{
 			border-bottom: 1px solid;
 		}
@@ -820,10 +1024,9 @@ footer{
 			background-color:#b2dfdb;
 			transform: scale(1.05);
 		}
-
-	.user-image{
-		border-radius: 5px;
-	}
+		.user-image{
+			border-radius: 5px;
+		}
 	}
 }
 
@@ -881,7 +1084,6 @@ footer{
 
 // 管理者ユーザー詳細
 .admin-user-show{
-
 	.exhibition-index{
 		font-size: 15px;
 	}
@@ -894,11 +1096,18 @@ footer{
 		margin-right: 0;
 	}
 
+}
 
+// 管理者のユーザー編集
 
-	// .user-content{
-	// 	margin:0 auto;
-	// }
+.admin-user-edit{
+	.backlink{
+		color: $black;
+		font-size: 20px;
+		&:hover{
+			color:$pink;
+		}
+	}
 }
 
 // 管理者の個展詳細
@@ -913,18 +1122,32 @@ footer{
 	}
 }
 
-// 個展編集画面
-.exhibition-edit{
 
+// 管理者個展編集画面
+.admin-exhibition-edit{
+	.material-icons{
+		color: $black;
+		&:hover{
+		color: $pink;
+		}
+	}
 	.ex-form{
 		width: 500px;
 	}
-
 	#modal_delete{
 		width: 600px;
 		border-radius: 10px;
 	}
+	.backlink{
+		color: $black;
+		font-size: 20px;
+		&:hover{
+			color:$pink;
+		}
+	}
 }
+
+
 
 
 // 管理者
@@ -933,12 +1156,6 @@ footer{
 .admin-user-index{
 
 }
-
-
-
-
-
-
 
 
 

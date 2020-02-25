@@ -21,7 +21,7 @@ namespace :users do
     get 'follows' => 'relationships#follower', as: 'follows'
     get 'followers' => 'relationships#followed', as: 'followers'
   end
-  resources :galleries, except: [:destroy]
+  resources :galleries, except: [:destroy,:show]
   resources :exhibitions do
     resource :comments, only: [:new, :create, :destroy]
     resource :likes, only: [:create, :destroy]

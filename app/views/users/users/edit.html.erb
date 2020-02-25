@@ -1,7 +1,20 @@
 <div class="container user-edit">
+		<%= link_to users_user_path(@user) do %>
+			<i class="material-icons medium">chevron_left</i>
+		<% end %>
+	<div class="row error-box">
+		<% if @user.errors.any? %>
+	         <h5><%= @user.errors.count %>件のエラーがあります</h5>
+	            <ul>
+	               <% @user.errors.full_messages.each do |message| %>
+	                  <li><%= message %></li>
+	                <% end %>
+	            </ul>
+	    <% end %>
+	</div>
 	<div class = "row">
 		<div class = "col xl12 l12 m12 s12">
-			<h1 class = "center">Edit</h1>
+			<h1 class = "center">User Edit</h1>
 			<%= form_with model: @user, url: {controller: 'users' , action: 'update' } do |f| %>
 				<div class = "col xl6 l6 m6 s6 center">
 <!-- 変更 -->

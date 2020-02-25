@@ -1,4 +1,16 @@
 <div class="container exhibition-edit">
+		<%= link_to users_exhibition_path(@exhibition) do %>
+			<i class="material-icons medium">chevron_left</i>
+		<% end %>
+	<div class="row error-box">
+		<% if @exhibition.errors.any? %>
+			   <h5><%= @exhibition.errors.count %>件のエラーがあります</h5>
+			   <ul>
+			   <% @exhibition.errors.full_messages.each do |message| %>
+			   <li><%= message %></li>
+			   <% end %>
+		<% end %>
+	</div>
 	<div class="row works">
 		<h1 class = "center" >Edit</h1>
 		<% if user_signed_in? %>
@@ -80,7 +92,7 @@
 
 
 
-<% work_count = 5 - @exhibition.works.count %>
+<% work_count = 8 - @exhibition.works.count %>
 
 <script>
 $(function() {

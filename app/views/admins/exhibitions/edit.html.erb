@@ -1,4 +1,6 @@
-<div class="container exhibition-edit">
+<div class="container admin-exhibition-edit">
+		<%= link_to "＜ 個展一覧へ" ,admins_user_path(@exhibition.user),class: "backlink" %><br>
+		<%= link_to "＜ 会員一覧へ" ,admins_exhibitions_path,class: "backlink" %>
 	<div class="row works">
 		<h1 class = "center" >Edit</h1>
 		<% if admin_signed_in? %>
