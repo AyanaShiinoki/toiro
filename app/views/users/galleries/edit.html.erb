@@ -4,7 +4,7 @@
 		<% end %>
 	<div class="row error-box">
 		<% if @gallery.errors.any? %>
-	         <h2><%= @gallery.errors.count %>件のエラーがあります</h2>
+	         <h5><%= @gallery.errors.count %>件のエラーがあります</h5>
 	            <ul>
 	               <% @gallery.errors.full_messages.each do |message| %>
 	                  <li><%= message %></li>
