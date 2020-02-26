@@ -43,7 +43,7 @@ before_action :authenticate_user!
 		if @gallery.update(gallery_params)
 			redirect_to users_user_path(@gallery.user.id),notice_update: "successfully updated!"
 		else
-			redirect_to edit_users_gallery_path(@gallery)
+			render 'edit'
 		end
 	end
 
