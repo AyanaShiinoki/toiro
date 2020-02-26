@@ -89,4 +89,4 @@ gem 'faker'
 
 gem 'paranoia'
 
-gem "chartkick"
+gem "font-awesome-rails"

@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-
+<script src="https://kit.fontawesome.com/6912a1db92.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
@@ -23,11 +23,11 @@
                 <div class = "logo center">
                   <% if admin_signed_in? %>
                       <%= link_to admins_root_path do %>
-                        <%= image_tag 'toiro-logo.svg', :size=>"200x200" ,class: "logo-image" %>
+                        <%= image_tag 'toiro-logo.svg', :size=>"190x190" ,class: "logo-image" %>
                       <% end %>
                   <% else %>
                       <%= link_to root_path do %>
-                        <%= image_tag 'toiro-logo.svg', :size=>"200x200" ,class: "logo-image" %>
+                        <%= image_tag 'toiro-logo.svg', :size=>"190x190" ,class: "logo-image" %>
                       <% end %>
                   <% end %>
                 </div>
@@ -39,56 +39,58 @@
                   <%= link_to "管理者ログアウト" , destroy_admin_session_path, method: :delete,class: "admin-logout" %>
                 <% else %>
                     <%= link_to "管理者はこちら" , new_admin_session_path,class: "admin-login"%>
+                    <%= link_to "Login" , new_user_session_path, class: "user-login" %>
+                    <%= link_to "Sign Up" , new_user_registration_path, class: "user-signup" %>
                 <% end %>
               </div>
 
                 <div class = "links center">
                   <% if user_signed_in? %>
-
                       <% if current_user.gallery == nil %>
-                        <%= link_to "ギャラリー作成",new_users_gallery_path %>
+                        <%= link_to new_users_gallery_path ,class: "build-gallery" do %>
+                        ギャラリー作成<i class="fas fa-store-alt"></i>
+                        <% end %>
                       <% else %>
-                        <%= link_to "ひらく", new_users_exhibition_path %>
+                        <%= link_to new_users_exhibition_path,class: "hold-link" do %>
+                        　ひらく<i class="fas fa-store-alt"></i>
+                        <% end %>
                       <% end %>
-                    <a class="modal-trigger" href="#modal2">みる</a>
+                    <a class="modal-trigger  watch-link" href="#modal2">みる<i class="fas fa-door-open"></i></a>
                     <div id="modal2" class="modal">
-                      <div class="modal-content container watch">
+                      <div class="modal-content center container watch">
                           <%= link_to "個展" ,users_exhibitions_path,class: "exhibition" %>
                           <%= link_to  "ギャラリー" ,users_galleries_path,class: "gallery" %>
                           <%= link_to "クリエイター",users_users_path,class: "user" %>
                       </div>
                     </div>
-                    <div class = "current-gallery">
+                    <br><div class = "current-gallery">
                       <% if current_user.gallery == nil %>
-                      ようこそ <%= link_to "#{current_user.name}", users_user_path(current_user.id) %>さん
-                        <%= link_to  new_users_gallery_path do %>
-                        ギャラリーを開く
-                        <% end %>
+                      ようこそ <%= link_to "#{current_user.name}", users_user_path(current_user.id),class: "current_username" %>さん
+                        <p class = "open-gallery">早速ギャラリーを開きましょう！</p>
                       <% else %>
-                        <%= link_to "#{current_user.gallery.gallery_name}",users_user_path(current_user) %>
+                        ようこそ<%= link_to "#{current_user.name}",users_user_path(current_user),class: "current_username" %>さん
                       <% end %>
                     </div>
                     <div class = "notificationbar">
                       <%= link_to users_notifications_path, :data => {:target=>"slide-out"},:class=>"sidenav-trigger" do %>
                         <% if unchecked_notifications.any?%>
-                          <i class="material-icons Medium">notifications</i>
+                          <i class="far fa-bell true"></i>
                           <%= render 'users/notifications/index' %>
                         <% else %>
-                          <i class="material-icons Medium">alarm</i>
+                          <i class="far fa-bell false"></i>
                           <%= render 'users/notifications/index' %>
                         <% end %>
                       <% end %>
                     </div>
             <!-- 管理者ログイン時 -->
                 <% elsif admin_signed_in? %>
-                    <%= link_to "会員一覧" , admins_users_path%>
-                    <%= link_to "個展一覧" , admins_exhibitions_path%>
+                    <%= link_to "会員一覧" , admins_users_path,class: "admin-users" %>
+                    <%= link_to "個展一覧" , admins_exhibitions_path,class: "admin-exhibitions" %>
                 <% else %>
             <!-- 未ログイン -->
-                    <%= link_to "個展一覧" , users_exhibitions_path%>
-                    <%= link_to "クリエイター一覧" , users_users_path%>
-                    <%= link_to "Login" , new_user_session_path%>
-                    <%= link_to "Sign Up" , new_user_registration_path%>
+                    <%= link_to "開催中の個展" , users_exhibitions_path, class: "unlogin" %>
+                    <%= link_to "クリエイター" , users_users_path, class: "unlogin" %>
+                    <p class = "center">会員登録をすると個展が開催できます!</p>
                   <% end %>
                 </div>
 
@@ -102,7 +104,7 @@
 <footer>
 <div class = "container">
   <div class = "row">
-    <div class = "col xl10 l10 m10 s10 footer-contents center">
+    <div class = "col xl10 l10 m10 s10 offset-xl1 offset-l1 offset-m1 offset-s1 footer-contents center">
       <div class = "col xl4 l4 m4 s4">
         <h1 class = "center">Toiro</h1>
         <%= link_to "Concept", home_about_path,class: "concept" %>
