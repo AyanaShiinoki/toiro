@@ -6,7 +6,7 @@
 <div class ="row">
 	<div class="notification-content left">
 			<%= link_to users_user_path(visitor) do %>
-			<%= attachment_image_tag visitor, :user_image, :fill, 50, 50, format: 'jpeg',class:"notification_user responsive-img" %>
+			<%= attachment_image_tag visitor, :user_image, :fill, 50, 50, format: 'jpeg',class:"notification_user responsive-img",fallback: "noimage2.png", size:'50x50' %>
 				<strong><%= visitor.name %>さんが</strong>
 			<% end %>
 

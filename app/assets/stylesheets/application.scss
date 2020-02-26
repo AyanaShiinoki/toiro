@@ -235,12 +235,15 @@ $sp: 480px;  // スマホ
 				}
 
 				.notification-content{
-					border-bottom: 1px dotted;
+					font-family: $sans;
 					border-width: 90%;
 					padding-bottom: 0px;
 					a{
 					font-size: 18px;
-					font-family: $gothic;
+					color: #00897b;
+					&:hover{
+					color:#e57373;
+					}
 					}
 					.notification_user{
 						vertical-align: middle;
