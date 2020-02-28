@@ -1,15 +1,15 @@
 <div class="container user-edit">
-		<%= link_to users_user_path(@user) do %>
-			<i class="material-icons medium">chevron_left</i>
-		<% end %>
+	<%= link_to users_user_path(@user) do %>
+		<i class="material-icons medium">chevron_left</i>
+	<% end %>
 	<div class="row error-box">
 		<% if @user.errors.any? %>
-	         <h5><%= @user.errors.count %>件のエラーがあります</h5>
-	            <ul>
-	               <% @user.errors.full_messages.each do |message| %>
-	                  <li><%= message %></li>
-	                <% end %>
-	            </ul>
+	        <h5><%= @user.errors.count %>件のエラーがあります</h5>
+	        <ul>
+	        	<% @user.errors.full_messages.each do |message| %>
+	        		<li><%= message %></li>
+	        	<% end %>
+	        </ul>
 	    <% end %>
 	</div>
 	<div class = "row">

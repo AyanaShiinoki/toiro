@@ -1,18 +1,16 @@
-
 <% comments.each do |comment| %>
 	<div class = "comment-content">
 		<%= link_to users_user_path(comment.user) do %>
 			<p class ="center"><%= comment.user.name %></p>
 			<%= attachment_image_tag comment.user,  :user_image, :fill, 50,50, format:'jpeg' ,class: "user-image",fallback: "noimage2.png", size:'50x50' %>
 		<% end %>
-		<span><%= comment.comment %></span>
+			<span><%= comment.comment %></span>
 		<% if comment.user_id == current_user.id %>
-		<%= link_to users_exhibition_comments_path(exhibition_id: comment.exhibition_id, id: comment.id), method: :delete ,remote: true, class: "right" do %>
-		<i class="material-icons">delete</i>
+			<%= link_to users_exhibition_comments_path(exhibition_id: comment.exhibition_id, id: comment.id), method: :delete ,remote: true, class: "right" do %>
+				<i class="material-icons">delete</i>
+			<% end %>
 		<% end %>
-		<% end %>
-	</div>
-	<br>
+	</div><br>
 <% end %>
 
 
@@ -23,8 +21,6 @@ $(function() {
     nextSelector: 'span.next a'
   });
 });
-
-
 </script>
 
 
