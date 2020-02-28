@@ -1,15 +1,15 @@
 <div class="container exhibition-new">
-			<div class="row error-box">
-				<% if @exhibition.errors.any? %>
-			    	<h5><%= @exhibition.errors.count %>件のエラーがあります</h5>
-			    	<ul>
-			    	<% @exhibition.errors.full_messages.each do |message| %>
-			    	<li><%= message %></li>
-			    	<% end %>
-			    <% end %>
-			</div>
+	<div class="row error-box">
+		<% if @exhibition.errors.any? %>
+			<h5><%= @exhibition.errors.count %>件のエラーがあります</h5>
+				<ul>
+				<% @exhibition.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+		<% end %>
+	</div>
 	<div class="row">
-			<h2 class="center"> Exhibition</h2>
+		<h2 class="center"> Exhibition</h2>
 <!-- 個展概要フォーム -->
 		<% if user_signed_in? %>
 			<%= form_with model: @exhibition, url: {controller: 'exhibitions', action: 'create' } do |f| %>
@@ -17,8 +17,6 @@
 				<%= f.text_field :title %><br>
 				<label>個展概要</label><br>
 				<%= f.text_area :caption  ,class: "materialize-textarea" %><br>
-
-
 <!-- 作品フォーム -->
 		<div class = "col xl12 l12 m12 s12">
 			<h2 class="center">Works</h2>
@@ -33,18 +31,16 @@
 					<label>作品説明</label><br>
 					<%= field.text_field :description %><br>
 					<label>作品画像</label><br>
-
 				    <div class="file-field input-field">
-				      <div class="btn">
-				        <span>File</span>
+				    	<div class="btn">
+				        	<span>File</span>
 <!-- 画像フォーム -->
-				        <%= field.attachment_field :work_image, onchange: "previewFile(this)"%><br>
-				      </div>
+				        	<%= field.attachment_field :work_image, onchange: "previewFile(this)"%><br>
+				      	</div>
 				      <div class="file-path-wrapper">
 				        <input class="file-path validate" type="text">
 				      </div>
 				    </div>
-
 <!-- フォーム削除 -->
 					<br><%= field.remove_nested_fields_link 'Delete' %>
 				</div>
@@ -55,12 +51,12 @@
 				<div class="row add-form">
 					<div class = "col xl12 l12 m12 s12">
 						<div class="col xl5 l5 m8 s6 offset-xl10 offset-l10 offset-m8 offset-s8">
-						<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
+							<%= f.add_nested_fields_link :works, 'フォーム追加する', class: 'btn waves-effect waves-light', type: 'button'%>
 						</div>
 					</div>
 				</div>
 				<div class="center">
-				<%= button_tag '開催する', class: 'waves-effect waves-light btn-large', type: 'button', onclick: 'submit();' %>
+					<%= button_tag '開催する', class: 'waves-effect waves-light btn-large', type: 'button', onclick: 'submit();' %>
 				</div>
 			<% end %>
 		<% end %>

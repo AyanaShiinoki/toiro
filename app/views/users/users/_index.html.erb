@@ -1,24 +1,23 @@
-
-	<% users.each do |user| %>
-		<div class = "col xl3 l3 m4 s4">
-			<%= link_to users_user_path(user) do %>
-				<div class = "user-info card">
-					<%= attachment_image_tag user, :user_image, :fill, 100, 100, format: 'jpeg',class:"user-image responsive-img", fallback: "noimage2.png", size:'100x100'%><br>
-					<h5><%= user.name %></h5>
-					<p><%= user.introduction %></p>
-					<h5><%= user.gallery.gallery_name %></h5>
-					<p><%= user.gallery.concept %></p>
-				</div>
-					<% if user != current_user %>
-						<% if current_user.following?(user) %>
-							<%= link_to "フォローを解除する" , users_user_relationships_path(user.id), method: :delete,class: "waves-effect red lighten-3 btn right" %>
-						<% else %>
-							<%= link_to "フォローする", users_user_relationships_path(user.id), method: :POST,class: "waves-effect waves-light btn" %>
-						<% end %>
-					<% end %>
+<% users.each do |user| %>
+	<div class = "col xl3 l3 m4 s4">
+		<%= link_to users_user_path(user) do %>
+			<div class = "user-info card">
+				<%= attachment_image_tag user, :user_image, :fill, 100, 100, format: 'jpeg',class:"user-image responsive-img", fallback: "noimage2.png", size:'100x100'%><br>
+				<h5><%= user.name %></h5>
+				<p><%= user.introduction %></p>
+				<h5><%= user.gallery.gallery_name %></h5>
+				<p><%= user.gallery.concept %></p>
+			</div>
+			<% if user != current_user %>
+				<% if current_user.following?(user) %>
+					<%= link_to "フォローを解除する" , users_user_relationships_path(user.id), method: :delete,class: "waves-effect red lighten-3 btn right" %>
+				<% else %>
+					<%= link_to "フォローする", users_user_relationships_path(user.id), method: :POST,class: "waves-effect waves-light btn" %>
+				<% end %>
 			<% end %>
+		<% end %>
 		</div>
-	<div class ="pagenate center">
-	    <%= paginate users %>
-	</div>
-	<% end %>
+		<div class ="pagenate center">
+	    	<%= paginate users %>
+		</div>
+<% end %>

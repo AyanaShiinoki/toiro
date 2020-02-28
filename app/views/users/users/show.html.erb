@@ -2,7 +2,6 @@
   <div class ="row">
     <div class = "col xl12 l12 m12 s12">
       <div class ="user-folder  col xl5 l5 m5 s5">
-
         <% if @user.gallery == nil %>
           <div class = "create-gallery center">
               <%= link_to "早速ギャラリーを作りましょう！", new_users_gallery_path %>
@@ -11,7 +10,6 @@
             <h5 class ="center-align gellery_name"><%= @user.gallery.gallery_name%></h5>
             <p class="center-align concept"><%= @user.gallery.concept %></p>
         <% end %>
-
         <div class = "user-content center">
 <!-- 他のユーザー -->
 <% if user_signed_in? %>
@@ -25,14 +23,14 @@
 <!-- フォロー機能 -->
           <div class="follow-action">
             <% if current_user.following?(@user) %>
-                <%= link_to users_user_relationships_path(@user.id),method: :delete do%>
+              <%= link_to users_user_relationships_path(@user.id),method: :delete do%>
                   <%= image_tag 'fan.svg' , :size=>"70x70" %>
                   <span class = "following">Following</span>
                 <% end %>
             <% else %>
                 <%= link_to users_user_relationships_path(@user.id), method: :POST do %>
-                <%= image_tag 'fan.svg' , :size=>"70x70" %>
-                <span>Follow</span>
+                  <%= image_tag 'fan.svg' , :size=>"70x70" %>
+                  <span>Follow</span>
                 <% end %>
               <% end %>
             <% end %>
@@ -80,10 +78,9 @@
     </div>
   </div>
 <!-- 個展一覧 -->
-<% if @user.gallery != nil %>
-  <%= render 'users/users/user_exhibitions', exhibitions: @exhibitions, exhibitions_f: @exhibitions_f, user: @user %>
-<% end %>
-
+  <% if @user.gallery != nil %>
+    <%= render 'users/users/user_exhibitions', exhibitions: @exhibitions, exhibitions_f: @exhibitions_f, user: @user %>
+  <% end %>
 </div>
 
 

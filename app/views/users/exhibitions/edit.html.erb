@@ -4,11 +4,11 @@
 		<% end %>
 	<div class="row error-box">
 		<% if @exhibition.errors.any? %>
-			   <h5><%= @exhibition.errors.count %>件のエラーがあります</h5>
-			   <ul>
-			   <% @exhibition.errors.full_messages.each do |message| %>
-			   <li><%= message %></li>
-			   <% end %>
+			<h5><%= @exhibition.errors.count %>件のエラーがあります</h5>
+			<ul>
+			<% @exhibition.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
 		<% end %>
 	</div>
 	<div class="row works">
@@ -20,7 +20,7 @@
 				<%= f.text_field :title %><br>
 				<label>個展概要</label><br>
 				<%= f.text_area :caption, class: "materialize-textarea" %><br>
-			<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
+				<%= f.select :is_active, [["開催中","true"],["休止中","false"]],autofocus: true %>
 <!-- 削除機能（モーダル） -->
 		  <a class="waves-effect red lighten-1 btn modal-trigger" href="#modal_delete">完全に削除する</a>
 		  <div id="modal_delete" class="modal">
@@ -38,21 +38,14 @@
 			<%= f.nested_fields_for :works, wrapper_tag: :div do |field| %>
 			<div class = "col xl4 l4 m12 s12 form">
 				<div class ="work-image-pre center">
-
-<!-- 変更 -->
 <!-- 元の画像があれば表示、差し替える -->
-			<% if field.object.work_image.present? %>
-
+					<% if field.object.work_image.present? %>
 <!-- field.objectでフォームにあるオブジェクトを確認 -->
-			<%= attachment_image_tag field.object, :work_image, :fill, 300, 300, class: "work_prev", size: "300x300"%>
-
-			<% else %>
+						<%= attachment_image_tag field.object, :work_image, :fill, 300, 300, class: "work_prev", size: "300x300"%>
+					<% else %>
 <!-- 新規 -->
-			<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %>
-
-			<% end %>
-
-
+						<%= attachment_image_tag @work, :work_image, src: "", size: "300x300", alt:"Image preview", class: "work_prev", fallback: "noimage2.png" %>
+					<% end %>
 				</div>
 				<label>画像タイトル</label><br>
 				<%= field.text_field :work_title %><br>
@@ -60,14 +53,14 @@
 				<%= field.text_field :description %><br>
 				<label>作品画像</label><br>
 				    <div class="file-field input-field">
-				      <div class="btn">
+				    	<div class="btn">
 				        <span>File</span>
 <!-- 画像投稿フォーム（previewFile(this)呼び出し） -->
 				        <%= field.attachment_field :work_image, onchange: "previewFile(this)"%><br>
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text">
-				      </div>
+				     	</div>
+				      	<div class="file-path-wrapper">
+				        	<input class="file-path validate" type="text">
+				      	</div>
 				    </div>
 <!-- フォーム削除 -->
 				<br><%= field.remove_nested_fields_link 'Delete' %>

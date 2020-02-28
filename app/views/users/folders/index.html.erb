@@ -22,21 +22,19 @@
 			<% end %>
 		</div>
 	</div>
-		<div class = "row folders-content" >
-			<div class = "col xl12 l12 m12 s12 ">
-				<% @folders.each do |folder| %>
-					<div class = "folder col xl4 l4 m6 s12 ">
-						<h6><%= link_to "#{folder.folder_name}" ,users_folder_path(folder) %></h6>
-						<p>登録数: <%= folder.clips.count %></p>
-						<% if folder.user == current_user %>
-						<p class = "edit right"><%= link_to "Edit", edit_users_folder_path(folder) %></p>
-						<% end %>
-					</div>
-				<% end %>
-			</div>
+	<div class = "row folders-content" >
+		<div class = "col xl12 l12 m12 s12 ">
+			<% @folders.each do |folder| %>
+				<div class = "folder col xl4 l4 m6 s12 ">
+					<h6><%= link_to "#{folder.folder_name}" ,users_folder_path(folder) %></h6>
+					<p>登録数: <%= folder.clips.count %></p>
+					<% if folder.user == current_user %>
+					<p class = "edit right"><%= link_to "Edit", edit_users_folder_path(folder) %></p>
+					<% end %>
+				</div>
+			<% end %>
 		</div>
-
-
+	</div>
 </div>
 
 

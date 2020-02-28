@@ -1,12 +1,8 @@
 <div class="container notification">
-
-<% @notifications = current_user.passive_notifications.page(params[:page]).per(10) %>
-<% 	@notifications.where(checked: false).each do |notification| %>
-			<% notification.update_attributes(checked: true) %>
-<% end %>
-
-
-
+	<% @notifications = current_user.passive_notifications.page(params[:page]).per(10) %>
+	<% 	@notifications.where(checked: false).each do |notification| %>
+		<% notification.update_attributes(checked: true) %>
+	<% end %>
 	<ul id="slide-out" class="sidenav z-depth-4 skill-list jscroll">
 		<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 		<% if notifications.exists? %>
@@ -17,9 +13,6 @@
 			<p>通知はありません</p>
 		<% end %>
 	</ul>
-
-
-
 </div>
 
 
