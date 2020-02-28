@@ -8,7 +8,6 @@
 		<% if notifications.exists? %>
 			<h5 class ="index">通知一覧</h5>
 			<%= render notifications %>
-			<%= paginate notifications %>
 		<% else %>
 			<p>通知はありません</p>
 		<% end %>
