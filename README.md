@@ -54,3 +54,8 @@ Rails 5.2.4.1
     効率を考慮し、個展モデルのレコード数分の整数を生成し、offsetとlimitでデータを取り出しています。
 ![巡る](https://user-images.githubusercontent.com/57246626/75654466-247fc780-5ca3-11ea-8eb7-9bfded1bf597.gif) 
 
+### 名刺機能
+    ユーザーのプロフィールを名刺としてダウンロードできます。  
+![名刺](https://user-images.githubusercontent.com/57246626/75655907-3151ea80-5ca6-11ea-8b85-e61263b203a5.gif)  
+
+
