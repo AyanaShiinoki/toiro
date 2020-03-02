@@ -44,6 +44,11 @@ Rails 5.2.4.1
     画像を選択すると、プレビューが表示されます。
 <img width="808" alt="スクリーンショット 2020-03-02 15 40 09" src="https://user-images.githubusercontent.com/57246626/75651615-40339f80-5c9c-11ea-8f72-8a77b33f1f09.png">  
 
+![開催](https://user-images.githubusercontent.com/57246626/75655528-6a3d8f80-5ca5-11ea-8d39-49d1673659fc.gif)
+
+
+
+
 ### 回遊機能
     開催中の個展をランダムに巡ることができます。
     効率を考慮し、個展モデルのレコード数分の整数を生成し、offsetとlimitでデータを取り出しています。
