@@ -40,8 +40,12 @@ Rails 5.2.4.1
 ## デモ
 ### 個展開催
     フォームは動的に追加・削除が可能です。フォーム上限は9つに指定しています。
+    個展タイトル、概要を記入し、個展テーマに基づく作品を最大９作品投稿します。
     画像を選択すると、プレビューが表示されます。
 <img width="808" alt="スクリーンショット 2020-03-02 15 40 09" src="https://user-images.githubusercontent.com/57246626/75651615-40339f80-5c9c-11ea-8f72-8a77b33f1f09.png">  
 
-![開催デモ](https://user-images.githubusercontent.com/57246626/75653951-e7ff9c00-5ca1-11ea-8bde-377fbcd3bb28.gif)  
+### 回遊機能
+    開催中の個展をランダムに巡ることができます。
+    効率を考慮し、個展モデルのレコード数分の整数を生成し、offsetとlimitでデータを取り出しています。
+![巡る](https://user-images.githubusercontent.com/57246626/75654466-247fc780-5ca3-11ea-8eb7-9bfded1bf597.gif) 
 
