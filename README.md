@@ -38,5 +38,8 @@ Rails 5.2.4.1
 ・ユーザー情報、ギャラリー情報、個展編集機能  
 
 ## デモ
+### 個展開催
+<img width="808" alt="スクリーンショット 2020-03-02 15 40 09" src="https://user-images.githubusercontent.com/57246626/75651615-40339f80-5c9c-11ea-8f72-8a77b33f1f09.png">  
+
 
 ![デモ1](https://user-images.githubusercontent.com/57246626/75651415-b683d200-5c9b-11ea-835d-22cb2d95d895.gif)
