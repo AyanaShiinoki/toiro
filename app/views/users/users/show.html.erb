@@ -3,9 +3,13 @@
     <div class = "col xl12 l12 m12 s12">
       <div class ="user-folder  col xl5 l5 m5 s5">
         <% if @user.gallery == nil %>
-          <div class = "create-gallery center">
-              <%= link_to "早速ギャラリーを作りましょう！", new_users_gallery_path %>
-          </div>
+          <% if @user == current_user %>
+            <div class = "create-gallery center">
+                <%= link_to "早速ギャラリーを作りましょう！", new_users_gallery_path %>
+            </div>
+          <% else %>
+            <h5 class = "center">まだギャラリーが作成されていません。</h5>
+          <% end %>
           <% else %>
             <h5 class ="center-align gellery_name"><%= @user.gallery.gallery_name%></h5>
             <p class="center-align concept"><%= @user.gallery.concept %></p>
