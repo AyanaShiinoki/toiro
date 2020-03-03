@@ -10,7 +10,8 @@ before_action :authenticate_user!
 		@folder = Folder.new(folder_params)
 		@folder.user_id = current_user.id
 		if @folder.save
-			redirect_to users_folder_path(@folder)
+			redirect_back(fallback_location: root_path)
+			# redirect_to users_folder_path(@folder)
 		end
 	end
 
