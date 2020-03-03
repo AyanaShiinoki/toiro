@@ -58,18 +58,39 @@
 			</div>
 			</div>
 		</div>
-		<div class = "row right add-folder">
+		<div class = "row folder-action">
 			<div class = "col xl12 l12 m12 s12">
-				フォルダに追加<button data-target="modal1" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></button>
-					<div id="modal1" class="modal">
-						<div class="modal-content">
-							<%= form_with model: [:users, @exhibition , @clip] do |f| %>
-								<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
-								<%= f.text_field :memo %>
-								<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+				<% if @folders.count == 0 %>
+					<div class = "right create-folder">
+						<p>フォルダが作成されていません。</p>
+						<p>フォルダを作成するとお気に入りの個展をクリップすることができます。</p>
+					  	<a class="waves-effect waves-light btn modal-trigger" href="#modal1">フォルダ新規作成</a>
+					  <div id="modal1" class="modal">
+					    <div class="modal-content">
+							<div class="container">
+								<h4 class = "center">フォルダ作成</h4>
+								<%= form_with model: [:users, @folder] do |f| %>
+									<%= f.text_field :folder_name %>
+									 <%= button_tag '追加する', class: 'btn waves-effect waves-green center', type: 'button', onclick: 'submit();' %>
 								<% end %>
-						</div>
+							</div>
+					    </div>
+					  </div>
 					</div>
+				<% else %>
+					<div class = "right add-folder">
+						フォルダに追加<button data-target="modal1" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></button>
+							<div id="modal1" class="modal">
+								<div class="modal-content">
+									<%= form_with model: [:users, @exhibition , @clip] do |f| %>
+										<%=  f.collection_select :folder_id, @folders, :id, :folder_name,{} %>
+										<%= f.text_field :memo %>
+										<%= button_tag '追加', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+									<% end %>
+								</div>
+							</div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	<% else %>
@@ -97,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 <!-- モーダルウィンドウ -->
+
 
 
 

@@ -27,6 +27,7 @@ before_action :authenticate_user!, except: [:index,:show,:random]
 		@comment = Comment.new
 		@clip = Clip.new
 		@folders = Folder.where(user_id: current_user.id)
+		@folder = Folder.new
 		@comments = @exhibition.comments.reverse
 		@likes = @exhibition.likes.page(params[:page]).per(5)
 		end

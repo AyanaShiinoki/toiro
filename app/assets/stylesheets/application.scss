@@ -1002,15 +1002,25 @@ footer {
 	        margin-top: 60px;
 	    }
 	}
-	.add-folder {
-	    font-size: 20px;
-	    .modal {
-	        border-radius: 10px;
-	        width: 500px;
-	    }
-	    .btn {
-	        margin-left: 20px;
-	    }
+	.folder-action {
+		.create-folder{
+			font-size: 15px;
+			text-align: center;
+			.modal {
+		        border-radius: 10px;
+		        width: 500px;
+			}
+		}
+		.add-folder {
+		    font-size: 20px;
+		    .modal {
+		        border-radius: 10px;
+		        width: 500px;
+		    }
+		    .btn {
+		        margin-left: 20px;
+		    }
+		}
 	}
 }
 .flower {
